@@ -9,7 +9,7 @@ googleAnalytics = ""
 
 [params]
     # Sets the meta tag description, usually reserved for the main page
-    description          = "HTML5 UP theme, Future Imperfect with some extra goodies, ported by Julio Pescador. Powered by Hugo"
+    description          = "Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy."
     # This will appear on the top left of the navigation bar
     navbarTitle          = "Ronald Martin"
     # Social media buttons that appear on the sidebar
@@ -43,9 +43,16 @@ googleAnalytics = ""
 [params.intro]
     header    = "Ronald Martin"
 
-    paragraph = "Another fine responsive site template by <a href=\"http://html5up.net\">HTML5 UP</a>. Ported by Julio Pescador with some extra goodies <i class='fa fa-hand-peace-o'></i>"
+    paragraph = "Twenty-something in the City by the Bay."
 
-    about     = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent tellus lacus, auctor vehicula molestie quis, tempor quis velit. Quisque in quam ac leo efficitur vulputate. Phasellus ullamcorper aliquam sodales. Maecenas sit amet condimentum ipsum. Proin sit amet ligula elit. Mauris."
+    about     = """\
+    I'm a native San Franciscan and alum of St. Ignatius and UPenn. I'm a logician and \
+    computer scientist by education, and I like design, efficiency, and building things \
+    (particularly mobile apps).
+
+	My non-technical interests include playing volleyball, adventure stories, casual math, \
+	philosophy, discovering new music, co-op games, and delicious foods!\
+	"""
 
 # This will also appear on the sidebar.
 # A width of less than 100px is recommended
@@ -57,7 +64,7 @@ googleAnalytics = ""
     circle    = false
     imperfect = true
     width     = ""
-    alt       = "Hugo Future Imperfect"
+    alt       = "Ronald Martin"
 
 # Adjust the amount of recent posts on the sidebar.
 # This is optional. The default value 5 will be used
