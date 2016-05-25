@@ -1,29 +1,22 @@
 +++
-title = "About Hugo"
-date = "2014-04-09"
+title = "About Me"
+date = "2015-05-25"
 +++
 
-Hugo is a static site engine written in Go.
+
+My name is Ronald, and I'm a native San Franciscan. <i class="fa fa-hand-peace-o" aria-hidden="true"></i>
 
 
-It makes use of a variety of open source projects including:
+I'm a logician and computer scientist by education ([St. Ignatius '10](http://www.siprep.org/); [UPenn '14](http://www.upenn.edu/)), and I love learning new things!
 
-* [Cobra](https://github.com/spf13/cobra)
-* [Viper](https://github.com/spf13/viper)
-* [J Walter Weatherman](https://github.com/spf13/jWalterWeatherman)
-* [Cast](https://github.com/spf13/cast)
+I really enjoy building stuff, particularly mobile apps. I also occasionally build websites.
 
-Learn more and contribute on [GitHub](https://github.com/spf13).
+My non-technical interests include (but are certainly not limited to):
 
-## Setup
-
-Some fun facts about [Hugo](http://gohugo.io/):
-
-* Built in [Go](http://golang.org/)
-* Loosely inspired by [Jekyll](http://jekyllrb.com/)
-* Primarily developed by [spf13](http://spf13.com/) on the train while commuting to and from Manhattan.
-* Coded in [Vim](http://vim.org) using [spf13-vim](http://vim.spf13.com/)
-
-Have questions or suggestions? Feel free to [open an issue on GitHub](https://github.com/spf13/hugo/issues/new) or [ask me on Twitter](https://twitter.com/spf13).
-
-Thanks for reading!
+* playing volleyball
+* adventure stories
+* casual math
+* philosophy
+* discovering new music
+* co-op games
+* delicious foods!
