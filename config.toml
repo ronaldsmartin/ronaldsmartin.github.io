@@ -89,6 +89,11 @@ googleAnalytics = ""
     url = "/about"
     weight = 3
 
+[[menu.main]]
+	name = "Projects"
+	url = "/projects"
+	weight = 4
+
 # Insert your username and the icon will apear on the page as long as
 # socialAppearAtTop or socialAppearAtBottom is set to true in the params area
 # The social media icons will appear on the sidebar
