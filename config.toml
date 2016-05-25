@@ -82,16 +82,19 @@ googleAnalytics = "UA-77163005-1"
 [[menu.main]]
     name = "Categories"
     url = "/categories"
+    identifier = "fa fa-map-signs"
     weight = 2
 
 [[menu.main]]
     name = "About"
     url = "/about"
+    identifier = "fa fa-info-circle"
     weight = 3
 
 [[menu.main]]
 	name = "Projects"
 	url = "/projects"
+	identifier = "fa fa-code"
 	weight = 4
 
 # Insert your username and the icon will apear on the page as long as
