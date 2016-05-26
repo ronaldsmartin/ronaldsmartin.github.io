@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Blogs on It&#39;s Ronald</title>
+    <link>http://itsronald.com/blog/</link>
+    <description>Recent content in Blogs on It&#39;s Ronald</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 25 May 2016 14:24:05 -0700</lastBuildDate>
+    <atom:link href="http://itsronald.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Is This Thing On?</title>
+      <link>http://itsronald.com/blog/2016/05/first-post/</link>
+      <pubDate>Wed, 25 May 2016 14:24:05 -0700</pubDate>
+      
+      <guid>http://itsronald.com/blog/2016/05/first-post/</guid>
+      <description>
+
+&lt;h1 id=&#34;welcome-to-my-blog:f3b70d76da56e15d82042b9ef176d71f&#34;&gt;Welcome to my Blog!&lt;/h1&gt;
+
+&lt;p&gt;This site is being built with &lt;a href=&#34;https://gohugo.io/&#34;&gt;Hugo&lt;/a&gt;, an awesome, Go-based static site generator.&lt;/p&gt;
+
+&lt;p&gt;Since I work primarily on mobile platforms, what little I do know about web development has fallen off the wayside in the past couple of years. Hopefully, I can use this experience to catch up with the current state of affairs in webdev world. Using a static site generator perhaps isn&amp;rsquo;t quite the same as building a site from scratch, but let&amp;rsquo;s not reinvent the wheel, right?&lt;/p&gt;
+
+&lt;h2 id=&#34;makin-blog-posts:f3b70d76da56e15d82042b9ef176d71f&#34;&gt;Makin&amp;rsquo; Blog Posts&lt;/h2&gt;
+
+&lt;p&gt;The syntax for creating a new post uses the following command:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;hugo new relative/path/to/content.md
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;For future reference, the docs are here: &lt;a href=&#34;http://gohugo.io/content/types/&#34;&gt;http://gohugo.io/content/types/&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2 id=&#34;wow-i-ve-learned-things-already:f3b70d76da56e15d82042b9ef176d71f&#34;&gt;Wow, I&amp;rsquo;ve Learned Things Already?&lt;/h2&gt;
+
+&lt;p&gt;While this is my first post, I&amp;rsquo;ve already learned a few things that never came up while building apps:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://npf.io/2014/08/intro-to-toml/&#34;&gt;What is TOML?&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://www.staticgen.com/&#34;&gt;There are &lt;em&gt;so&lt;/em&gt; many static site generators&lt;/a&gt;. I ended up choosing Hugo for a few reasons, the main one being that its written in Go (which I would like to learn eventually). It helps that the &lt;a href=&#34;http://gohugo.io/overview/introduction/&#34;&gt;documentation&lt;/a&gt; is quite thorough.&lt;/li&gt;
+&lt;li&gt;I had no idea that people actually visited my website. The screencap above from Google Analytics was for the Jekyll-based autogeneratred &lt;a href=&#34;https://pages.github.com/&#34;&gt;GitHub Page&lt;/a&gt; that this Hugo site is replacing. What&amp;rsquo;s with those weird spikes last week? Maybe now that I&amp;rsquo;ve decided to add some content, more people will visit! Before deciding to revamp my website, I hadn&amp;rsquo;t really worked with Google Analytics before. It was enormously easy to sign up, get a tracking ID, and enter it into GitHub Pages&amp;rsquo; site generator to come up with the data you see here. I highly recommend doing so!&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://gohugo.io/templates/go-templates/&#34;&gt;Go HTML Templates are pretty easy to use.&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Managing a domain&lt;/strong&gt;: I&amp;rsquo;ve never had one before, so it was surprisingly easy to buy a couple (I used Namecheap) and point them at my GitHub page. Easy, free hosting with &lt;a href=&#34;https://help.github.com/articles/setting-up-your-pages-site-repository/&#34;&gt;great docs&lt;/a&gt;. Thanks, GitHub.&lt;/li&gt;
+&lt;li&gt;What SASS, LESS, and SCSS are.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Even if I never write another blog post, this has already been an amazing learning experience. And, if I hadn&amp;rsquo;t written this post, I probably wouldn&amp;rsquo;t have noticed I&amp;rsquo;d learned this much!&lt;/p&gt;
+
+&lt;p&gt;I really like learning though, so my tentative goal is to try to write something at least once a week, even if its just a check-in type of post.&lt;/p&gt;
+
+&lt;h3 id=&#34;other-stuff-i-want-to-learn:f3b70d76da56e15d82042b9ef176d71f&#34;&gt;Other Stuff I Want to Learn&lt;/h3&gt;
+
+&lt;p&gt;I&amp;rsquo;m going to continue building out this site to learn some of the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Using Hugo with Gulp and SCSS&lt;/li&gt;
+&lt;li&gt;Go, the programming language&lt;/li&gt;
+&lt;li&gt;Go, the board game&lt;/li&gt;
+&lt;li&gt;Disqus comment integration with Hugo&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h2 id=&#34;blog-content-ideas:f3b70d76da56e15d82042b9ef176d71f&#34;&gt;Blog Content Ideas&lt;/h2&gt;
+
+&lt;p&gt;There are a lot of things I&amp;rsquo;d like to write about, and they aren&amp;rsquo;t limited to programming topics.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Android Studio 2.2 introduces recordable UI tests, fresh out of Google I/O just about a year after Apple introduced them in Xcode. How do they compare?&lt;/li&gt;
+&lt;li&gt;Touchable image maps in Android (in conjunction with &lt;a href=&#34;https://github.com/turniphead&#34;&gt;Dean&lt;/a&gt; and my &lt;a href=&#34;https://github.com/turniphead/RebelBase&#34;&gt;Star Wars: Rebellion app&lt;/a&gt;)&lt;/li&gt;
+&lt;li&gt;I have a secret music blog, but I&amp;rsquo;m considering making it not secret and posing music things here instead.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;If you have any ideas, please feel free to contact me. Until I get the comment system set up, my email is in the sidebar.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
