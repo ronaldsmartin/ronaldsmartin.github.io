@@ -11,7 +11,7 @@ googleAnalytics = "UA-77163005-1"
     # Sets the meta tag description, usually reserved for the main page
     description          = "Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy."
     # This will appear on the top left of the navigation bar
-    navbarTitle          = "Ronald Martin"
+    navbarTitle          = "It's Ronald"
     # Social media buttons that appear on the sidebar
     socialAppearAtTop    = true
     socialAppearAtBottom = true
