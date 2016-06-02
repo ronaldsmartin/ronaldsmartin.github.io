@@ -4,7 +4,7 @@ title = "It's Ronald"
 theme = "hugo-future-imperfect"
 preserveTaxonomyNames = true
 paginate = 3
-disqusShortname = "shortname"
+disqusShortname = "itsronald"
 googleAnalytics = "UA-77163005-1"
 
 [params]
