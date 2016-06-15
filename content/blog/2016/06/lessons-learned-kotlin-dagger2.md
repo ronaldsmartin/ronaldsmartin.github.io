@@ -66,6 +66,10 @@ However, when using these annotations in Kotlin files we should be using the bui
 	android {
 	    ...
 	}
+
+	kapt {
+		generateStubs = true
+	}
 	 
 	dependencies {
 	    // apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion" - use kapt instead
@@ -101,9 +105,9 @@ So, what gives? A rudimentary Google search suggests that all of these were impl
   * **Main `.jar` filesize:** 20542 bytes
   * **Includes developer in metadata:** No
   * **Notes:**
-    - Manifest includes in header: "Copyright 1997-2008 Sun Microsystems, Inc."
-    - Lists #3 below as an optional dependency!
-    - OSGi ([official site](https://www.osgi.org/developer/architecture/); [Wikipedia](https://en.wikipedia.org/wiki/OSGi)) is a standard for packaging Java components.
+     - Manifest includes in header: "Copyright 1997-2008 Sun Microsystems, Inc."
+     - Lists #3 below as an optional dependency!
+     - OSGi ([official site](https://www.osgi.org/developer/architecture/); [Wikipedia](https://en.wikipedia.org/wiki/OSGi)) is a standard for packaging Java components.
 3. [`javax.annotation:jsr250-api:1.0`](http://search.maven.org/#artifactdetails%7Cjavax.annotation%7Cjsr250-api%7C1.0%7Cjar)
   * **Description:** "JSR-250 Reference Implementation by Glassfish"
   * **URL (from metadata):** https://jcp.org/aboutJava/communityprocess/final/jsr250/index.html
@@ -197,9 +201,11 @@ While trying to fix the problem above, Googling pointed me at fairly recent Stac
 1. Move the `buildscript` kotlin classpath dependencies to the app module's `build.gradle` file
 2. `apply plugin: 'kotlin-android-extensions'` and add `classpath "org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version"` in the gradle file
 
-In fact, the [official docs](https://kotlinlang.org/docs/tutorials/android-plugin.html#using-kotlin-android-extensions) do say you need to apply the `kotlin-android-extensions` plugin.
+In fact, the [official docs](https://kotlinlang.org/docs/tutorials/android-plugin.html#using-kotlin-android-extensions) do say you need to apply the `kotlin-android-extensions` plugin. We should do this. Better safe than sorry, right?
 
 However, I think it's worth noting that these tips did _not_ fix the conflicts I ran into above with my current setup (Android Studio 2.2-preview3/Dagger 2.2/Kotlin 1.0.2), and that after turning minify off the standard setup (i.e. `buildscript` in project root `build.gradle`; no explicit mention of `kotlin-android-extensions`) everything worked perfectly. Again, this may vary based on what tool versions you are using.
+
+**Update 2016-06-15:** Using Dagger 2.4 did not solve this problem.
 
 ### `inject()` requires the *exact* class you're injecting into
 
@@ -258,7 +264,7 @@ I wanted to inject the presenter in `TimerActivity` using Dagger, so I implement
 
 It type-checks and everything! But `presenter` still wasn't getting injected. Did you see the problem?
 
-Despite `inject()` type checking for a `TimerActivity` that conforms to the `TimerContract.TimerView` interface, it turns out that the method much match the type of the injecting object exactly
+Despite `inject()` type checking for a `TimerActivity` that conforms to the `TimerContract.TimerView` interface, it turns out that the method much match the type of the injecting object exactly.
 
 `TimerComponent.kt`:
 
@@ -278,7 +284,7 @@ Total noob move, I'm sure, but hey, now I know.
 
 ## Helpful Resources
 
-I probably wouldn't have figured out how to make everything work without the help of the following resources - props to the makers:
+I probably wouldn't have figured out how to make everything work without the help of the following resources -- props to the makers:
 
 * damianpetla's [kotlin-dagger-example](https://github.com/damianpetla/kotlin-dagger-example)
 * Google's example [MVP+Dagger architected ToDo App](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger)
