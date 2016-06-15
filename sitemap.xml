@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://itsronald.com/</loc>
-    <lastmod>2016-05-25T14:24:05-07:00</lastmod>
+    <lastmod>2016-06-14T22:48:04-07:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</loc>
+    <lastmod>2016-06-14T22:48:04-07:00</lastmod>
   </url>
   
   <url>

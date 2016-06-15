@@ -6,8 +6,323 @@
     <description>Recent content in Blogs on It&#39;s Ronald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Wed, 25 May 2016 14:24:05 -0700</lastBuildDate>
+    <lastBuildDate>Tue, 14 Jun 2016 22:48:04 -0700</lastBuildDate>
     <atom:link href="http://itsronald.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>Lessons Learned: Kotlin &#43; Dagger2</title>
+      <link>http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</link>
+      <pubDate>Tue, 14 Jun 2016 22:48:04 -0700</pubDate>
+      
+      <guid>http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</guid>
+      <description>
+
+&lt;h2 id=&#34;living-life-on-the-edge:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Living Life on the &amp;ldquo;Edge&amp;rdquo;&lt;/h2&gt;
+
+&lt;p&gt;I&amp;rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&amp;rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;MVP architecture using &lt;a href=&#34;http://google.github.io/dagger/&#34;&gt;Dagger 2&lt;/a&gt; for dependency injection, and&lt;/li&gt;
+&lt;li&gt;Kotlin, the JVM language by JetBrains.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;I&amp;rsquo;ve run into a few roadblocks along the way, and since we&amp;rsquo;re using shiny new tools, there&amp;rsquo;s fewer than usual online solutions addressing them. Hopefully these tips might help someone out there who&amp;rsquo;s doing something similar.&lt;/p&gt;
+
+&lt;p&gt;At the time of writing, I&amp;rsquo;m currently using Dagger v2.2 with Kotlin v1.0.2. I have just discovered that Dagger 2.4 is &lt;a href=&#34;https://github.com/google/dagger/releases/tag/dagger-2.4&#34;&gt;already stable&lt;/a&gt; and that Dagger 2.5 was commited to master a few hours ago, so I&amp;rsquo;ll update this again when I&amp;rsquo;ve looked into whether using one of these instead of v2.2 addresses some of the issues that follow.&lt;/p&gt;
+
+&lt;h3 id=&#34;kapt-the-kotlin-annotations-processor:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;&lt;code&gt;kapt&lt;/code&gt;, the Kotlin annotations processor&lt;/h3&gt;
+
+&lt;p&gt;Most of the tutorials on (Java) Dagger integrations rely on Hugo Visser&amp;rsquo;s &lt;a href=&#34;https://bitbucket.org/hvisser/android-apt&#34;&gt;Android Studio Annotations Processor&lt;/a&gt;. This is used with Dagger as follows:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;apply plugin: &#39;com.neenbedankt.android-apt&#39;
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath &#39;com.neenbedankt.gradle.plugins:android-apt:1.4&#39;
+    }
+}
+
+android {
+    ...
+}
+
+dependencies {
+    apt &amp;quot;com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion&amp;quot;
+    compile &amp;quot;com.google.dagger:dagger:$rootProject.ext.daggerVersion&amp;quot;
+    provided &#39;javax.annotation:jsr250-api:1.0&#39; 
+
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;However, when using these annotations in Kotlin files we should be using the built-in Kotlin annotation processor instead (source: &lt;a href=&#34;javax.annotation:javax.annotation-api&#34;&gt;Stack Overflow&lt;/a&gt;):&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;// apply plugin: &#39;com.neenbedankt.android-apt&#39; - no longer necessary
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        // classpath &#39;com.neenbedankt.gradle.plugins:android-apt:1.4&#39; - no longer necessary
+    }
+}
+
+android {
+    ...
+}
+
+dependencies {
+    // apt &amp;quot;com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion&amp;quot; - use kapt instead
+    kapt &amp;quot;com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion&amp;quot;
+    compile &amp;quot;com.google.dagger:dagger:$rootProject.ext.daggerVersion&amp;quot;
+    provided &#39;javax.annotation:jsr250-api:1.0&#39; 
+
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h3 id=&#34;multiple-jsr-250-dependencies:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Multiple JSR 250 Dependencies&lt;/h3&gt;
+
+&lt;p&gt;That &lt;code&gt;provided &#39;javax.annotation:jsr250-api:1.0&#39;&lt;/code&gt; line might have stuck out to you.&lt;/p&gt;
+
+&lt;p&gt;Developers haven&amp;rsquo;t seemed to have agreed on a source for the &lt;a href=&#34;https://en.wikipedia.org/wiki/JSR_250&#34;&gt;JSR-250 Java annotations API&lt;/a&gt; used by the Dagger compiler. I&amp;rsquo;ve encountered at least three Gradle artifacts in various projects:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;https://bintray.com/bintray/jcenter/javax.annotation%3Ajavax.annotation-api/view&#34;&gt;&lt;code&gt;javax.annotation:javax.annotation-api:1.2&lt;/code&gt;&lt;/a&gt; - used in &lt;a href=&#34;https://github.com/sockeqwe/mosby&#34;&gt;Mosby&lt;/a&gt;&amp;rsquo;s Dagger sample; in Facebook&amp;rsquo;s &lt;a href=&#34;https://github.com/facebook/fresco&#34;&gt;Fresco library&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bintray.com/bintray/jcenter/org.glassfish%3Ajavax.annotation/10.0-b28/view#&#34;&gt;&lt;code&gt;org.glassfish:javax.annotation:10.0-b28&lt;/code&gt;&lt;/a&gt; - used in Google&amp;rsquo;s MVP+Dagger example and damianpetla&amp;rsquo;s Kotlin+Dagger example&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bintray.com/bintray/jcenter/javax.annotation%3Ajsr250-api/1.0/view&#34;&gt;&lt;code&gt;javax.annotation:jsr250-api:1.0&lt;/code&gt;&lt;/a&gt; - per codepath&amp;rsquo;s &lt;a href=&#34;https://github.com/codepath/android_guides/wiki/Dependency-Injection-with-Dagger-2&#34;&gt;Dagger 2 article&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So, what gives? A rudimentary Google search suggests that all of these were implemented as part of Sun/Oracle&amp;rsquo;s &lt;a href=&#34;https://en.wikipedia.org/wiki/GlassFish&#34;&gt;GlassFish project&lt;/a&gt;. I didn&amp;rsquo;t find what I was looking for in jCenter, so I found what I believe are the original uploads on good maven central. This is what I found:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;&lt;a href=&#34;http://search.maven.org/#artifactdetails%7Cjavax.annotation%7Cjavax.annotation-api%7C1.2%7Cjar&#34;&gt;&lt;code&gt;javax.annotation:javax.annotation-api:1.2&lt;/code&gt;&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Description:&lt;/strong&gt; &amp;ldquo;Common Annotations for the JavaTM Platform API&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;URL (from metadata):&lt;/strong&gt; &lt;a href=&#34;https://jcp.org/en/jsr/detail?id=250&#34;&gt;https://jcp.org/en/jsr/detail?id=250&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Last updated:&lt;/strong&gt; 2013&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Main &lt;code&gt;.jar&lt;/code&gt; filesize:&lt;/strong&gt; 42311 bytes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Includes developer in metadata:&lt;/strong&gt; Rajiv Mordani, the JSR-250 lead at Sun (and now at Oracle).&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://search.maven.org/#artifactdetails%7Corg.glassfish%7Cjavax.annotation%7C10.0-b28%7Cjar&#34;&gt;&lt;code&gt;org.glassfish:javax.annotation:10.0-b28&lt;/code&gt;&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Description:&lt;/strong&gt; &amp;ldquo;Common Annotations for the JavaTM Platform API version ${spec.version} Repackaged as OSGi bundle in GlassFish&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;URL (from metadata):&lt;/strong&gt; None&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Last updated:&lt;/strong&gt; 2011&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Main &lt;code&gt;.jar&lt;/code&gt; filesize:&lt;/strong&gt; 20542 bytes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Includes developer in metadata:&lt;/strong&gt; No&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;Manifest includes in header: &amp;ldquo;Copyright 1997-2008 Sun Microsystems, Inc.&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;Lists #3 below as an optional dependency!&lt;/li&gt;
+&lt;li&gt;OSGi (&lt;a href=&#34;https://www.osgi.org/developer/architecture/&#34;&gt;official site&lt;/a&gt;; &lt;a href=&#34;https://en.wikipedia.org/wiki/OSGi&#34;&gt;Wikipedia&lt;/a&gt;) is a standard for packaging Java components.&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;http://search.maven.org/#artifactdetails%7Cjavax.annotation%7Cjsr250-api%7C1.0%7Cjar&#34;&gt;&lt;code&gt;javax.annotation:jsr250-api:1.0&lt;/code&gt;&lt;/a&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Description:&lt;/strong&gt; &amp;ldquo;JSR-250 Reference Implementation by Glassfish&amp;rdquo;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;URL (from metadata):&lt;/strong&gt; &lt;a href=&#34;https://jcp.org/aboutJava/communityprocess/final/jsr250/index.html&#34;&gt;https://jcp.org/aboutJava/communityprocess/final/jsr250/index.html&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Last updated:&lt;/strong&gt; 2007&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Main &lt;code&gt;.jar&lt;/code&gt; filesize:&lt;/strong&gt; 5848 bytes&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Includes developer in metadata:&lt;/strong&gt; No&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;According to the &lt;a href=&#34;https://jcp.org/en/jsr/detail?id=250&#34;&gt;community page&lt;/a&gt; (which is the same URL provided by #1), the original release was in 2006, with maintenance releases in 2009 and 2013 (n.b.: &lt;a href=&#34;https://jcp.org/aboutJava/communityprocess/maintenance/jsr250/JSR-250-MR3-changes.html&#34;&gt;another maintenance release&lt;/a&gt; is scheduled for next month, Jul 2016!). So it looks like #1, &lt;code&gt;javax.annotation:javax.annotation-api:1.2&lt;/code&gt; implements the latest version of this spec, whereas #3 implemented the first stable version almost ten years ago.&lt;/p&gt;
+
+&lt;p&gt;For what it&amp;rsquo;s worth, I gave all of them a whirl with Dagger and didn&amp;rsquo;t run into any issues. This is a good enough comparison for my purposes short of peeking inside the JARs and comparing them. Since #3 is the smallest and seems to contain the bare minimum necessary for Dagger, I&amp;rsquo;ve taken to using that package.&lt;/p&gt;
+
+&lt;h3 id=&#34;kotlin-android-extensions:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;kotlin-android-extensions&lt;/h3&gt;
+
+&lt;p&gt;JetBrains&amp;rsquo; &lt;a href=&#34;https://kotlinlang.org/docs/tutorials/android-plugin.html&#34;&gt;Kotlin Android Extensions&lt;/a&gt; plugin provides some great features on top of the standard tooling. For those who haven&amp;rsquo;t used it, it can create &amp;ldquo;synthetic properties&amp;rdquo; properties from your XML layout files so that you don&amp;rsquo;t need to make &lt;code&gt;findViewById()&lt;/code&gt; calls and cast them to assign your instance variables. These calls are the bane of Android developers everywhere, many of whom use &lt;a href=&#34;http://jakewharton.github.io/butterknife/&#34;&gt;ButterKnife&lt;/a&gt; to fight back:&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Traditionally in Java:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class MyActivity extends Activity {
+
+    private TextView mTextView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        mTextView = (TextView) findViewById(R.id.textview);
+
+        // Now you can use mTextView:
+        mTextView.setText(&amp;quot;Hello, reader!&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;With ButterKnife (Still in Java):&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;public class MyActivity extends Activity {
+    @BindView(R.id.textview) TextView textView;
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
+
+        // Now you can use textView:
+        textView.setText(&amp;quot;Hello, reader!&amp;quot;);
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;strong&gt;With kotlin-android-extensions:&lt;/strong&gt;&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import kotlinx.android.synthetic.main.activity_main.* // Import all views in R.layout.activity_main
+
+class MyActivity: Activity() {
+    override fun onCreate(savedInstanceState: Bundle) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        // textview is already available
+        textview.text = &amp;quot;Hello, reader!&amp;quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h4 id=&#34;dagger-2-2-compatibility:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Dagger 2.2 Compatibility&lt;/h4&gt;
+
+&lt;p&gt;Nice, right? &lt;em&gt;However&lt;/em&gt;, I couldn&amp;rsquo;t for the life of me make my view classes work with &lt;em&gt;both&lt;/em&gt; Dagger and Kotlin. I started out with an Activity that used Dagger for injecting its presenter. Then, I tried factoring out those pesky &lt;code&gt;findViewById()&lt;/code&gt; calls and using the synthetic properties directly, only to run into various build errors. Either the compiler couldn&amp;rsquo;t import the synthetic layout &amp;ldquo;&lt;code&gt;Unresolved reference kotlinx&lt;/code&gt;,&amp;rdquo; or component classes generated by Dagger &amp;ldquo;&lt;code&gt;references unknown class X&lt;/code&gt;,&amp;rdquo; where X is the component interface that Dagger used to generate it. Okay.&lt;/p&gt;
+
+&lt;p&gt;This was oft accompanied by the sad error message:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;:app:transformClassesWithNewClassShrinkerForDebug FAILED&lt;/p&gt;
+
+&lt;p&gt;Error:Execution failed for task &amp;lsquo;:app:transformClassesWithNewClassShrinkerForDebug&amp;rsquo;.&lt;/p&gt;
+
+&lt;p&gt;Warnings found during shrinking, please use -dontwarn or -ignorewarnings to suppress them.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;The fix:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;buildTypes {
+    yourBuildType {
+        // ...
+        minifyEnabled false
+        // ...
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Voila. No more errors. Hope that gets fixed soon, though.&lt;/p&gt;
+
+&lt;h4 id=&#34;misleading-solutions:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Misleading solutions&lt;/h4&gt;
+
+&lt;p&gt;While trying to fix the problem above, Googling pointed me at fairly recent Stack Overflow answers &lt;a href=&#34;http://stackoverflow.com/a/36526153/4499783&#34;&gt;like this one&lt;/a&gt; that suggested the following:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Move the &lt;code&gt;buildscript&lt;/code&gt; kotlin classpath dependencies to the app module&amp;rsquo;s &lt;code&gt;build.gradle&lt;/code&gt; file&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;apply plugin: &#39;kotlin-android-extensions&#39;&lt;/code&gt; and add &lt;code&gt;classpath &amp;quot;org.jetbrains.kotlin:kotlin-android-extensions:$kotlin_version&amp;quot;&lt;/code&gt; in the gradle file&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;In fact, the &lt;a href=&#34;https://kotlinlang.org/docs/tutorials/android-plugin.html#using-kotlin-android-extensions&#34;&gt;official docs&lt;/a&gt; do say you need to apply the &lt;code&gt;kotlin-android-extensions&lt;/code&gt; plugin.&lt;/p&gt;
+
+&lt;p&gt;However, I think it&amp;rsquo;s worth noting that these tips did &lt;em&gt;not&lt;/em&gt; fix the conflicts I ran into above with my current setup (Android Studio 2.2-preview3/Dagger 2.2/Kotlin 1.0.2), and that after turning minify off the standard setup (i.e. &lt;code&gt;buildscript&lt;/code&gt; in project root &lt;code&gt;build.gradle&lt;/code&gt;; no explicit mention of &lt;code&gt;kotlin-android-extensions&lt;/code&gt;) everything worked perfectly. Again, this may vary based on what tool versions you are using.&lt;/p&gt;
+
+&lt;h3 id=&#34;inject-requires-the-exact-class-you-re-injecting-into:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;&lt;code&gt;inject()&lt;/code&gt; requires the &lt;em&gt;exact&lt;/em&gt; class you&amp;rsquo;re injecting into&lt;/h3&gt;
+
+&lt;p&gt;Lastly, my &amp;ldquo;d&amp;rsquo;oh!&amp;rdquo; moment.&lt;/p&gt;
+
+&lt;p&gt;One of my Activities implemented an interface for interaction with its presenter:&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;TimerActivity.kt&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class TimerActivity : AppCompatActivity(), TimerContract.TimerView {
+
+    @Inject
+    override lateinit var presenter: TimerContract.UserActionsListener
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;TimerPresenter.kt&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class TimerPresenter
+    @Inject constructor(override var view: TimerContract.TimerView)
+    : TimerContract.UserActionsListener {
+    ...
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;I wanted to inject the presenter in &lt;code&gt;TimerActivity&lt;/code&gt; using Dagger, so I implemented a module and component for it.&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;TimerComponent.kt&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import dagger.Component
+
+@Component(
+        modules = arrayOf(TimerModule::class)
+)
+interface TimerComponent {
+
+    fun inject(timerView: TimerContract.TimerView)
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;TimerActivity.kt&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;class TimerActivity : AppCompatActivity(), TimerContract.TimerView {
+
+    @Inject
+    override lateinit var presenter: TimerContract.UserActionsListener
+    ...
+
+    override fun onCreate(savedInstanceState: Bundle) {
+        super.onCreate(savedInstanceState)
+        // Inject away!
+        DaggerTimerComponent.builder()
+            .timerModule(TimerModule(this))
+            .build()
+            .inject(this)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;It type-checks and everything! But &lt;code&gt;presenter&lt;/code&gt; still wasn&amp;rsquo;t getting injected. Did you see the problem?&lt;/p&gt;
+
+&lt;p&gt;Despite &lt;code&gt;inject()&lt;/code&gt; type checking for a &lt;code&gt;TimerActivity&lt;/code&gt; that conforms to the &lt;code&gt;TimerContract.TimerView&lt;/code&gt; interface, it turns out that the method much match the type of the injecting object exactly&lt;/p&gt;
+
+&lt;p&gt;&lt;code&gt;TimerComponent.kt&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code&gt;import dagger.Component
+
+@Component(
+        modules = arrayOf(TimerModule::class)
+)
+interface TimerComponent {
+
+//  fun inject(timerView: TimerContract.TimerView) Nope!
+    fun inject(timerActivity: TimerActivity)    // Yup!
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Total noob move, I&amp;rsquo;m sure, but hey, now I know.&lt;/p&gt;
+
+&lt;h2 id=&#34;helpful-resources:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Helpful Resources&lt;/h2&gt;
+
+&lt;p&gt;I probably wouldn&amp;rsquo;t have figured out how to make everything work without the help of the following resources - props to the makers:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;damianpetla&amp;rsquo;s &lt;a href=&#34;https://github.com/damianpetla/kotlin-dagger-example&#34;&gt;kotlin-dagger-example&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Google&amp;rsquo;s example &lt;a href=&#34;https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger&#34;&gt;MVP+Dagger architected ToDo App&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;soflete&amp;rsquo;s &lt;a href=&#34;http://soflete.github.io/2016/04/01/Android-MVP-with-Dagger/&#34;&gt;Android with Dagger&lt;/a&gt; example&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Thanks for reading, and catch you next time.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Is This Thing On?</title>

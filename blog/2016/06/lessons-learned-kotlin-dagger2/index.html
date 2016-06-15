@@ -4,7 +4,7 @@
     <head>
         
             
-                <title>It&#39;s Ronald</title>
+                <title>Lessons Learned: Kotlin &#43; Dagger2</title>
             
         
 
@@ -22,12 +22,23 @@
         
 
         
-        <meta property="og:title" content="It&#39;s Ronald" />
-<meta property="og:description" content="Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://itsronald.com/" />
+
+  <meta name="twitter:card" content="summary"/>
 
 
+
+<meta name="twitter:title" content="Lessons Learned: Kotlin &#43; Dagger2"/>
+<meta name="twitter:description" content="Living Life on the &ldquo;Edge&rdquo; I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have: MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains. I&rsquo;ve run into a few roadblocks along the way, and since we&rsquo;re using shiny new tools, there&rsquo;s fewer than usual online solutions addressing them."/>
+
+
+
+        <meta property="og:title" content="Lessons Learned: Kotlin &#43; Dagger2" />
+<meta property="og:description" content="Living Life on the &ldquo;Edge&rdquo; I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have: MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains. I&rsquo;ve run into a few roadblocks along the way, and since we&rsquo;re using shiny new tools, there&rsquo;s fewer than usual online solutions addressing them." />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/" />
+
+
+<meta property="og:updated_time" content="2016-06-14T22:48:04-07:00"/>
 
 
 
@@ -39,9 +50,16 @@
 
 
         
-<meta itemprop="name" content="It&#39;s Ronald">
-<meta itemprop="description" content="Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy.">
+<meta itemprop="name" content="Lessons Learned: Kotlin &#43; Dagger2">
+<meta itemprop="description" content="Living Life on the &ldquo;Edge&rdquo; I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have: MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains. I&rsquo;ve run into a few roadblocks along the way, and since we&rsquo;re using shiny new tools, there&rsquo;s fewer than usual online solutions addressing them.">
 
+
+<meta itemprop="dateModified" content="2016-06-14T22:48:04-07:00" />
+<meta itemprop="wordCount" content="1310">
+
+
+
+<meta itemprop="keywords" content="android,dagger,kotlin,programming," />
 
         
 
@@ -88,7 +106,7 @@ ga('send', 'pageview');
     
 <header id="header">
     
-        <h1><a href="/">It&#39;s Ronald</i></a></h1>
+        <h2><a href="/">It&#39;s Ronald</i></a></h2>
     
 
     <nav class="links">
@@ -233,14 +251,70 @@ ga('send', 'pageview');
         
 </section>
 
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f&text=Lessons%20Learned%3a%20Kotlin%20%2b%20Dagger2&via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f&title=Lessons%20Learned%3a%20Kotlin%20%2b%20Dagger2" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f&title=Lessons%20Learned%3a%20Kotlin%20%2b%20Dagger2" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f&title=Lessons%20Learned%3a%20Kotlin%20%2b%20Dagger2" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
     
     <div id="main">
         
-            <article class="post">
+        
+        <article class="post">
     <header>
     <div class="title">
         
-            <h2><a href="http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/">Lessons Learned: Kotlin &#43; Dagger2</a></h2>
+            <h1><a href="http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/">Lessons Learned: Kotlin &#43; Dagger2</a></h1>
+            
         
         
     </div>
@@ -693,62 +767,6 @@ interface TimerComponent {
     
 
 
-
-            <section id="share-menu">
-    <section id="social-share-nav">
-        <ul class="links">
-            <header>
-                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
-            </header>
-            
-
-
-<li><a href="//twitter.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f&text=Lessons%20Learned%3a%20Kotlin%20%2b%20Dagger2&via=" target="_blank" class="share-btn twitter">
-    <i class="fa fa-twitter"></i>
-    <p>Twitter</p>
-</a></li>
-
-
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f" target="_blank" class="share-btn google-plus">
-    <i class="fa fa-google-plus"></i>
-    <p>Google+</p>
-</a></li>
-
-
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f" target="_blank" class="share-btn facebook">
-    <i class="fa fa-facebook"></i>
-    <p>Facebook</p>
-</a></li>
-
-
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f&title=Lessons%20Learned%3a%20Kotlin%20%2b%20Dagger2" target="_blank" class="share-btn reddit">
-    <i class="fa fa-reddit-alien"></i>
-    <p>Reddit</p>
-</a></li>
-
-
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f&title=Lessons%20Learned%3a%20Kotlin%20%2b%20Dagger2" target="_blank" class="share-btn linkedin">
-    <i class="fa fa-linkedin"></i>
-    <p>LinkedIn</p>
-</a></li>
-
-
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f&title=Lessons%20Learned%3a%20Kotlin%20%2b%20Dagger2" target="_blank" class="share-btn stumbleupon">
-    <i class="fa fa-stumbleupon"></i>
-    <p>StumbleUpon</p>
-</a></li>
-
-
-<li><a href="mailto:?subject=Check out this post by &body=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2flessons-learned-kotlin-dagger2%2f" target="_blank" class="share-btn email">
-    <i class="fa fa-envelope"></i>
-    <p>Email</p>
-</a></li>
-
-        </ul>
-    </section>
-</section>
-
-        
     </div>
     
 <section id="sidebar">
@@ -768,9 +786,6 @@ interface TimerComponent {
                 </header>
             
             <ul class="icons">
-                
-                    <li><a href="http://itsronald.com/index.xml" type="application/rss+xml"
-                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
                 
                 
                     
@@ -921,15 +936,6 @@ interface TimerComponent {
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/programming/">programming</a>
-                                <span style="float:right;">1</span>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
                                 <a href="/categories/android/">android</a>
                                 <span style="float:right;">1</span>
                             </header>
@@ -949,6 +955,15 @@ interface TimerComponent {
                         <article>
                             <header>
                                 <a href="/categories/dagger/">dagger</a>
+                                <span style="float:right;">1</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/programming/">programming</a>
                                 <span style="float:right;">1</span>
                             </header>
                         </article>
@@ -974,9 +989,6 @@ interface TimerComponent {
     
         <section id="footer">
             <ul class="icons">
-                
-                    <li><a href="http://itsronald.com/index.xml" type="application/rss+xml"
-                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
                 
                 
                     
