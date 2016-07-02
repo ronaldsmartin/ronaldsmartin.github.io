@@ -3,8 +3,13 @@
   
   <url>
     <loc>http://itsronald.com/</loc>
-    <lastmod>2016-06-14T22:48:04-07:00</lastmod>
+    <lastmod>2016-06-30T19:26:34-07:00</lastmod>
     <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/</loc>
+    <lastmod>2016-06-30T19:26:34-07:00</lastmod>
   </url>
   
   <url>

@@ -4,7 +4,7 @@
     <head>
         
             
-                <title>It&#39;s Ronald</title>
+                <title>Kotlin&#39;s Computed Properties Are Just Methods</title>
             
         
 
@@ -15,33 +15,51 @@
 
 
         
+            <meta name="author" content="Ronald Martin">
         
-            
-                <meta name="description" content="Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy.">
-            
         
-
+            <meta name="description" content="But don&#39;t use them to make Observables">
         
-        <meta property="og:title" content="It&#39;s Ronald" />
-<meta property="og:description" content="Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://itsronald.com/" />
-
-
-
-
-
-
-
-
-
-
-
 
         
-<meta itemprop="name" content="It&#39;s Ronald">
-<meta itemprop="description" content="Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy.">
 
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="Kotlin&#39;s Computed Properties Are Just Methods"/>
+<meta name="twitter:description" content="But don&#39;t use them to make Observables"/>
+
+
+
+        <meta property="og:title" content="Kotlin&#39;s Computed Properties Are Just Methods" />
+<meta property="og:description" content="But don&#39;t use them to make Observables" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/" />
+
+
+<meta property="og:updated_time" content="2016-06-30T19:26:34-07:00"/>
+
+
+
+
+
+
+
+
+
+
+        
+<meta itemprop="name" content="Kotlin&#39;s Computed Properties Are Just Methods">
+<meta itemprop="description" content="But don&#39;t use them to make Observables">
+
+
+<meta itemprop="dateModified" content="2016-06-30T19:26:34-07:00" />
+<meta itemprop="wordCount" content="2347">
+
+
+
+<meta itemprop="keywords" content="android,dagger,java,kotlin,programming,rxjava," />
 
         
 
@@ -88,7 +106,7 @@ ga('send', 'pageview');
     
 <header id="header">
     
-        <h1><a href="/">It&#39;s Ronald</i></a></h1>
+        <h2><a href="/">It&#39;s Ronald</i></a></h2>
     
 
     <nav class="links">
@@ -233,14 +251,70 @@ ga('send', 'pageview');
         
 </section>
 
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f&text=Kotlin%27s%20Computed%20Properties%20Are%20Just%20Methods&via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f&title=Kotlin%27s%20Computed%20Properties%20Are%20Just%20Methods" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f&title=Kotlin%27s%20Computed%20Properties%20Are%20Just%20Methods" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f&title=Kotlin%27s%20Computed%20Properties%20Are%20Just%20Methods" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by Ronald%20Martin&body=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
     
     <div id="main">
         
-            <article class="post">
+        
+        <article class="post">
     <header>
     <div class="title">
         
-            <h2><a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/">Kotlin&#39;s Computed Properties Are Just Methods</a></h2>
+            <h1><a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/">Kotlin&#39;s Computed Properties Are Just Methods</a></h1>
+            
         
         
             <p>But don&#39;t use them to make Observables</p>
@@ -855,62 +929,6 @@ public final class Stopwatch {
     
 
 
-
-            <section id="share-menu">
-    <section id="social-share-nav">
-        <ul class="links">
-            <header>
-                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
-            </header>
-            
-
-
-<li><a href="//twitter.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f&text=Kotlin%27s%20Computed%20Properties%20Are%20Just%20Methods&via=" target="_blank" class="share-btn twitter">
-    <i class="fa fa-twitter"></i>
-    <p>Twitter</p>
-</a></li>
-
-
-<li><a href="//plus.google.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f" target="_blank" class="share-btn google-plus">
-    <i class="fa fa-google-plus"></i>
-    <p>Google+</p>
-</a></li>
-
-
-<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f" target="_blank" class="share-btn facebook">
-    <i class="fa fa-facebook"></i>
-    <p>Facebook</p>
-</a></li>
-
-
-<li><a href="//reddit.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f&title=Kotlin%27s%20Computed%20Properties%20Are%20Just%20Methods" target="_blank" class="share-btn reddit">
-    <i class="fa fa-reddit-alien"></i>
-    <p>Reddit</p>
-</a></li>
-
-
-<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f&title=Kotlin%27s%20Computed%20Properties%20Are%20Just%20Methods" target="_blank" class="share-btn linkedin">
-    <i class="fa fa-linkedin"></i>
-    <p>LinkedIn</p>
-</a></li>
-
-
-<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f&title=Kotlin%27s%20Computed%20Properties%20Are%20Just%20Methods" target="_blank" class="share-btn stumbleupon">
-    <i class="fa fa-stumbleupon"></i>
-    <p>StumbleUpon</p>
-</a></li>
-
-
-<li><a href="mailto:?subject=Check out this post by Ronald%20Martin&body=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f06%2fkotlin-get-property-vs-method%2f" target="_blank" class="share-btn email">
-    <i class="fa fa-envelope"></i>
-    <p>Email</p>
-</a></li>
-
-        </ul>
-    </section>
-</section>
-
-        
     </div>
     
 <section id="sidebar">
@@ -930,9 +948,6 @@ public final class Stopwatch {
                 </header>
             
             <ul class="icons">
-                
-                    <li><a href="http://itsronald.com/index.xml" type="application/rss+xml"
-                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
                 
                 
                     
@@ -1101,6 +1116,15 @@ public final class Stopwatch {
                     <li>
                         <article>
                             <header>
+                                <a href="/categories/rxjava/">rxjava</a>
+                                <span style="float:right;">1</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
                                 <a href="/categories/android/">android</a>
                                 <span style="float:right;">1</span>
                             </header>
@@ -1120,15 +1144,6 @@ public final class Stopwatch {
                         <article>
                             <header>
                                 <a href="/categories/java/">java</a>
-                                <span style="float:right;">1</span>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                <a href="/categories/rxjava/">rxjava</a>
                                 <span style="float:right;">1</span>
                             </header>
                         </article>
@@ -1154,9 +1169,6 @@ public final class Stopwatch {
     
         <section id="footer">
             <ul class="icons">
-                
-                    <li><a href="http://itsronald.com/index.xml" type="application/rss+xml"
-                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
                 
                 
                     

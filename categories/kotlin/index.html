@@ -36,7 +36,7 @@
 <meta property="og:url" content="http://itsronald.com/categories/kotlin/" />
 
 
-<meta property="og:updated_time" content="2016-06-14T22:48:04-07:00"/>
+<meta property="og:updated_time" content="2016-06-30T19:26:34-07:00"/>
 
 
 
@@ -222,11 +222,11 @@ ga('send', 'pageview');
 
                 
                     <li>
-                        <a href="http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/"><p>Lessons Learned: Kotlin &#43; Dagger2</p></a>
+                        <a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/"><p>Kotlin&#39;s Computed Properties Are Just Methods</p></a>
                     </li>
                 
                     <li>
-                        <a href="http://itsronald.com/blog/2016/05/first-post/"><p>Is This Thing On?</p></a>
+                        <a href="http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/"><p>Lessons Learned: Kotlin &#43; Dagger2</p></a>
                     </li>
                 
             </ul>
@@ -240,6 +240,103 @@ ga('send', 'pageview');
     <div id="main">
         <h1>Kotlin</h1>
         
+        
+            <article class="post">
+    <header>
+    <div class="title">
+        
+            <h2><a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/">Kotlin&#39;s Computed Properties Are Just Methods</a></h2>
+        
+        
+            <p>But don&#39;t use them to make Observables</p>
+        
+    </div>
+    <div class="meta">
+        
+            
+        
+
+        <time class="published"
+            datetime='2016-06-30'>
+            June 30, 2016</time>
+        <span class="author">Ronald Martin</span>
+        
+            <p>12 minute read</p>
+        
+        
+    </div>
+</header>
+
+    
+    
+
+    
+        
+        
+
+
+
+
+    
+    
+        
+    
+
+
+        
+
+        <a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/" class="image featured">
+            <img src="/img/2016/06/kotlin-generated-bytecode.png" alt="Bytecode generated in Android Studio" />
+        </a>
+    
+
+
+    <p>Note: this post assumes familiarity with Java language features and conventions. RxJava familiarity is useful, but not required. I was curious today about the relationship of Kotlin&rsquo;s computed properties and methods. They do very similar things, so are they implemented similarly? (Spoiler: Yes. Yes they are.) Somehow, however, I also ended up drawing some conclusions on the semantics of reactive Observable generation. Kotlin&rsquo;s computed properties can be a powerful tool for expressing your program&rsquo;s intent with Observables, but you should think twice before using them for that purpose.</p>
+
+    <footer>
+        <ul class="actions">
+            <li><a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/" class="button big">Continue Reading</a></li>
+        </ul>
+        <ul class="stats">
+    
+        
+
+        
+        
+            <li>
+                
+                
+                    
+
+                    
+
+                    
+                        <i class="fa fa-map-signs">&nbsp;</i>
+                    
+
+                    
+                        Categories
+                    
+                
+            </li>
+        
+    
+
+    
+    
+        <li><a href='/categories/kotlin'>kotlin</a></li>
+    
+        <li><a href='/categories/programming'>programming</a></li>
+    
+        <li><a href='/categories/java'>java</a></li>
+    
+        <li><a href='/categories/rxjava'>rxjava</a></li>
+    
+</ul>
+
+    </footer>
+</article>
+
         
             <article class="post">
     <header>
@@ -440,13 +537,13 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <h3><a href="http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/">Lessons Learned: Kotlin &#43; Dagger2</a></h3>
+                                <h3><a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/">Kotlin&#39;s Computed Properties Are Just Methods</a></h3>
                                 
                                     
                                 
                                 <time class="published" datetime=
-                                    '2016-06-14'>
-                                    June 14, 2016</time>
+                                    '2016-06-30'>
+                                    June 30, 2016</time>
                             </header>
                         </article>
                     </li>
@@ -454,13 +551,13 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <h3><a href="http://itsronald.com/blog/2016/05/first-post/">Is This Thing On?</a></h3>
+                                <h3><a href="http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/">Lessons Learned: Kotlin &#43; Dagger2</a></h3>
                                 
                                     
                                 
                                 <time class="published" datetime=
-                                    '2016-05-25'>
-                                    May 25, 2016</time>
+                                    '2016-06-14'>
+                                    June 14, 2016</time>
                             </header>
                         </article>
                     </li>
@@ -499,16 +596,7 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/kotlin/">kotlin</a>
-                                <span style="float:right;">1</span>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                <a href="/categories/dagger/">dagger</a>
-                                <span style="float:right;">1</span>
+                                <span style="float:right;">2</span>
                             </header>
                         </article>
                     </li>
@@ -517,6 +605,24 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/programming/">programming</a>
+                                <span style="float:right;">2</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/java/">java</a>
+                                <span style="float:right;">1</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/rxjava/">rxjava</a>
                                 <span style="float:right;">1</span>
                             </header>
                         </article>
@@ -526,6 +632,15 @@ ga('send', 'pageview');
                         <article>
                             <header>
                                 <a href="/categories/android/">android</a>
+                                <span style="float:right;">1</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/dagger/">dagger</a>
                                 <span style="float:right;">1</span>
                             </header>
                         </article>
