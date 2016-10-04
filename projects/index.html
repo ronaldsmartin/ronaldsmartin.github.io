@@ -24,9 +24,7 @@
             <meta name="author" content="Ronald Martin">
         
         
-            
-                <meta name="description" content="Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy.">
-            
+            <meta name="description" content="Personal projects I have worked on/am working on.">
         
 
         
@@ -36,12 +34,12 @@
 
 
 <meta name="twitter:title" content="projects"/>
-<meta name="twitter:description" content="Current You Are Here! I&rsquo;m learning my way around the awesome Hugo static site generator and currently building out the website you see here. &ldquo;And now, Your Highness, we will discuss the location of your hidden Rebel base.&rdquo; Dean and I threw together a Android app (Kotlin-based) to augment our galactic battles in the Star Wars: Rebellion board game. So far, it implements a basic visual state toggle (pretty much a color-coded grid) so that the Imperial players can keep track of their intelligence on each system."/>
+<meta name="twitter:description" content="Personal projects I have worked on/am working on."/>
 
 
 
         <meta property="og:title" content="projects" />
-<meta property="og:description" content="Current You Are Here! I&rsquo;m learning my way around the awesome Hugo static site generator and currently building out the website you see here. &ldquo;And now, Your Highness, we will discuss the location of your hidden Rebel base.&rdquo; Dean and I threw together a Android app (Kotlin-based) to augment our galactic battles in the Star Wars: Rebellion board game. So far, it implements a basic visual state toggle (pretty much a color-coded grid) so that the Imperial players can keep track of their intelligence on each system." />
+<meta property="og:description" content="Personal projects I have worked on/am working on." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://itsronald.com/projects/" />
 
@@ -59,11 +57,11 @@
 
         
 <meta itemprop="name" content="projects">
-<meta itemprop="description" content="Current You Are Here! I&rsquo;m learning my way around the awesome Hugo static site generator and currently building out the website you see here. &ldquo;And now, Your Highness, we will discuss the location of your hidden Rebel base.&rdquo; Dean and I threw together a Android app (Kotlin-based) to augment our galactic battles in the Star Wars: Rebellion board game. So far, it implements a basic visual state toggle (pretty much a color-coded grid) so that the Imperial players can keep track of their intelligence on each system.">
+<meta itemprop="description" content="Personal projects I have worked on/am working on.">
 
 
 <meta itemprop="dateModified" content="2016-05-25T12:58:32-07:00" />
-<meta itemprop="wordCount" content="618">
+<meta itemprop="wordCount" content="724">
 
 
 
@@ -265,6 +263,8 @@ ga('send', 'pageview');
             
         
         
+            <p>Personal projects I have worked on/am working on.</p>
+        
     </div>
 </header>
 
@@ -273,19 +273,33 @@ ga('send', 'pageview');
 
 <h2 id="current:3c42bb4157bf51d85ae7ffc4e1685909">Current</h2>
 
-<h3 id="you-are-here:3c42bb4157bf51d85ae7ffc4e1685909">You Are Here!</h3>
+<h3 id="20-twenty-20-20twenty20:3c42bb4157bf51d85ae7ffc4e1685909"><a href="/20twenty20">20 twenty 20</a></h3>
 
-<p>I&rsquo;m learning my way around the awesome <a href="https://gohugo.io/">Hugo static site generator</a> and currently building out the website you see here.</p>
+<ul>
+<li><em>On Github:</em> <a href="https://github.com/ronaldsmartin/20twenty20">https://github.com/ronaldsmartin/20twenty20</a></li>
+</ul>
+
+<p>An Android app built with Dagger 2 and RxJava (written fully in Kotlin!). Addresses the (unfortunately common) unhealthy habit of getting stuck sitting and staring in front of the computer too long by notifying you to do exercises and take eye breaks <a href="/20twenty20">per the 20-20-20 Rule</a>.</p>
+
+<p>I tinker with this on and off, and it already works rather well. In the future, I&rsquo;d like to build in automatic scheduler to turn it on daily or something. (So I can be <em>really</em> lazy about my healthy habits&hellip;?)</p>
+
+<p><a href="https://play.google.com/store/apps/details?id=com.itsronald.twenty2020&amp;utm_source=global_co&amp;utm_medium=prtnr&amp;utm_content=Mar2515&amp;utm_campaign=PartBadge&amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1"><img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" alt="Get it on Google Play" /></a></p>
 
 <h3 id="and-now-your-highness-we-will-discuss-the-location-of-your-hidden-rebel-base:3c42bb4157bf51d85ae7ffc4e1685909">&ldquo;And now, Your Highness, we will discuss the location of your hidden Rebel base.&rdquo;</h3>
 
-<p><a href="@turniphead">Dean</a> and I threw together a Android app (Kotlin-based) to augment our galactic battles in the <a href="https://www.fantasyflightgames.com/en/products/star-wars-rebellion/">Star Wars: Rebellion</a> board game. So far, it implements a basic visual state toggle (pretty much a color-coded grid) so that the Imperial players can keep track of their intelligence on each system. I started this off as a RecyclerView-based grid just to get the project off the ground, but once we can get some quality images of the game board we&rsquo;re going to learn how to make arbitrarily-shaped clickable regions to turn this into a touchable mini-map.</p>
+<p><a href="https://deanwilhelmi.wordpress.com/">My roomie Dean</a> and I threw together a Android app (Kotlin-based) to augment our galactic battles in the <a href="https://www.fantasyflightgames.com/en/products/star-wars-rebellion/">Star Wars: Rebellion</a> board game. So far, it implements a basic visual state toggle (pretty much a color-coded grid) so that the Imperial players can keep track of their intelligence on each system. I started this off as a RecyclerView-based grid just to get the project off the ground, but once we can get some quality images of the game board we&rsquo;re going to learn how to make arbitrarily-shaped clickable regions to turn this into a touchable mini-map.</p>
 
-<p>Next, we&rsquo;re thinking about adding a game clock that syncs across all players&rsquo; devices because our matches take too long. Longer term, we&rsquo;d love to build an AI that&rsquo;ll play the game against us.</p>
+<p><strong>Update:</strong> I am updating the <a href="https://github.com/ronaldsmartin/AndroidImageMap">AndroidImageMap library</a> to serve this purpose.</p>
+
+<p>Long term, we&rsquo;re thinking about adding a game clock that syncs across all players&rsquo; devices because our matches take too long. Longer term, we&rsquo;d love to build an AI that&rsquo;ll play the game against us.</p>
 
 <ul>
 <li>Repo on on GitHub: <a href="https://github.com/turniphead/RebelBase">https://github.com/turniphead/RebelBase</a></li>
 </ul>
+
+<h3 id="you-are-here:3c42bb4157bf51d85ae7ffc4e1685909">You Are Here!</h3>
+
+<p>I&rsquo;m learning my way around the awesome <a href="https://gohugo.io/">Hugo static site generator</a> and currently building out the website you see here.</p>
 
 <h2 id="inactive-older-complete:3c42bb4157bf51d85ae7ffc4e1685909">Inactive (Older/Complete)</h2>
 
@@ -372,13 +386,13 @@ ga('send', 'pageview');
             
             
                 
-                    <a href="/" class="logo"><img src="/img/main/logo.jpg" alt="Ronald Martin" /></a>
+                    <img src="/img/main/ronald-martin.png" width="150" alt="Ronald Martin" />
                 
             
             
                 <header>
                     <h2>Ronald Martin</h2>
-                    <p>Loving life in the City by the Bay.</p>
+                    <p>His head is trapped in a hexagon!</p>
                 </header>
             
             <ul class="icons">
@@ -532,7 +546,7 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/programming/">programming</a>
+                                <a href="/categories/kotlin/">kotlin</a>
                                 <span style="float:right;">2</span>
                             </header>
                         </article>
@@ -541,7 +555,7 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/kotlin/">kotlin</a>
+                                <a href="/categories/programming/">programming</a>
                                 <span style="float:right;">2</span>
                             </header>
                         </article>
