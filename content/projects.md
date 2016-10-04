@@ -1,7 +1,7 @@
 +++
 author = "Ronald Martin"
 date = "2016-05-25T12:58:32-07:00"
-description = ""
+description = "Personal projects I have worked on/am working on."
 featured = ""
 featuredalt = ""
 featuredpath = ""
@@ -12,15 +12,27 @@ title = "projects"
 
 ## Current
 
-### You Are Here!
-I'm learning my way around the awesome [Hugo static site generator](https://gohugo.io/) and currently building out the website you see here.
+### [20 twenty 20](/20twenty20)
+
+* _On Github:_ https://github.com/ronaldsmartin/20twenty20 
+
+An Android app built with Dagger 2 and RxJava (written fully in Kotlin!). Addresses the (unfortunately common) unhealthy habit of getting stuck sitting and staring in front of the computer too long by notifying you to do exercises and take eye breaks [per the 20-20-20 Rule](/20twenty20).
+
+I tinker with this on and off, and it already works rather well. In the future, I'd like to build in automatic scheduler to turn it on daily or something. (So I can be *really* lazy about my healthy habits...?)
+
+[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.itsronald.twenty2020&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
 
 ###  "And now, Your Highness, we will discuss the location of your hidden Rebel base."
-[Dean](@turniphead) and I threw together a Android app (Kotlin-based) to augment our galactic battles in the [Star Wars: Rebellion](https://www.fantasyflightgames.com/en/products/star-wars-rebellion/) board game. So far, it implements a basic visual state toggle (pretty much a color-coded grid) so that the Imperial players can keep track of their intelligence on each system. I started this off as a RecyclerView-based grid just to get the project off the ground, but once we can get some quality images of the game board we're going to learn how to make arbitrarily-shaped clickable regions to turn this into a touchable mini-map.
+[My roomie Dean](https://deanwilhelmi.wordpress.com/) and I threw together a Android app (Kotlin-based) to augment our galactic battles in the [Star Wars: Rebellion](https://www.fantasyflightgames.com/en/products/star-wars-rebellion/) board game. So far, it implements a basic visual state toggle (pretty much a color-coded grid) so that the Imperial players can keep track of their intelligence on each system. I started this off as a RecyclerView-based grid just to get the project off the ground, but once we can get some quality images of the game board we're going to learn how to make arbitrarily-shaped clickable regions to turn this into a touchable mini-map.
 
-Next, we're thinking about adding a game clock that syncs across all players' devices because our matches take too long. Longer term, we'd love to build an AI that'll play the game against us.
+**Update:** I am updating the [AndroidImageMap library](https://github.com/ronaldsmartin/AndroidImageMap) to serve this purpose.
+
+Long term, we're thinking about adding a game clock that syncs across all players' devices because our matches take too long. Longer term, we'd love to build an AI that'll play the game against us.
 
 * Repo on on GitHub: https://github.com/turniphead/RebelBase
+
+### You Are Here!
+I'm learning my way around the awesome [Hugo static site generator](https://gohugo.io/) and currently building out the website you see here.
 
 ## Inactive (Older/Complete)
 
