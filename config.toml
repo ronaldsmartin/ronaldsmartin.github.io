@@ -24,8 +24,9 @@ googleAnalytics = "UA-77163005-1"
     # The set of favicons used are based on the write-up from this link:
     # https://github.com/audreyr/favicon-cheat-sheet
     # Please see the favicon partial template for more information
-    loadFavicon          = false
+    loadFavicon          = true
     faviconVersion       = ""
+    faviconThemeColor    = "#2ebaae"
 
     # Load custom CSS or JavaScript files. This replaces the deprecated params
     # minifiedFilesCSS and minifiedFilesJS. The variable is an array so that you
