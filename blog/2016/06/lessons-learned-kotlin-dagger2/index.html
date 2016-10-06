@@ -42,12 +42,12 @@
 
 
 <meta name="twitter:title" content="Lessons Learned: Kotlin &#43; Dagger2"/>
-<meta name="twitter:description" content="Living Life on the &ldquo;Edge&rdquo; I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have: MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains. I&rsquo;ve run into a few roadblocks along the way, and since we&rsquo;re using shiny new tools, there&rsquo;s fewer than usual online solutions addressing them."/>
+<meta name="twitter:description" content="Update 2016-10-05 This article has been updated to reflect some changes to tooling that fixes some of the problems mentioned below. Living Life on the &ldquo;Edge&rdquo; I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have: MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains."/>
 
 
 
         <meta property="og:title" content="Lessons Learned: Kotlin &#43; Dagger2" />
-<meta property="og:description" content="Living Life on the &ldquo;Edge&rdquo; I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have: MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains. I&rsquo;ve run into a few roadblocks along the way, and since we&rsquo;re using shiny new tools, there&rsquo;s fewer than usual online solutions addressing them." />
+<meta property="og:description" content="Update 2016-10-05 This article has been updated to reflect some changes to tooling that fixes some of the problems mentioned below. Living Life on the &ldquo;Edge&rdquo; I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have: MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains." />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/" />
 
@@ -65,11 +65,11 @@
 
         
 <meta itemprop="name" content="Lessons Learned: Kotlin &#43; Dagger2">
-<meta itemprop="description" content="Living Life on the &ldquo;Edge&rdquo; I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have: MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains. I&rsquo;ve run into a few roadblocks along the way, and since we&rsquo;re using shiny new tools, there&rsquo;s fewer than usual online solutions addressing them.">
+<meta itemprop="description" content="Update 2016-10-05 This article has been updated to reflect some changes to tooling that fixes some of the problems mentioned below. Living Life on the &ldquo;Edge&rdquo; I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have: MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains.">
 
 
 <meta itemprop="dateModified" content="2016-06-14T22:48:04-07:00" />
-<meta itemprop="wordCount" content="1335">
+<meta itemprop="wordCount" content="1439">
 
 
 
@@ -402,6 +402,10 @@ ga('send', 'pageview');
     <div id="content">
         
 
+<h1 id="update-2016-10-05:8b618abf5a7523d1736f50f60d1b5347">Update 2016-10-05</h1>
+
+<p>This article has been updated to reflect some changes to tooling that fixes some of the problems mentioned below.</p>
+
 <h2 id="living-life-on-the-edge:8b618abf5a7523d1736f50f60d1b5347">Living Life on the &ldquo;Edge&rdquo;</h2>
 
 <p>I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have:</p>
@@ -414,6 +418,8 @@ ga('send', 'pageview');
 <p>I&rsquo;ve run into a few roadblocks along the way, and since we&rsquo;re using shiny new tools, there&rsquo;s fewer than usual online solutions addressing them. Hopefully these tips might help someone out there who&rsquo;s doing something similar.</p>
 
 <p>At the time of writing, I&rsquo;m currently using Dagger v2.2 with Kotlin v1.0.2. I have just discovered that Dagger 2.4 is <a href="https://github.com/google/dagger/releases/tag/dagger-2.4">already stable</a> and that Dagger 2.5 was commited to master a few hours ago, so I&rsquo;ll update this again when I&rsquo;ve looked into whether using one of these instead of v2.2 addresses some of the issues that follow.</p>
+
+<p><strong>Update 2016-10-05:</strong> I have released the app that inspired this article. You can <a href="https://github.com/ronaldsmartin/20twenty20">check it out on GitHub</a> as a reference when setting up your own project.</p>
 
 <h3 id="kapt-the-kotlin-annotations-processor:8b618abf5a7523d1736f50f60d1b5347"><code>kapt</code>, the Kotlin annotations processor</h3>
 
@@ -585,6 +591,8 @@ class MyActivity: Activity() {
 
 <h4 id="dagger-2-2-compatibility:8b618abf5a7523d1736f50f60d1b5347">Dagger 2.2 Compatibility</h4>
 
+<p><strong>Update 2016-10-05:</strong> This seemed to be a problem with the Kotlin plugin rather than with Dagger itself. Code minify works fine with Kotlin v1.0.3 and the current version 1.0.4.</p>
+
 <p>Nice, right? <em>However</em>, I couldn&rsquo;t for the life of me make my view classes work with <em>both</em> Dagger and Kotlin. I started out with an Activity that used Dagger for injecting its presenter. Then, I tried factoring out those pesky <code>findViewById()</code> calls and using the synthetic properties directly, only to run into various build errors. Either the compiler couldn&rsquo;t import the synthetic layout &ldquo;<code>Unresolved reference kotlinx</code>,&rdquo; or component classes generated by Dagger &ldquo;<code>references unknown class X</code>,&rdquo; where X is the component interface that Dagger used to generate it. Okay.</p>
 
 <p>This was oft accompanied by the sad error message:</p>
@@ -624,6 +632,8 @@ class MyActivity: Activity() {
 <p>However, I think it&rsquo;s worth noting that these tips did <em>not</em> fix the conflicts I ran into above with my current setup (Android Studio 2.2-preview3/Dagger 2.2/Kotlin 1.0.2), and that after turning minify off the standard setup (i.e. <code>buildscript</code> in project root <code>build.gradle</code>; no explicit mention of <code>kotlin-android-extensions</code>) everything worked perfectly. Again, this may vary based on what tool versions you are using.</p>
 
 <p><strong>Update 2016-06-15:</strong> Using Dagger 2.4 did not solve this problem.</p>
+
+<p><strong>Update 2016-10-05:</strong> In Kotlin plugin v1.0.3 and up, the automatic project setup works without modification.</p>
 
 <h3 id="inject-requires-the-exact-class-you-re-injecting-into:8b618abf5a7523d1736f50f60d1b5347"><code>inject()</code> requires the <em>exact</em> class you&rsquo;re injecting into</h3>
 
@@ -714,7 +724,9 @@ interface TimerComponent {
 <li>soflete&rsquo;s <a href="http://soflete.github.io/2016/04/01/Android-MVP-with-Dagger/">Android with Dagger</a> example</li>
 </ul>
 
-<p>Thanks for reading, and catch you next time.</p>
+<p><strong>Update 2016-10-05:</strong> I now have my own working Kotlin/Dagger app <a href="https://github.com/ronaldsmartin/20twenty20">on GitHub</a>.</p>
+
+<p>Thanks for reading, and catch you next time!</p>
 
     </div>
 
@@ -962,15 +974,6 @@ interface TimerComponent {
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/programming/">programming</a>
-                                <span style="float:right;">2</span>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
                                 <a href="/categories/kotlin/">kotlin</a>
                                 <span style="float:right;">2</span>
                             </header>
@@ -980,17 +983,8 @@ interface TimerComponent {
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/java/">java</a>
-                                <span style="float:right;">1</span>
-                            </header>
-                        </article>
-                    </li>
-                
-                    <li>
-                        <article>
-                            <header>
-                                <a href="/categories/rxjava/">rxjava</a>
-                                <span style="float:right;">1</span>
+                                <a href="/categories/programming/">programming</a>
+                                <span style="float:right;">2</span>
                             </header>
                         </article>
                     </li>
@@ -1008,6 +1002,24 @@ interface TimerComponent {
                         <article>
                             <header>
                                 <a href="/categories/dagger/">dagger</a>
+                                <span style="float:right;">1</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/java/">java</a>
+                                <span style="float:right;">1</span>
+                            </header>
+                        </article>
+                    </li>
+                
+                    <li>
+                        <article>
+                            <header>
+                                <a href="/categories/rxjava/">rxjava</a>
                                 <span style="float:right;">1</span>
                             </header>
                         </article>
