@@ -6,8 +6,265 @@
     <description>Recent content in Blogs on It&#39;s Ronald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Jun 2016 19:26:34 -0700</lastBuildDate>
+    <lastBuildDate>Sun, 16 Oct 2016 15:38:42 -0700</lastBuildDate>
     <atom:link href="http://itsronald.com/blog/index.xml" rel="self" type="application/rss+xml" />
+    
+    <item>
+      <title>My First Android Library, Part I</title>
+      <link>http://itsronald.com/blog/2016/10/my-first-library/</link>
+      <pubDate>Sun, 16 Oct 2016 15:38:42 -0700</pubDate>
+      
+      <guid>http://itsronald.com/blog/2016/10/my-first-library/</guid>
+      <description>
+
+&lt;p&gt;&lt;a href=&#34;https://github.com/ronaldsmartin/Material-ViewPagerIndicator&#34;&gt;I built a software library recently&lt;/a&gt;. It&amp;rsquo;s a page indicator for mobile apps; the kind you&amp;rsquo;ve probably seen before with dots that change color to show what page you&amp;rsquo;re on. The one I made replicates Google&amp;rsquo;s latest iteration of this pattern with &lt;a href=&#34;https://material.google.com/&#34;&gt;Material Design&lt;/a&gt; inspiration. It&amp;rsquo;s really rather cool looking, I think:&lt;/p&gt;
+
+
+
+
+    
+    
+        
+        
+        
+        
+    
+
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+        
+    
+
+
+    
+
+    
+        &lt;p&gt;&lt;span class=&#34;image center-image&#34;&gt;
+            &lt;img src=&#34;http://itsronald.com/img/2016/10/material-viewpagerindicator-1.0.0.gif&#34; alt=&#34;Material ViewPagerIndicator capture&#34; /&gt;
+        &lt;/span&gt;&lt;/p&gt;
+    
+
+
+
+&lt;p&gt;As you can see, each dot represents a page, where the white dot is the current page and the gray dots are the other pages. When we change pages, the white selected dot page moves along a little path to the new current page.&lt;/p&gt;
+
+&lt;p&gt;Anyway, I wanted to use something like this in another app I was making, but alas, there isn&amp;rsquo;t an official version available to the developer public. I found that Nick Butcher, a developer at Google, has &lt;a href=&#34;https://github.com/nickbutcher/plaid/blob/master/app/src/main/java/io/plaidapp/ui/widget/InkPageIndicator.java&#34;&gt;a version of his own&lt;/a&gt; included in a Material Design sample app, which as of this writing is pretty much as close to official as it gets. Sure, I could borrow that class, but&amp;hellip; could I make my own version?&lt;/p&gt;
+
+&lt;p&gt;There is a first obvious question whenever you&amp;rsquo;re considering doing something like this.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Why reinvent the wheel?&lt;/em&gt;&lt;/p&gt;
+
+&lt;p&gt;Today&amp;rsquo;s Answer: Because we want to know how the wheel works, of course.&lt;/p&gt;
+
+&lt;h2 id=&#34;breaking-down-the-animation:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Breaking down the animation&lt;/h2&gt;
+
+&lt;p&gt;The first thing I had to do was figure out how the animation works. The natural first attempt relied on what I could observe with my own eyes, but eventually I found some other tools that helped me comprehend the animation in greater detail.&lt;/p&gt;
+
+&lt;h3 id=&#34;tool-1-eyeballs:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Tool #1: Eyeballs&lt;/h3&gt;
+
+&lt;p&gt;Let&amp;rsquo;s take a look at what we have here. Here&amp;rsquo;s the first official example I found from the &lt;em&gt;Google Opinion Rewards&lt;/em&gt; app (as of the time of the library&amp;rsquo;s creation, this was actually the only Google Android app on my phone that was using the indicator, despite its appearance elsewhere; others are using a version that does not animate).&lt;/p&gt;
+
+
+
+
+    
+    
+        
+        
+        
+        
+    
+
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+        
+    
+
+
+    
+
+    
+        &lt;p&gt;&lt;span class=&#34;image center-image&#34;&gt;
+            &lt;img src=&#34;http://itsronald.com/img/2016/10/ink-indicator-example.gif&#34; alt=&#34;Material ViewPagerIndicator zoomed&#34; /&gt;
+        &lt;/span&gt;&lt;/p&gt;
+    
+
+
+
+&lt;p&gt;Perhaps you&amp;rsquo;ll agree with me that from our high-level human standpoint, it appears pretty simple. You can already catch a lot more detail than I originally glean from blowing up the image, but here&amp;rsquo;s what I figured out from staring at that the tiny version on my phone for embarassingly long:&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;The dot for the current page makes a path to the dot for the new page.&lt;/li&gt;
+&lt;li&gt;The white current page dot slides along the path to its new location.&lt;/li&gt;
+&lt;li&gt;The path that was created shrinks back under the white current page dot.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Is that all we need to do to replicate this effect? How can we break this down in more detail?&lt;/p&gt;
+
+&lt;h3 id=&#34;tool-2-gif-frame-splitting:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Tool #2: .GIF frame splitting&lt;/h3&gt;
+
+&lt;p&gt;My first attempt at breaking this down involved sticking an image I found on GitHub through a GIF splitter and looking at each frame in the GIF. I discovered that DavidPacioianu on GitHub extracted the indicator from Nick Butcher&amp;rsquo;s sample app (the one I mentioned at the beginning) and &lt;a href=&#34;https://github.com/DavidPacioianu/InkPageIndicator&#34;&gt;set it up as a separate library&lt;/a&gt;. In the repo README, he helpfully included &lt;a href=&#34;https://camo.githubusercontent.com/f85b29e899c98abef7ee93a27eb8abd92c707635/687474703a2f2f692e696d6775722e636f6d2f6652674458574b2e676966&#34;&gt;a GIF of the isolated animation&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;(Truthfully, this journey almost ended upon me finding his version, but sometimes you really just need to satisfy your own curiousity and satsify the itch to build something.)&lt;/p&gt;
+
+&lt;p&gt;I grabbed the image and ran it through &lt;a href=&#34;http://ezgif.com/split&#34;&gt;ezgif.com&amp;rsquo;s GIF splitter&lt;/a&gt;. This method, though crude, helped me update my animation analysis with a lot of the details that were too fast for me to catch with just the naked eye:&lt;/p&gt;
+
+
+
+
+    
+    
+        
+        
+        
+        
+    
+
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+        
+    
+
+
+    
+
+    
+        &lt;p&gt;&lt;span class=&#34;image center-image&#34;&gt;
+            &lt;img src=&#34;http://itsronald.com/img/2016/10/inkpageindicator-GIF-breakdown.png&#34; alt=&#34;InkPageIndicator GIF breakdown&#34; /&gt;
+        &lt;/span&gt;&lt;/p&gt;
+    
+
+
+
+&lt;ol&gt;
+&lt;li&gt;Both the dot for the current page and the dot for the new page start stretching out toward each other.&lt;/li&gt;
+&lt;li&gt;Those two dots form a path.&lt;/li&gt;
+&lt;li&gt;The current page dot slides across the path to its new location.&lt;/li&gt;
+&lt;li&gt;The path retreats from the last page dot to the new page dot, &lt;em&gt;taking the old dot for that page with it.&lt;/em&gt;&lt;/li&gt;
+&lt;li&gt;While the path is retreating, a new dot for the last selected page grows out of where the last dot was taken.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Wow! It turns out there was a lot more going on than I had initially thought. After deciding that &lt;em&gt;no, I wouldn&amp;rsquo;t let the existence of this alternative library deter my learning experience&lt;/em&gt;, I now had enough information to get started.&lt;/p&gt;
+
+&lt;h3 id=&#34;tool-3-animator-scale-developer-setting:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Tool #3: &amp;ldquo;Animator scale&amp;rdquo; Developer Setting&lt;/h3&gt;
+
+&lt;p&gt;While using the GIF splitter helped me get started, I found out while building the library that there&amp;rsquo;s an even better way to go about this. Specifically, the largest benefit of the GIF breakdown approach is also a huge downside: the breakdown is made up of static images, so it&amp;rsquo;s very difficult to find out how long each animation takes. (It&amp;rsquo;s probably possible to calculate if you know the frame rate of the source image, but that&amp;rsquo;s a bit of a pain.)&lt;/p&gt;
+
+&lt;p&gt;Anyhow, it turns out that you can actually &lt;em&gt;slow down animations&lt;/em&gt; globally across your Android device using the &lt;strong&gt;Animator scale&lt;/strong&gt; option in Android&amp;rsquo;s Developer Settings:&lt;/p&gt;
+
+
+
+
+    
+    
+        
+        
+        
+        
+    
+
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+        
+    
+
+
+    
+
+    
+        &lt;p&gt;&lt;span class=&#34;image center-image&#34;&gt;
+            &lt;img src=&#34;http://itsronald.com/img/2016/10/animator-scale-developer-settings.gif&#34; alt=&#34;Animator scale developer setting&#34; /&gt;
+        &lt;/span&gt;&lt;/p&gt;
+    
+
+
+
+&lt;p&gt;For the uninitiated, &lt;a href=&#34;https://developer.android.com/reference/android/animation/Animator.html&#34;&gt;&lt;code&gt;Animator&lt;/code&gt;&lt;/a&gt; is a core class from the &lt;a href=&#34;http://android-developers.blogspot.com/2011/02/animation-in-honeycomb.html&#34;&gt;animation framework introduced in Android Honeycomb&lt;/a&gt;. It represents an animation &amp;ldquo;which can be started, ended, and have [listeners].&amp;rdquo; So, by altering the &lt;strong&gt;Animator scale&lt;/strong&gt; setting, &lt;em&gt;any&lt;/em&gt; animation across the entire system that uses &lt;code&gt;Animator&lt;/code&gt;s to operate will have their natural duration scaled accordingly.&lt;/p&gt;
+
+&lt;p&gt;Using this tool, we can now &lt;strong&gt;really&lt;/strong&gt; pick apart the animation we&amp;rsquo;re seeing. At an Animator scale of &lt;em&gt;10x&lt;/em&gt;, i.e., animations take ten times longer, we can see all the details in a working example of the official widget (source: &lt;em&gt;Google Opinion Rewards&lt;/em&gt; app). I&amp;rsquo;ve used Android Nougat&amp;rsquo;s multi-window feature to show this side by side with the version I made. Each animation is shown separately because Nougat doesn&amp;rsquo;t like simultaneous swipes on both apps:&lt;/p&gt;
+
+&lt;p&gt;
+
+
+    
+    
+        
+        
+        
+        
+    
+
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+        
+    
+
+
+    
+
+    
+        &lt;p&gt;&lt;span class=&#34;image center-image&#34;&gt;
+            &lt;img src=&#34;http://itsronald.com/img/2016/10/material-vpi_side-by-side_opinion-rewards.gif&#34; alt=&#34;Indicators 10x Side-by-side&#34; /&gt;
+        &lt;/span&gt;&lt;/p&gt;
+    
+
+&lt;/p&gt;
+
+&lt;p&gt;Cool, right? This breakdown ended up being really helpful when I was trying to match animation timing for the library (it&amp;rsquo;s pretty close, and it will get even better as the library develops!), which we will get into in a future post.&lt;/p&gt;
+
+&lt;p&gt;Thanks for reading! See you next time.&lt;/p&gt;
+</description>
+    </item>
     
     <item>
       <title>Kotlin&#39;s Computed Properties Are Just Methods</title>

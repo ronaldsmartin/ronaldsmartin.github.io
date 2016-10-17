@@ -1,19 +1,11 @@
-
-
-
-    
-        
-    
-
-
-
-
 <!DOCTYPE HTML>
 
 <html>
     <head>
         
-            <title>Programming Posts - It&#39;s Ronald</title>
+            
+                <title>My First Android Library, Part I</title>
+            
         
 
         <meta charset="utf-8" />
@@ -37,17 +29,27 @@
 
 
         
+            <meta name="author" content="Ronald Martin">
         
-            
-                <meta name="description" content="Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy.">
-            
+        
+            <meta name="description" content="What I learned from building a custom widget">
         
 
         
-        <meta property="og:title" content="Programming" />
-<meta property="og:description" content="Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="http://itsronald.com/categories/programming/" />
+
+  <meta name="twitter:card" content="summary"/>
+
+
+
+<meta name="twitter:title" content="My First Android Library, Part I"/>
+<meta name="twitter:description" content="What I learned from building a custom widget"/>
+
+
+
+        <meta property="og:title" content="My First Android Library, Part I" />
+<meta property="og:description" content="What I learned from building a custom widget" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://itsronald.com/blog/2016/10/my-first-library/" />
 
 
 <meta property="og:updated_time" content="2016-10-16T15:38:42-07:00"/>
@@ -60,10 +62,18 @@
 
 
 
-        
-<meta itemprop="name" content="Programming">
-<meta itemprop="description" content="Website and blog of Ronald Martin: app developer, occasional scholar, and all-around fun guy.">
 
+        
+<meta itemprop="name" content="My First Android Library, Part I">
+<meta itemprop="description" content="What I learned from building a custom widget">
+
+
+<meta itemprop="dateModified" content="2016-10-16T15:38:42-07:00" />
+<meta itemprop="wordCount" content="980">
+
+
+
+<meta itemprop="keywords" content="android,dagger,java,kotlin,programming,rxjava," />
 
         
 
@@ -107,6 +117,7 @@ ga('send', 'pageview');
         <div id="wrapper">
 
     
+    
 <header id="header">
     
         <h2><a href="/">It&#39;s Ronald</i></a></h2>
@@ -147,6 +158,10 @@ ga('send', 'pageview');
     </nav>
     <nav class="main">
         <ul>
+            
+            <li id="share-nav" class="share-menu" style="display:none;">
+                <a class="fa-share-alt" href="#share-menu">Share</a>
+            </li>
             
             <li class="search">
                 <a class="fa-search" href="#search">Search</a>
@@ -250,16 +265,70 @@ ga('send', 'pageview');
         
 </section>
 
+    <section id="share-menu">
+    <section id="social-share-nav">
+        <ul class="links">
+            <header>
+                <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+            </header>
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f&text=My%20First%20Android%20Library%2c%20Part%20I&via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f&title=My%20First%20Android%20Library%2c%20Part%20I" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f&title=My%20First%20Android%20Library%2c%20Part%20I" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f&title=My%20First%20Android%20Library%2c%20Part%20I" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by Ronald%20Martin&body=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
+</section>
+
     
     <div id="main">
-        <h1>Programming</h1>
         
         
-            <article class="post">
+        <article class="post">
     <header>
     <div class="title">
         
-            <h2><a href="http://itsronald.com/blog/2016/10/my-first-library/">My First Android Library, Part I</a></h2>
+            <h1><a href="http://itsronald.com/blog/2016/10/my-first-library/">My First Android Library, Part I</a></h1>
+            
         
         
             <p>What I learned from building a custom widget</p>
@@ -281,6 +350,55 @@ ga('send', 'pageview');
     </div>
 </header>
 
+
+    <section id="social-share">
+        <ul class="icons">
+            
+
+
+<li><a href="//twitter.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f&text=My%20First%20Android%20Library%2c%20Part%20I&via=" target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+</a></li>
+
+
+<li><a href="//plus.google.com/share?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f" target="_blank" class="share-btn google-plus">
+    <i class="fa fa-google-plus"></i>
+    <p>Google+</p>
+</a></li>
+
+
+<li><a href="//www.facebook.com/sharer/sharer.php?u=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f" target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+</a></li>
+
+
+<li><a href="//reddit.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f&title=My%20First%20Android%20Library%2c%20Part%20I" target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+</a></li>
+
+
+<li><a href="//www.linkedin.com/shareArticle?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f&title=My%20First%20Android%20Library%2c%20Part%20I" target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+</a></li>
+
+
+<li><a href="//www.stumbleupon.com/submit?url=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f&title=My%20First%20Android%20Library%2c%20Part%20I" target="_blank" class="share-btn stumbleupon">
+    <i class="fa fa-stumbleupon"></i>
+    <p>StumbleUpon</p>
+</a></li>
+
+
+<li><a href="mailto:?subject=Check out this post by Ronald%20Martin&body=http%3a%2f%2fitsronald.com%2fblog%2f2016%2f10%2fmy-first-library%2f" target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+</a></li>
+
+        </ul>
+    </section>
     
     
 
@@ -305,12 +423,259 @@ ga('send', 'pageview');
     
 
 
-    <p>I built a software library recently. It&rsquo;s a page indicator for mobile apps; the kind you&rsquo;ve probably seen before with dots that change color to show what page you&rsquo;re on. The one I made replicates Google&rsquo;s latest iteration of this pattern with Material Design inspiration. It&rsquo;s really rather cool looking, I think: As you can see, each dot represents a page, where the white dot is the current page and the gray dots are the other pages.</p>
+    <div id="content">
+        
+
+<p><a href="https://github.com/ronaldsmartin/Material-ViewPagerIndicator">I built a software library recently</a>. It&rsquo;s a page indicator for mobile apps; the kind you&rsquo;ve probably seen before with dots that change color to show what page you&rsquo;re on. The one I made replicates Google&rsquo;s latest iteration of this pattern with <a href="https://material.google.com/">Material Design</a> inspiration. It&rsquo;s really rather cool looking, I think:</p>
+
+
+
+
+    
+    
+        
+        
+        
+        
+    
+
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+        
+    
+
+
+    
+
+    
+        <p><span class="image center-image">
+            <img src="/img/2016/10/material-viewpagerindicator-1.0.0.gif" alt="Material ViewPagerIndicator capture" />
+        </span></p>
+    
+
+
+
+<p>As you can see, each dot represents a page, where the white dot is the current page and the gray dots are the other pages. When we change pages, the white selected dot page moves along a little path to the new current page.</p>
+
+<p>Anyway, I wanted to use something like this in another app I was making, but alas, there isn&rsquo;t an official version available to the developer public. I found that Nick Butcher, a developer at Google, has <a href="https://github.com/nickbutcher/plaid/blob/master/app/src/main/java/io/plaidapp/ui/widget/InkPageIndicator.java">a version of his own</a> included in a Material Design sample app, which as of this writing is pretty much as close to official as it gets. Sure, I could borrow that class, but&hellip; could I make my own version?</p>
+
+<p>There is a first obvious question whenever you&rsquo;re considering doing something like this.</p>
+
+<p><em>Why reinvent the wheel?</em></p>
+
+<p>Today&rsquo;s Answer: Because we want to know how the wheel works, of course.</p>
+
+<h2 id="breaking-down-the-animation:bb8325dde20c6cba93eb4b4bcafee07a">Breaking down the animation</h2>
+
+<p>The first thing I had to do was figure out how the animation works. The natural first attempt relied on what I could observe with my own eyes, but eventually I found some other tools that helped me comprehend the animation in greater detail.</p>
+
+<h3 id="tool-1-eyeballs:bb8325dde20c6cba93eb4b4bcafee07a">Tool #1: Eyeballs</h3>
+
+<p>Let&rsquo;s take a look at what we have here. Here&rsquo;s the first official example I found from the <em>Google Opinion Rewards</em> app (as of the time of the library&rsquo;s creation, this was actually the only Google Android app on my phone that was using the indicator, despite its appearance elsewhere; others are using a version that does not animate).</p>
+
+
+
+
+    
+    
+        
+        
+        
+        
+    
+
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+        
+    
+
+
+    
+
+    
+        <p><span class="image center-image">
+            <img src="/img/2016/10/ink-indicator-example.gif" alt="Material ViewPagerIndicator zoomed" />
+        </span></p>
+    
+
+
+
+<p>Perhaps you&rsquo;ll agree with me that from our high-level human standpoint, it appears pretty simple. You can already catch a lot more detail than I originally glean from blowing up the image, but here&rsquo;s what I figured out from staring at that the tiny version on my phone for embarassingly long:</p>
+
+<ol>
+<li>The dot for the current page makes a path to the dot for the new page.</li>
+<li>The white current page dot slides along the path to its new location.</li>
+<li>The path that was created shrinks back under the white current page dot.</li>
+</ol>
+
+<p>Is that all we need to do to replicate this effect? How can we break this down in more detail?</p>
+
+<h3 id="tool-2-gif-frame-splitting:bb8325dde20c6cba93eb4b4bcafee07a">Tool #2: .GIF frame splitting</h3>
+
+<p>My first attempt at breaking this down involved sticking an image I found on GitHub through a GIF splitter and looking at each frame in the GIF. I discovered that DavidPacioianu on GitHub extracted the indicator from Nick Butcher&rsquo;s sample app (the one I mentioned at the beginning) and <a href="https://github.com/DavidPacioianu/InkPageIndicator">set it up as a separate library</a>. In the repo README, he helpfully included <a href="https://camo.githubusercontent.com/f85b29e899c98abef7ee93a27eb8abd92c707635/687474703a2f2f692e696d6775722e636f6d2f6652674458574b2e676966">a GIF of the isolated animation</a>.</p>
+
+<p>(Truthfully, this journey almost ended upon me finding his version, but sometimes you really just need to satisfy your own curiousity and satsify the itch to build something.)</p>
+
+<p>I grabbed the image and ran it through <a href="http://ezgif.com/split">ezgif.com&rsquo;s GIF splitter</a>. This method, though crude, helped me update my animation analysis with a lot of the details that were too fast for me to catch with just the naked eye:</p>
+
+
+
+
+    
+    
+        
+        
+        
+        
+    
+
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+        
+    
+
+
+    
+
+    
+        <p><span class="image center-image">
+            <img src="/img/2016/10/inkpageindicator-GIF-breakdown.png" alt="InkPageIndicator GIF breakdown" />
+        </span></p>
+    
+
+
+
+<ol>
+<li>Both the dot for the current page and the dot for the new page start stretching out toward each other.</li>
+<li>Those two dots form a path.</li>
+<li>The current page dot slides across the path to its new location.</li>
+<li>The path retreats from the last page dot to the new page dot, <em>taking the old dot for that page with it.</em></li>
+<li>While the path is retreating, a new dot for the last selected page grows out of where the last dot was taken.</li>
+</ol>
+
+<p>Wow! It turns out there was a lot more going on than I had initially thought. After deciding that <em>no, I wouldn&rsquo;t let the existence of this alternative library deter my learning experience</em>, I now had enough information to get started.</p>
+
+<h3 id="tool-3-animator-scale-developer-setting:bb8325dde20c6cba93eb4b4bcafee07a">Tool #3: &ldquo;Animator scale&rdquo; Developer Setting</h3>
+
+<p>While using the GIF splitter helped me get started, I found out while building the library that there&rsquo;s an even better way to go about this. Specifically, the largest benefit of the GIF breakdown approach is also a huge downside: the breakdown is made up of static images, so it&rsquo;s very difficult to find out how long each animation takes. (It&rsquo;s probably possible to calculate if you know the frame rate of the source image, but that&rsquo;s a bit of a pain.)</p>
+
+<p>Anyhow, it turns out that you can actually <em>slow down animations</em> globally across your Android device using the <strong>Animator scale</strong> option in Android&rsquo;s Developer Settings:</p>
+
+
+
+
+    
+    
+        
+        
+        
+        
+    
+
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+        
+    
+
+
+    
+
+    
+        <p><span class="image center-image">
+            <img src="/img/2016/10/animator-scale-developer-settings.gif" alt="Animator scale developer setting" />
+        </span></p>
+    
+
+
+
+<p>For the uninitiated, <a href="https://developer.android.com/reference/android/animation/Animator.html"><code>Animator</code></a> is a core class from the <a href="http://android-developers.blogspot.com/2011/02/animation-in-honeycomb.html">animation framework introduced in Android Honeycomb</a>. It represents an animation &ldquo;which can be started, ended, and have [listeners].&rdquo; So, by altering the <strong>Animator scale</strong> setting, <em>any</em> animation across the entire system that uses <code>Animator</code>s to operate will have their natural duration scaled accordingly.</p>
+
+<p>Using this tool, we can now <strong>really</strong> pick apart the animation we&rsquo;re seeing. At an Animator scale of <em>10x</em>, i.e., animations take ten times longer, we can see all the details in a working example of the official widget (source: <em>Google Opinion Rewards</em> app). I&rsquo;ve used Android Nougat&rsquo;s multi-window feature to show this side by side with the version I made. Each animation is shown separately because Nougat doesn&rsquo;t like simultaneous swipes on both apps:</p>
+
+<p>
+
+
+    
+    
+        
+        
+        
+        
+    
+
+    
+    
+    
+
+    
+    
+
+
+
+
+    
+    
+        
+    
+
+
+    
+
+    
+        <p><span class="image center-image">
+            <img src="/img/2016/10/material-vpi_side-by-side_opinion-rewards.gif" alt="Indicators 10x Side-by-side" />
+        </span></p>
+    
+
+</p>
+
+<p>Cool, right? This breakdown ended up being really helpful when I was trying to match animation timing for the library (it&rsquo;s pretty close, and it will get even better as the library develops!), which we will get into in a future post.</p>
+
+<p>Thanks for reading! See you next time.</p>
+
+    </div>
 
     <footer>
-        <ul class="actions">
-            <li><a href="http://itsronald.com/blog/2016/10/my-first-library/" class="button big">Continue Reading</a></li>
-        </ul>
         <ul class="stats">
     
         
@@ -346,189 +711,37 @@ ga('send', 'pageview');
 
     </footer>
 </article>
-
-        
-            <article class="post">
-    <header>
-    <div class="title">
-        
-            <h2><a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/">Kotlin&#39;s Computed Properties Are Just Methods</a></h2>
-        
-        
-            <p>But don&#39;t use them to make Observables</p>
-        
-    </div>
-    <div class="meta">
-        
-            
-        
-
-        <time class="published"
-            datetime='2016-06-30'>
-            June 30, 2016</time>
-        <span class="author">Ronald Martin</span>
-        
-            <p>12 minute read</p>
-        
-        
-    </div>
-</header>
-
-    
-    
-
-    
-        
-        
-
-
-
-
-    
-    
-        
-    
-
-
-        
-
-        <a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/" class="image featured">
-            <img src="/img/2016/06/kotlin-generated-bytecode.png" alt="Bytecode generated in Android Studio" />
-        </a>
-    
-
-
-    <p>Note: this post assumes familiarity with Java language features and conventions. RxJava familiarity is useful, but not required. I was curious today about the relationship of Kotlin&rsquo;s computed properties and methods. They do very similar things, so are they implemented similarly? (Spoiler: Yes. Yes they are.) Somehow, however, I also ended up drawing some conclusions on the semantics of reactive Observable generation. Kotlin&rsquo;s computed properties can be a powerful tool for expressing your program&rsquo;s intent with Observables, but you should think twice before using them for that purpose.</p>
-
-    <footer>
-        <ul class="actions">
-            <li><a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/" class="button big">Continue Reading</a></li>
-        </ul>
-        <ul class="stats">
-    
-        
-
-        
-        
-            <li>
-                
-                
-                    
-
-                    
-
-                    
-                        <i class="fa fa-map-signs">&nbsp;</i>
-                    
-
-                    
-                        Categories
-                    
-                
-            </li>
-        
-    
-
-    
-    
-        <li><a href='/categories/kotlin'>kotlin</a></li>
-    
-        <li><a href='/categories/programming'>programming</a></li>
-    
-        <li><a href='/categories/java'>java</a></li>
-    
-        <li><a href='/categories/rxjava'>rxjava</a></li>
-    
-</ul>
-
-    </footer>
-</article>
-
-        
-            <article class="post">
-    <header>
-    <div class="title">
-        
-            <h2><a href="http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/">Lessons Learned: Kotlin &#43; Dagger2</a></h2>
-        
-        
-    </div>
-    <div class="meta">
-        
-            
-        
-
-        <time class="published"
-            datetime='2016-06-14'>
-            June 14, 2016</time>
-        <span class="author"></span>
-        
-            <p>7 minute read</p>
-        
-        
-    </div>
-</header>
-
-    
-
-    <p>Update 2016-10-05 This article has been updated to reflect some changes to tooling that fixes some of the problems mentioned below. Living Life on the &ldquo;Edge&rdquo; I&rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have: MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains.</p>
-
-    <footer>
-        <ul class="actions">
-            <li><a href="http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/" class="button big">Continue Reading</a></li>
-        </ul>
-        <ul class="stats">
-    
-        
-
-        
-        
-            <li>
-                
-                
-                    
-
-                    
-
-                    
-                        <i class="fa fa-map-signs">&nbsp;</i>
-                    
-
-                    
-                        Categories
-                    
-                
-            </li>
-        
-    
-
-    
-    
-        <li><a href='/categories/android'>android</a></li>
-    
-        <li><a href='/categories/kotlin'>kotlin</a></li>
-    
-        <li><a href='/categories/dagger'>dagger</a></li>
-    
-        <li><a href='/categories/programming'>programming</a></li>
-    
-</ul>
-
-    </footer>
-</article>
-
-        
-
-        
 <ul class="actions pagination">
     
-        <li><a href="#" class="disabled button big previous">Previous Page</a></li>
+        <li><a href="http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/"
+                class="button big previous">Kotlin&#39;s Computed Properties Are Just Methods</a></li>
     
 
     
-        <li><a href="#" class="disabled button big next">Next Page</a></li>
-    
 </ul>
+
+
+
+    
+        <article class="post">
+            <div id="disqus_thread"></div>
+<script type="text/javascript">
+    var disqus_shortname = 'itsronald';
+    var disqus_identifier = 'http:\/\/itsronald.com\/blog\/2016\/10\/my-first-library\/';
+    var disqus_title = 'My First Android Library, Part I';
+    var disqus_url = 'http:\/\/itsronald.com\/blog\/2016\/10\/my-first-library\/';
+
+    (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+<a href="http://disqus.com" class="dsq-brlink">comments powered by <span class="logo-disqus">Disqus</span></a>
+        </article>
+    
+
 
     </div>
     
@@ -549,9 +762,6 @@ ga('send', 'pageview');
                 </header>
             
             <ul class="icons">
-                
-                    <li><a href="http://itsronald.com/categories/programming/index.xml" type="application/rss+xml"
-                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
                 
                 
                     
@@ -711,7 +921,7 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/android/">android</a>
+                                <a href="/categories/kotlin/">kotlin</a>
                                 <span style="float:right;">2</span>
                             </header>
                         </article>
@@ -720,7 +930,7 @@ ga('send', 'pageview');
                     <li>
                         <article>
                             <header>
-                                <a href="/categories/kotlin/">kotlin</a>
+                                <a href="/categories/android/">android</a>
                                 <span style="float:right;">2</span>
                             </header>
                         </article>
@@ -773,9 +983,6 @@ ga('send', 'pageview');
     
         <section id="footer">
             <ul class="icons">
-                
-                    <li><a href="http://itsronald.com/categories/programming/index.xml" type="application/rss+xml"
-                        target="_blank" title="RSS" class="fa fa-rss"></a></li>
                 
                 
                     
