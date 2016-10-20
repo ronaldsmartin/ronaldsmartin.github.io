@@ -46,9 +46,7 @@ googleAnalytics = "UA-77163005-1"
 
     paragraph = "His head is trapped in a hexagon!"
 
-    about     = """\
-    Hi! This is where I post occasional thoughts. It's a work in progress.
-	"""
+    about     = "Hi! This is where I post occasional thoughts. It's a work in progress."
 
 # This will also appear on the sidebar.
 # A width of less than 100px is recommended
