@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Dagger on It&#39;s Ronald</title>
-    <link>http://itsronald.com/categories/dagger/</link>
-    <description>Recent content in Dagger on It&#39;s Ronald</description>
+    <title>It&#39;s Ronald</title>
+    <link>http://itsronald.com/categories/dagger/index.xml</link>
+    <description>Recent content on It&#39;s Ronald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Tue, 14 Jun 2016 22:48:04 -0700</lastBuildDate>
     <atom:link href="http://itsronald.com/categories/dagger/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
@@ -17,11 +16,11 @@
       <guid>http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</guid>
       <description>
 
-&lt;h1 id=&#34;update-2016-10-05:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Update 2016-10-05&lt;/h1&gt;
+&lt;h1 id=&#34;update-2016-10-05&#34;&gt;Update 2016-10-05&lt;/h1&gt;
 
 &lt;p&gt;This article has been updated to reflect some changes to tooling that fixes some of the problems mentioned below.&lt;/p&gt;
 
-&lt;h2 id=&#34;living-life-on-the-edge:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Living Life on the &amp;ldquo;Edge&amp;rdquo;&lt;/h2&gt;
+&lt;h2 id=&#34;living-life-on-the-edge&#34;&gt;Living Life on the &amp;ldquo;Edge&amp;rdquo;&lt;/h2&gt;
 
 &lt;p&gt;I&amp;rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&amp;rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have:&lt;/p&gt;
 
@@ -36,7 +35,7 @@
 
 &lt;p&gt;&lt;strong&gt;Update 2016-10-05:&lt;/strong&gt; I have released the app that inspired this article. You can &lt;a href=&#34;https://github.com/ronaldsmartin/20twenty20&#34;&gt;check it out on GitHub&lt;/a&gt; as a reference when setting up your own project.&lt;/p&gt;
 
-&lt;h3 id=&#34;kapt-the-kotlin-annotations-processor:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;&lt;code&gt;kapt&lt;/code&gt;, the Kotlin annotations processor&lt;/h3&gt;
+&lt;h3 id=&#34;kapt-the-kotlin-annotations-processor&#34;&gt;&lt;code&gt;kapt&lt;/code&gt;, the Kotlin annotations processor&lt;/h3&gt;
 
 &lt;p&gt;Most of the tutorials on (Java) Dagger integrations rely on Hugo Visser&amp;rsquo;s &lt;a href=&#34;https://bitbucket.org/hvisser/android-apt&#34;&gt;Android Studio Annotations Processor&lt;/a&gt;. This is used with Dagger as follows:&lt;/p&gt;
 
@@ -95,7 +94,7 @@ dependencies {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;multiple-jsr-250-dependencies:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Multiple JSR 250 Dependencies&lt;/h3&gt;
+&lt;h3 id=&#34;multiple-jsr-250-dependencies&#34;&gt;Multiple JSR 250 Dependencies&lt;/h3&gt;
 
 &lt;p&gt;That &lt;code&gt;provided &#39;javax.annotation:jsr250-api:1.0&#39;&lt;/code&gt; line might have stuck out to you.&lt;/p&gt;
 
@@ -150,7 +149,7 @@ dependencies {
 
 &lt;p&gt;For what it&amp;rsquo;s worth, I gave all of them a whirl with Dagger and didn&amp;rsquo;t run into any issues. This is a good enough comparison for my purposes short of peeking inside the JARs and comparing them. Since #3 is the smallest and seems to contain the bare minimum necessary for Dagger, I&amp;rsquo;ve taken to using that package.&lt;/p&gt;
 
-&lt;h3 id=&#34;kotlin-android-extensions:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;kotlin-android-extensions&lt;/h3&gt;
+&lt;h3 id=&#34;kotlin-android-extensions&#34;&gt;kotlin-android-extensions&lt;/h3&gt;
 
 &lt;p&gt;JetBrains&amp;rsquo; &lt;a href=&#34;https://kotlinlang.org/docs/tutorials/android-plugin.html&#34;&gt;Kotlin Android Extensions&lt;/a&gt; plugin provides some great features on top of the standard tooling. For those who haven&amp;rsquo;t used it, it can create &amp;ldquo;synthetic properties&amp;rdquo; properties from your XML layout files so that you don&amp;rsquo;t need to make &lt;code&gt;findViewById()&lt;/code&gt; calls and cast them to assign your instance variables. These calls are the bane of Android developers everywhere, many of whom use &lt;a href=&#34;http://jakewharton.github.io/butterknife/&#34;&gt;ButterKnife&lt;/a&gt; to fight back:&lt;/p&gt;
 
@@ -204,7 +203,7 @@ class MyActivity: Activity() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;dagger-2-2-compatibility:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Dagger 2.2 Compatibility&lt;/h4&gt;
+&lt;h4 id=&#34;dagger-2-2-compatibility&#34;&gt;Dagger 2.2 Compatibility&lt;/h4&gt;
 
 &lt;p&gt;&lt;strong&gt;Update 2016-10-05:&lt;/strong&gt; This seemed to be a problem with the Kotlin plugin rather than with Dagger itself. Code minify works fine with Kotlin v1.0.3 and the current version 1.0.4.&lt;/p&gt;
 
@@ -233,7 +232,7 @@ class MyActivity: Activity() {
 
 &lt;p&gt;Voila. No more errors. Hope that gets fixed soon, though.&lt;/p&gt;
 
-&lt;h4 id=&#34;misleading-solutions:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Misleading solutions&lt;/h4&gt;
+&lt;h4 id=&#34;misleading-solutions&#34;&gt;Misleading solutions&lt;/h4&gt;
 
 &lt;p&gt;While trying to fix the problem above, Googling pointed me at fairly recent Stack Overflow answers &lt;a href=&#34;http://stackoverflow.com/a/36526153/4499783&#34;&gt;like this one&lt;/a&gt; that suggested the following:&lt;/p&gt;
 
@@ -250,7 +249,7 @@ class MyActivity: Activity() {
 
 &lt;p&gt;&lt;strong&gt;Update 2016-10-05:&lt;/strong&gt; In Kotlin plugin v1.0.3 and up, the automatic project setup works without modification.&lt;/p&gt;
 
-&lt;h3 id=&#34;inject-requires-the-exact-class-you-re-injecting-into:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;&lt;code&gt;inject()&lt;/code&gt; requires the &lt;em&gt;exact&lt;/em&gt; class you&amp;rsquo;re injecting into&lt;/h3&gt;
+&lt;h3 id=&#34;inject-requires-the-exact-class-you-re-injecting-into&#34;&gt;&lt;code&gt;inject()&lt;/code&gt; requires the &lt;em&gt;exact&lt;/em&gt; class you&amp;rsquo;re injecting into&lt;/h3&gt;
 
 &lt;p&gt;Lastly, my &amp;ldquo;d&amp;rsquo;oh!&amp;rdquo; moment.&lt;/p&gt;
 
@@ -329,7 +328,7 @@ interface TimerComponent {
 
 &lt;p&gt;Total noob move, I&amp;rsquo;m sure, but hey, now I know.&lt;/p&gt;
 
-&lt;h2 id=&#34;helpful-resources:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Helpful Resources&lt;/h2&gt;
+&lt;h2 id=&#34;helpful-resources&#34;&gt;Helpful Resources&lt;/h2&gt;
 
 &lt;p&gt;I probably wouldn&amp;rsquo;t have figured out how to make everything work without the help of the following resources &amp;ndash; props to the makers:&lt;/p&gt;
 

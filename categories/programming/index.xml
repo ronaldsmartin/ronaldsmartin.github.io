@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Programming on It&#39;s Ronald</title>
-    <link>http://itsronald.com/categories/programming/</link>
-    <description>Recent content in Programming on It&#39;s Ronald</description>
+    <title>It&#39;s Ronald</title>
+    <link>http://itsronald.com/categories/programming/index.xml</link>
+    <description>Recent content on It&#39;s Ronald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Oct 2016 15:38:42 -0700</lastBuildDate>
     <atom:link href="http://itsronald.com/categories/programming/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
@@ -66,11 +65,11 @@
 
 &lt;p&gt;Today&amp;rsquo;s Answer: Because we want to know how the wheel works, of course.&lt;/p&gt;
 
-&lt;h2 id=&#34;breaking-down-the-animation:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Breaking down the animation&lt;/h2&gt;
+&lt;h2 id=&#34;breaking-down-the-animation&#34;&gt;Breaking down the animation&lt;/h2&gt;
 
 &lt;p&gt;The first thing I had to do was figure out how the animation works. The natural first attempt relied on what I could observe with my own eyes, but eventually I found some other tools that helped me comprehend the animation in greater detail.&lt;/p&gt;
 
-&lt;h3 id=&#34;tool-1-eyeballs:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Tool #1: Eyeballs&lt;/h3&gt;
+&lt;h3 id=&#34;tool-1-eyeballs&#34;&gt;Tool #1: Eyeballs&lt;/h3&gt;
 
 &lt;p&gt;Let&amp;rsquo;s take a look at what we have here. Here&amp;rsquo;s the first official example I found from the &lt;em&gt;Google Opinion Rewards&lt;/em&gt; app (as of the time of the library&amp;rsquo;s creation, this was actually the only Google Android app on my phone that was using the indicator, despite its appearance elsewhere; others are using a version that does not animate).&lt;/p&gt;
 
@@ -111,7 +110,7 @@
 
 
 
-&lt;p&gt;Perhaps you&amp;rsquo;ll agree with me that from our high-level human standpoint, it appears pretty simple. You can already catch a lot more detail than I originally glean from blowing up the image, but here&amp;rsquo;s what I figured out from staring at that the tiny version on my phone for embarassingly long:&lt;/p&gt;
+&lt;p&gt;Perhaps you&amp;rsquo;ll agree with me that from our high-level human standpoint, it appears pretty simple. You can already catch a lot more detail than I originally gleaned from blowing up the image, but here&amp;rsquo;s what I figured out from staring at that the tiny version on my phone for embarassingly long:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;The dot for the current page makes a path to the dot for the new page.&lt;/li&gt;
@@ -121,7 +120,7 @@
 
 &lt;p&gt;Is that all we need to do to replicate this effect? How can we break this down in more detail?&lt;/p&gt;
 
-&lt;h3 id=&#34;tool-2-gif-frame-splitting:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Tool #2: .GIF frame splitting&lt;/h3&gt;
+&lt;h3 id=&#34;tool-2-gif-frame-splitting&#34;&gt;Tool #2: .GIF frame splitting&lt;/h3&gt;
 
 &lt;p&gt;My first attempt at breaking this down involved sticking an image I found on GitHub through a GIF splitter and looking at each frame in the GIF. I discovered that DavidPacioianu on GitHub extracted the indicator from Nick Butcher&amp;rsquo;s sample app (the one I mentioned at the beginning) and &lt;a href=&#34;https://github.com/DavidPacioianu/InkPageIndicator&#34;&gt;set it up as a separate library&lt;/a&gt;. In the repo README, he helpfully included &lt;a href=&#34;https://camo.githubusercontent.com/f85b29e899c98abef7ee93a27eb8abd92c707635/687474703a2f2f692e696d6775722e636f6d2f6652674458574b2e676966&#34;&gt;a GIF of the isolated animation&lt;/a&gt;.&lt;/p&gt;
 
@@ -176,7 +175,7 @@
 
 &lt;p&gt;Wow! It turns out there was a lot more going on than I had initially thought. After deciding that &lt;em&gt;no, I wouldn&amp;rsquo;t let the existence of this alternative library deter my learning experience&lt;/em&gt;, I now had enough information to get started.&lt;/p&gt;
 
-&lt;h3 id=&#34;tool-3-animator-scale-developer-setting:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Tool #3: &amp;ldquo;Animator scale&amp;rdquo; Developer Setting&lt;/h3&gt;
+&lt;h3 id=&#34;tool-3-animator-scale-developer-setting&#34;&gt;Tool #3: &amp;ldquo;Animator scale&amp;rdquo; Developer Setting&lt;/h3&gt;
 
 &lt;p&gt;While using the GIF splitter helped me get started, I found out while building the library that there&amp;rsquo;s an even better way to go about this. Specifically, the largest benefit of the GIF breakdown approach is also a huge downside: the breakdown is made up of static images, so it&amp;rsquo;s very difficult to find out how long each animation takes. (It&amp;rsquo;s probably possible to calculate if you know the frame rate of the source image, but that&amp;rsquo;s a bit of a pain.)&lt;/p&gt;
 
@@ -223,7 +222,7 @@
 
 &lt;p&gt;Using this tool, we can now &lt;strong&gt;really&lt;/strong&gt; pick apart the animation we&amp;rsquo;re seeing. At an Animator scale of &lt;em&gt;10x&lt;/em&gt;, i.e., animations take ten times longer, we can see all the details in a working example of the official widget (source: &lt;em&gt;Google Opinion Rewards&lt;/em&gt; app). I&amp;rsquo;ve used Android Nougat&amp;rsquo;s multi-window feature to show this side by side with the version I made. Each animation is shown separately because Nougat doesn&amp;rsquo;t like simultaneous swipes on both apps:&lt;/p&gt;
 
-&lt;p&gt;
+
 
 
     
@@ -258,7 +257,7 @@
         &lt;/span&gt;&lt;/p&gt;
     
 
-&lt;/p&gt;
+
 
 &lt;p&gt;Cool, right? This breakdown ended up being really helpful when I was trying to match animation timing for the library (it&amp;rsquo;s pretty close, and it will get even better as the library develops!), which we will get into in a future post.&lt;/p&gt;
 
@@ -278,11 +277,11 @@
 
 &lt;p&gt;I was curious today about the relationship of Kotlin&amp;rsquo;s computed properties and methods. They do very similar things, so are they implemented similarly? (&lt;em&gt;Spoiler: Yes. Yes they are.&lt;/em&gt;) Somehow, however, I also ended up drawing some conclusions on the semantics of reactive &lt;code&gt;Observable&lt;/code&gt; generation. Kotlin&amp;rsquo;s computed properties can be a powerful tool for expressing your program&amp;rsquo;s intent with &lt;code&gt;Observable&lt;/code&gt;s, but you should think twice before using them for that purpose.&lt;/p&gt;
 
-&lt;h2 id=&#34;observable-methods-vs-members:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Observable methods vs. members&lt;/h2&gt;
+&lt;h2 id=&#34;observable-methods-vs-members&#34;&gt;Observable methods vs. members&lt;/h2&gt;
 
 &lt;p&gt;The examples of &lt;a href=&#34;https://github.com/ReactiveX/RxJava/wiki&#34;&gt;RxJava&lt;/a&gt; usage I&amp;rsquo;ve seen online generally use factory methods to produce &lt;a href=&#34;http://reactivex.io/documentation/observable.html&#34;&gt;&lt;code&gt;Observable&lt;/code&gt;s&lt;/a&gt; consumed by their subscribers. For example, using &lt;a href=&#34;http://square.github.io/retrofit/&#34;&gt;Retrofit&lt;/a&gt;, we&amp;rsquo;d define an API call that returns an &lt;code&gt;Observable&lt;/code&gt;, and then later we could call this as a method on our generated service.&lt;/p&gt;
 
-&lt;h3 id=&#34;observables-in-retrofit-example:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Observables in Retrofit example&lt;/h3&gt;
+&lt;h3 id=&#34;observables-in-retrofit-example&#34;&gt;Observables in Retrofit example&lt;/h3&gt;
 
 &lt;p&gt;&lt;em&gt;Define a Retrofit API:&lt;/em&gt;&lt;/p&gt;
 
@@ -310,7 +309,7 @@ service.listRepos(&amp;quot;octocat&amp;quot;)
 
 &lt;p&gt;It is in fact very possible to do something like this:&lt;/p&gt;
 
-&lt;h4 id=&#34;a-observable-member-implementation:e09a1ffbb09430de544056fda2fc6671&#34;&gt;A: Observable Member Implementation&lt;/h4&gt;
+&lt;h4 id=&#34;a-observable-member-implementation&#34;&gt;A: Observable Member Implementation&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;public class Stopwatch {
     public final Observable&amp;lt;Long&amp;gt; currentTime = Observable.interval(1, TimeUnit.SECONDS);
@@ -324,11 +323,11 @@ stopwatch.currentTime.subscribe(...);
 
 &lt;p&gt;whereas a more traditional implementation would look like this:&lt;/p&gt;
 
-&lt;h4 id=&#34;b-observable-method-implementation:e09a1ffbb09430de544056fda2fc6671&#34;&gt;B: Observable Method Implementation&lt;/h4&gt;
+&lt;h4 id=&#34;b-observable-method-implementation&#34;&gt;B: Observable Method Implementation&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;public class Stopwatch {
     public Observable&amp;lt;Long&amp;gt; start() {
-    	return Observable.interval(1, TimeUnit.SECONDS);
+        return Observable.interval(1, TimeUnit.SECONDS);
     }
 }
 
@@ -349,11 +348,11 @@ If the &lt;code&gt;currentTime&lt;/code&gt; was no longer &lt;code&gt;final&lt;/
 Thus, if you know your &lt;code&gt;Observable&lt;/code&gt; might need to change, you&amp;rsquo;re probably better off just using a method.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;kotlin-computed-properties-are-functions:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Kotlin computed properties are functions&lt;/h2&gt;
+&lt;h2 id=&#34;kotlin-computed-properties-are-functions&#34;&gt;Kotlin computed properties are functions&lt;/h2&gt;
 
 &lt;p&gt;Let&amp;rsquo;s get to what got me curious about in the first place. Say you have a class like &lt;code&gt;Stopwatch&lt;/code&gt; that has some state you&amp;rsquo;d like to observe. Additionally, you aren&amp;rsquo;t restricted by the need for a parameter like the GitHub username in our very first example. Should you be using the approach A with some observable property, or approach B with methods?&lt;/p&gt;
 
-&lt;h3 id=&#34;computed-properties:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Computed properties&amp;hellip;&lt;/h3&gt;
+&lt;h3 id=&#34;computed-properties&#34;&gt;Computed properties&amp;hellip;&lt;/h3&gt;
 
 &lt;p&gt;Kotlin has a number of features that expand what is possible in Java. For the question posed above, I am particularly interested in what I&amp;rsquo;m going to call a &lt;em&gt;computed property&lt;/em&gt; (name taken from the equivalent feature in Swift): a field on an object that does not actually store a value, but instead uses a custom getter (and optionally, a setter) to implement normal property access. Let&amp;rsquo;s illustrate this with an example:&lt;/p&gt;
 
@@ -382,9 +381,9 @@ person.lastName = &amp;quot;Bing&amp;quot;
 person.fullName  // &amp;quot;Monica Bing&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Hopefully that makes sense. For another illustrative example, check out the section on computed properties in the &lt;a href=&#34;(https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID259&#34;&gt;Swift Programming Language Guide&lt;/a&gt;) and its subsequent section on read-only computed properties here. For more on Kotlin properties, &lt;a href=&#34;https://kotlinlang.org/docs/reference/properties.html&#34;&gt;check out the appropriate Kotlin page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Hopefully that makes sense. For another illustrative example, check out the section on computed properties in the &lt;a href=&#34;(https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID259)&#34;&gt;Swift Programming Language Guide&lt;/a&gt; and its subsequent section on read-only computed properties here. For more on Kotlin properties, &lt;a href=&#34;https://kotlinlang.org/docs/reference/properties.html&#34;&gt;check out the appropriate Kotlin page&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;can-be-used-like-factory-functions:e09a1ffbb09430de544056fda2fc6671&#34;&gt;&amp;hellip;can be used like factory functions&lt;/h3&gt;
+&lt;h3 id=&#34;can-be-used-like-factory-functions&#34;&gt;&amp;hellip;can be used like factory functions&lt;/h3&gt;
 
 &lt;p&gt;Now, we don&amp;rsquo;t &lt;em&gt;have&lt;/em&gt; to compute our property value from other object properties. Let&amp;rsquo;s look at a familiar example:&lt;/p&gt;
 
@@ -414,7 +413,7 @@ stopwatch.currentTime.subscribe { ... } // Using Kotlin syntax for trailing lamb
 stopwatch.start().subscribe { ... }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;are-recalculated-on-each-access:e09a1ffbb09430de544056fda2fc6671&#34;&gt;&amp;hellip;are recalculated on each access&lt;/h3&gt;
+&lt;h3 id=&#34;are-recalculated-on-each-access&#34;&gt;&amp;hellip;are recalculated on each access&lt;/h3&gt;
 
 &lt;p&gt;Notably, the read-only computed property approach does &lt;em&gt;not&lt;/em&gt; have one of the same issues as the &lt;code&gt;public final&lt;/code&gt; field approach in Java. Earlier we noted that if an &lt;code&gt;Observable&lt;/code&gt; field depends on some kind of external state, the &lt;code&gt;public final&lt;/code&gt; approach is untenable because the field would need reassignment in order to generate a modified &lt;code&gt;Observable&lt;/code&gt;. Since a computed property uses its getter to generate a new value each time it is accessed, it is &amp;ldquo;reassigned&amp;rdquo; each time it is called.&lt;/p&gt;
 
@@ -430,7 +429,7 @@ stopwatch.start().subscribe { ... }
         get() = Observable.interval(1, precision)
 
     // Version B
-	fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
+    fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
 }
 
 // Usage:
@@ -449,7 +448,7 @@ stopwatch.start().subscribe { ... }     // Version B
 
 &lt;p&gt;As you can see, both versions end up producing the same value. Furthermore, &lt;strong&gt;A&lt;/strong&gt; is &lt;em&gt;not&lt;/em&gt; subject to arbitrary replacement by some other &lt;code&gt;Observable&lt;/code&gt; &amp;ndash; it is marked as read-only (&lt;code&gt;val&lt;/code&gt;) and cannot be reassigned.&lt;/p&gt;
 
-&lt;h3 id=&#34;are-in-fact-just-functions:e09a1ffbb09430de544056fda2fc6671&#34;&gt;&amp;hellip;are in fact just functions?&lt;/h3&gt;
+&lt;h3 id=&#34;are-in-fact-just-functions&#34;&gt;&amp;hellip;are in fact just functions?&lt;/h3&gt;
 
 &lt;p&gt;Intuitively, it makes sense that a read-only computed property is just some syntactic sugar on top of methods. When you look at the property definition, the &lt;code&gt;get() = ...&lt;/code&gt; is literally defining a custom getter method to be used for property access. What does its declaration indicate?&lt;/p&gt;
 
@@ -460,13 +459,13 @@ stopwatch.start().subscribe { ... }     // Version B
 
 &lt;p&gt;&lt;em&gt;Are all properties just functions inside?&lt;/em&gt; The conspiracy deepens.&lt;/p&gt;
 
-&lt;h3 id=&#34;are-indeed-functions-under-the-hood:e09a1ffbb09430de544056fda2fc6671&#34;&gt;&amp;hellip;are indeed functions under the hood&lt;/h3&gt;
+&lt;h3 id=&#34;are-indeed-functions-under-the-hood&#34;&gt;&amp;hellip;are indeed functions under the hood&lt;/h3&gt;
 
 &lt;p&gt;Let&amp;rsquo;s check this out. It&amp;rsquo;s possible that there&amp;rsquo;s some subtle difference here that might contribute to our &amp;ldquo;property vs method&amp;rdquo; debate. Maybe there is some overhead in using computed properties&amp;hellip; or will it be the other way around? This is the question that inspired this post, and &lt;em&gt;we will find the answer&lt;/em&gt;!&lt;/p&gt;
 
 &lt;p&gt;In all seriousness, it&amp;rsquo;s pretty easy to find out. I propose a simple test: look at the code generated from each of the property and function implementations and see how both differ.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-kotlin-class:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Example Kotlin class:&lt;/h4&gt;
+&lt;h4 id=&#34;example-kotlin-class&#34;&gt;Example Kotlin class:&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;import rx.Observable
 import java.util.concurrent.TimeUnit
@@ -481,7 +480,7 @@ class Stopwatch() {
         get() = Observable.interval(1, precision)
 
     // Version B
-	fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
+    fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -526,7 +525,7 @@ class Stopwatch() {
 
 &lt;p&gt;Here is the generated bytecode for our Observables in the class above using Android Studio 2.2-Preview 4 and Kotlin v1.0.2-1:&lt;/p&gt;
 
-&lt;h4 id=&#34;stopwatch-kt-bytecode-for-currenttime-and-start:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Stopwatch.kt bytecode for &lt;code&gt;currentTime&lt;/code&gt; and &lt;code&gt;start()&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;stopwatch-kt-bytecode-for-currenttime-and-start&#34;&gt;Stopwatch.kt bytecode for &lt;code&gt;currentTime&lt;/code&gt; and &lt;code&gt;start()&lt;/code&gt;&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;  // access flags 0x11
   // signature ()Lrx/Observable&amp;lt;Ljava/lang/Long;&amp;gt;;
@@ -608,7 +607,7 @@ class Stopwatch() {
 
 
 
-&lt;h4 id=&#34;stopwatch-decompiled-java:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Stopwatch.decompiled.java&lt;/h4&gt;
+&lt;h4 id=&#34;stopwatch-decompiled-java&#34;&gt;Stopwatch.decompiled.java&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;import java.util.concurrent.TimeUnit;
 import kotlin.Metadata;
@@ -657,11 +656,11 @@ public final class Stopwatch {
 
 &lt;p&gt;&lt;em&gt;Read-only computed properties are just functions under the hood.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;so-which-way-do-i-use:e09a1ffbb09430de544056fda2fc6671&#34;&gt;So&amp;hellip; which way do I use?&lt;/h2&gt;
+&lt;h2 id=&#34;so-which-way-do-i-use&#34;&gt;So&amp;hellip; which way do I use?&lt;/h2&gt;
 
 &lt;p&gt;Let&amp;rsquo;s do a quick comparison.&lt;/p&gt;
 
-&lt;h3 id=&#34;java:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Java&lt;/h3&gt;
+&lt;h3 id=&#34;java&#34;&gt;Java&lt;/h3&gt;
 
 &lt;p&gt;In pure Java, you are almost certainly better off using the method implementation of &lt;code&gt;Observable&lt;/code&gt; generation. There is a reason that you fairly exclusively see this practice in examples, and it all comes down to safe usage patterns through encapsulation.&lt;/p&gt;
 
@@ -681,7 +680,7 @@ public final class Stopwatch {
 &lt;li&gt;Can have arguments.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;kotlin:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Kotlin&lt;/h3&gt;
+&lt;h3 id=&#34;kotlin&#34;&gt;Kotlin&lt;/h3&gt;
 
 &lt;p&gt;Kotlin&amp;rsquo;s property syntax allows a very different style of programming than when only using Java. As we&amp;rsquo;ve found, using a computed property gives us the power of a getter method with the access pattern of an object field.&lt;/p&gt;
 
@@ -697,21 +696,21 @@ public final class Stopwatch {
 
 &lt;p&gt;&lt;strong&gt;However&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;observables-aren-t-simple-data-types:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Observables aren&amp;rsquo;t simple data types&lt;/h4&gt;
+&lt;h4 id=&#34;observables-aren-t-simple-data-types&#34;&gt;Observables aren&amp;rsquo;t simple data types&lt;/h4&gt;
 
 &lt;p&gt;Most &lt;code&gt;Observable&lt;/code&gt; objects are complex and expensive to create. If your computed property instantiates a new Observable every time it&amp;rsquo;s accessed, using a method better signals that we are building a new object that shouldn&amp;rsquo;t be used carelessly.&lt;/p&gt;
 
-&lt;h4 id=&#34;some-observables-have-side-effects:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Some Observables have side effects&lt;/h4&gt;
+&lt;h4 id=&#34;some-observables-have-side-effects&#34;&gt;Some Observables have side effects&lt;/h4&gt;
 
 &lt;p&gt;If the &lt;code&gt;Observable&lt;/code&gt; you expose as a property implements &lt;a href=&#34;http://reactivex.io/documentation/operators/do.html&#34;&gt;&lt;code&gt;doOnNext()&lt;/code&gt;&lt;/a&gt;, you have now introduced unknown side effects in what is supposed to be a simple data access.&lt;/p&gt;
 
 &lt;p&gt;Or, if you have assigned a &lt;a href=&#34;http://reactivex.io/documentation/scheduler.html&#34;&gt;&lt;code&gt;Scheduler&lt;/code&gt;&lt;/a&gt; to the &lt;code&gt;Observable&lt;/code&gt;, you may have just created a new thread, unbeknownst to the caller! When using a method, there is an implicit understanding that the code body might just do more than accessing a value.&lt;/p&gt;
 
-&lt;h4 id=&#34;observables-are-inherently-asynchronous:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Observables are inherently asynchronous&lt;/h4&gt;
+&lt;h4 id=&#34;observables-are-inherently-asynchronous&#34;&gt;Observables are inherently asynchronous&lt;/h4&gt;
 
 &lt;p&gt;Asynchronous interactions are notoriously difficult to reason about. The &lt;code&gt;Observable&lt;/code&gt; class is meant to ease some of the cognitive load on the programmer, but it still remains that they represent some kind of potential asynchronous value. This leads back to the first point that &lt;em&gt;Observables aren&amp;rsquo;t simple&lt;/em&gt; and that &lt;em&gt;methods better reflect their complexity&lt;/em&gt;. In fact, many common &lt;code&gt;Observable&lt;/code&gt;s represent long running operations, and actions an object takes are better represented as methods.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; A good resource I found on this subject is the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/ms229054(v=vs.100&#34;&gt;MSDN guide on &amp;ldquo;Choosing Between Properties and Methods&amp;rdquo;&lt;/a&gt;.aspx).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; A good resource I found on this subject is the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/ms229054(v=vs.100).aspx&#34;&gt;MSDN guide on &amp;ldquo;Choosing Between Properties and Methods&amp;rdquo;&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;TL;DR: Kotlin computed properties are just methods, but that doesn&amp;rsquo;t mean you should be using them to expose your object&amp;rsquo;s &lt;code&gt;Observable&lt;/code&gt; API.&lt;/strong&gt;&lt;/p&gt;
 
@@ -727,11 +726,11 @@ public final class Stopwatch {
       <guid>http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</guid>
       <description>
 
-&lt;h1 id=&#34;update-2016-10-05:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Update 2016-10-05&lt;/h1&gt;
+&lt;h1 id=&#34;update-2016-10-05&#34;&gt;Update 2016-10-05&lt;/h1&gt;
 
 &lt;p&gt;This article has been updated to reflect some changes to tooling that fixes some of the problems mentioned below.&lt;/p&gt;
 
-&lt;h2 id=&#34;living-life-on-the-edge:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Living Life on the &amp;ldquo;Edge&amp;rdquo;&lt;/h2&gt;
+&lt;h2 id=&#34;living-life-on-the-edge&#34;&gt;Living Life on the &amp;ldquo;Edge&amp;rdquo;&lt;/h2&gt;
 
 &lt;p&gt;I&amp;rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&amp;rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have:&lt;/p&gt;
 
@@ -746,7 +745,7 @@ public final class Stopwatch {
 
 &lt;p&gt;&lt;strong&gt;Update 2016-10-05:&lt;/strong&gt; I have released the app that inspired this article. You can &lt;a href=&#34;https://github.com/ronaldsmartin/20twenty20&#34;&gt;check it out on GitHub&lt;/a&gt; as a reference when setting up your own project.&lt;/p&gt;
 
-&lt;h3 id=&#34;kapt-the-kotlin-annotations-processor:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;&lt;code&gt;kapt&lt;/code&gt;, the Kotlin annotations processor&lt;/h3&gt;
+&lt;h3 id=&#34;kapt-the-kotlin-annotations-processor&#34;&gt;&lt;code&gt;kapt&lt;/code&gt;, the Kotlin annotations processor&lt;/h3&gt;
 
 &lt;p&gt;Most of the tutorials on (Java) Dagger integrations rely on Hugo Visser&amp;rsquo;s &lt;a href=&#34;https://bitbucket.org/hvisser/android-apt&#34;&gt;Android Studio Annotations Processor&lt;/a&gt;. This is used with Dagger as follows:&lt;/p&gt;
 
@@ -805,7 +804,7 @@ dependencies {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;multiple-jsr-250-dependencies:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Multiple JSR 250 Dependencies&lt;/h3&gt;
+&lt;h3 id=&#34;multiple-jsr-250-dependencies&#34;&gt;Multiple JSR 250 Dependencies&lt;/h3&gt;
 
 &lt;p&gt;That &lt;code&gt;provided &#39;javax.annotation:jsr250-api:1.0&#39;&lt;/code&gt; line might have stuck out to you.&lt;/p&gt;
 
@@ -860,7 +859,7 @@ dependencies {
 
 &lt;p&gt;For what it&amp;rsquo;s worth, I gave all of them a whirl with Dagger and didn&amp;rsquo;t run into any issues. This is a good enough comparison for my purposes short of peeking inside the JARs and comparing them. Since #3 is the smallest and seems to contain the bare minimum necessary for Dagger, I&amp;rsquo;ve taken to using that package.&lt;/p&gt;
 
-&lt;h3 id=&#34;kotlin-android-extensions:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;kotlin-android-extensions&lt;/h3&gt;
+&lt;h3 id=&#34;kotlin-android-extensions&#34;&gt;kotlin-android-extensions&lt;/h3&gt;
 
 &lt;p&gt;JetBrains&amp;rsquo; &lt;a href=&#34;https://kotlinlang.org/docs/tutorials/android-plugin.html&#34;&gt;Kotlin Android Extensions&lt;/a&gt; plugin provides some great features on top of the standard tooling. For those who haven&amp;rsquo;t used it, it can create &amp;ldquo;synthetic properties&amp;rdquo; properties from your XML layout files so that you don&amp;rsquo;t need to make &lt;code&gt;findViewById()&lt;/code&gt; calls and cast them to assign your instance variables. These calls are the bane of Android developers everywhere, many of whom use &lt;a href=&#34;http://jakewharton.github.io/butterknife/&#34;&gt;ButterKnife&lt;/a&gt; to fight back:&lt;/p&gt;
 
@@ -914,7 +913,7 @@ class MyActivity: Activity() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;dagger-2-2-compatibility:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Dagger 2.2 Compatibility&lt;/h4&gt;
+&lt;h4 id=&#34;dagger-2-2-compatibility&#34;&gt;Dagger 2.2 Compatibility&lt;/h4&gt;
 
 &lt;p&gt;&lt;strong&gt;Update 2016-10-05:&lt;/strong&gt; This seemed to be a problem with the Kotlin plugin rather than with Dagger itself. Code minify works fine with Kotlin v1.0.3 and the current version 1.0.4.&lt;/p&gt;
 
@@ -943,7 +942,7 @@ class MyActivity: Activity() {
 
 &lt;p&gt;Voila. No more errors. Hope that gets fixed soon, though.&lt;/p&gt;
 
-&lt;h4 id=&#34;misleading-solutions:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Misleading solutions&lt;/h4&gt;
+&lt;h4 id=&#34;misleading-solutions&#34;&gt;Misleading solutions&lt;/h4&gt;
 
 &lt;p&gt;While trying to fix the problem above, Googling pointed me at fairly recent Stack Overflow answers &lt;a href=&#34;http://stackoverflow.com/a/36526153/4499783&#34;&gt;like this one&lt;/a&gt; that suggested the following:&lt;/p&gt;
 
@@ -960,7 +959,7 @@ class MyActivity: Activity() {
 
 &lt;p&gt;&lt;strong&gt;Update 2016-10-05:&lt;/strong&gt; In Kotlin plugin v1.0.3 and up, the automatic project setup works without modification.&lt;/p&gt;
 
-&lt;h3 id=&#34;inject-requires-the-exact-class-you-re-injecting-into:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;&lt;code&gt;inject()&lt;/code&gt; requires the &lt;em&gt;exact&lt;/em&gt; class you&amp;rsquo;re injecting into&lt;/h3&gt;
+&lt;h3 id=&#34;inject-requires-the-exact-class-you-re-injecting-into&#34;&gt;&lt;code&gt;inject()&lt;/code&gt; requires the &lt;em&gt;exact&lt;/em&gt; class you&amp;rsquo;re injecting into&lt;/h3&gt;
 
 &lt;p&gt;Lastly, my &amp;ldquo;d&amp;rsquo;oh!&amp;rdquo; moment.&lt;/p&gt;
 
@@ -1039,7 +1038,7 @@ interface TimerComponent {
 
 &lt;p&gt;Total noob move, I&amp;rsquo;m sure, but hey, now I know.&lt;/p&gt;
 
-&lt;h2 id=&#34;helpful-resources:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Helpful Resources&lt;/h2&gt;
+&lt;h2 id=&#34;helpful-resources&#34;&gt;Helpful Resources&lt;/h2&gt;
 
 &lt;p&gt;I probably wouldn&amp;rsquo;t have figured out how to make everything work without the help of the following resources &amp;ndash; props to the makers:&lt;/p&gt;
 

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Java on It&#39;s Ronald</title>
-    <link>http://itsronald.com/categories/java/</link>
-    <description>Recent content in Java on It&#39;s Ronald</description>
+    <title>It&#39;s Ronald</title>
+    <link>http://itsronald.com/categories/java/index.xml</link>
+    <description>Recent content on It&#39;s Ronald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Thu, 30 Jun 2016 19:26:34 -0700</lastBuildDate>
     <atom:link href="http://itsronald.com/categories/java/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
@@ -21,11 +20,11 @@
 
 &lt;p&gt;I was curious today about the relationship of Kotlin&amp;rsquo;s computed properties and methods. They do very similar things, so are they implemented similarly? (&lt;em&gt;Spoiler: Yes. Yes they are.&lt;/em&gt;) Somehow, however, I also ended up drawing some conclusions on the semantics of reactive &lt;code&gt;Observable&lt;/code&gt; generation. Kotlin&amp;rsquo;s computed properties can be a powerful tool for expressing your program&amp;rsquo;s intent with &lt;code&gt;Observable&lt;/code&gt;s, but you should think twice before using them for that purpose.&lt;/p&gt;
 
-&lt;h2 id=&#34;observable-methods-vs-members:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Observable methods vs. members&lt;/h2&gt;
+&lt;h2 id=&#34;observable-methods-vs-members&#34;&gt;Observable methods vs. members&lt;/h2&gt;
 
 &lt;p&gt;The examples of &lt;a href=&#34;https://github.com/ReactiveX/RxJava/wiki&#34;&gt;RxJava&lt;/a&gt; usage I&amp;rsquo;ve seen online generally use factory methods to produce &lt;a href=&#34;http://reactivex.io/documentation/observable.html&#34;&gt;&lt;code&gt;Observable&lt;/code&gt;s&lt;/a&gt; consumed by their subscribers. For example, using &lt;a href=&#34;http://square.github.io/retrofit/&#34;&gt;Retrofit&lt;/a&gt;, we&amp;rsquo;d define an API call that returns an &lt;code&gt;Observable&lt;/code&gt;, and then later we could call this as a method on our generated service.&lt;/p&gt;
 
-&lt;h3 id=&#34;observables-in-retrofit-example:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Observables in Retrofit example&lt;/h3&gt;
+&lt;h3 id=&#34;observables-in-retrofit-example&#34;&gt;Observables in Retrofit example&lt;/h3&gt;
 
 &lt;p&gt;&lt;em&gt;Define a Retrofit API:&lt;/em&gt;&lt;/p&gt;
 
@@ -53,7 +52,7 @@ service.listRepos(&amp;quot;octocat&amp;quot;)
 
 &lt;p&gt;It is in fact very possible to do something like this:&lt;/p&gt;
 
-&lt;h4 id=&#34;a-observable-member-implementation:e09a1ffbb09430de544056fda2fc6671&#34;&gt;A: Observable Member Implementation&lt;/h4&gt;
+&lt;h4 id=&#34;a-observable-member-implementation&#34;&gt;A: Observable Member Implementation&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;public class Stopwatch {
     public final Observable&amp;lt;Long&amp;gt; currentTime = Observable.interval(1, TimeUnit.SECONDS);
@@ -67,11 +66,11 @@ stopwatch.currentTime.subscribe(...);
 
 &lt;p&gt;whereas a more traditional implementation would look like this:&lt;/p&gt;
 
-&lt;h4 id=&#34;b-observable-method-implementation:e09a1ffbb09430de544056fda2fc6671&#34;&gt;B: Observable Method Implementation&lt;/h4&gt;
+&lt;h4 id=&#34;b-observable-method-implementation&#34;&gt;B: Observable Method Implementation&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;public class Stopwatch {
     public Observable&amp;lt;Long&amp;gt; start() {
-    	return Observable.interval(1, TimeUnit.SECONDS);
+        return Observable.interval(1, TimeUnit.SECONDS);
     }
 }
 
@@ -92,11 +91,11 @@ If the &lt;code&gt;currentTime&lt;/code&gt; was no longer &lt;code&gt;final&lt;/
 Thus, if you know your &lt;code&gt;Observable&lt;/code&gt; might need to change, you&amp;rsquo;re probably better off just using a method.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h2 id=&#34;kotlin-computed-properties-are-functions:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Kotlin computed properties are functions&lt;/h2&gt;
+&lt;h2 id=&#34;kotlin-computed-properties-are-functions&#34;&gt;Kotlin computed properties are functions&lt;/h2&gt;
 
 &lt;p&gt;Let&amp;rsquo;s get to what got me curious about in the first place. Say you have a class like &lt;code&gt;Stopwatch&lt;/code&gt; that has some state you&amp;rsquo;d like to observe. Additionally, you aren&amp;rsquo;t restricted by the need for a parameter like the GitHub username in our very first example. Should you be using the approach A with some observable property, or approach B with methods?&lt;/p&gt;
 
-&lt;h3 id=&#34;computed-properties:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Computed properties&amp;hellip;&lt;/h3&gt;
+&lt;h3 id=&#34;computed-properties&#34;&gt;Computed properties&amp;hellip;&lt;/h3&gt;
 
 &lt;p&gt;Kotlin has a number of features that expand what is possible in Java. For the question posed above, I am particularly interested in what I&amp;rsquo;m going to call a &lt;em&gt;computed property&lt;/em&gt; (name taken from the equivalent feature in Swift): a field on an object that does not actually store a value, but instead uses a custom getter (and optionally, a setter) to implement normal property access. Let&amp;rsquo;s illustrate this with an example:&lt;/p&gt;
 
@@ -125,9 +124,9 @@ person.lastName = &amp;quot;Bing&amp;quot;
 person.fullName  // &amp;quot;Monica Bing&amp;quot;
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;p&gt;Hopefully that makes sense. For another illustrative example, check out the section on computed properties in the &lt;a href=&#34;(https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID259&#34;&gt;Swift Programming Language Guide&lt;/a&gt;) and its subsequent section on read-only computed properties here. For more on Kotlin properties, &lt;a href=&#34;https://kotlinlang.org/docs/reference/properties.html&#34;&gt;check out the appropriate Kotlin page&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Hopefully that makes sense. For another illustrative example, check out the section on computed properties in the &lt;a href=&#34;(https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID259)&#34;&gt;Swift Programming Language Guide&lt;/a&gt; and its subsequent section on read-only computed properties here. For more on Kotlin properties, &lt;a href=&#34;https://kotlinlang.org/docs/reference/properties.html&#34;&gt;check out the appropriate Kotlin page&lt;/a&gt;.&lt;/p&gt;
 
-&lt;h3 id=&#34;can-be-used-like-factory-functions:e09a1ffbb09430de544056fda2fc6671&#34;&gt;&amp;hellip;can be used like factory functions&lt;/h3&gt;
+&lt;h3 id=&#34;can-be-used-like-factory-functions&#34;&gt;&amp;hellip;can be used like factory functions&lt;/h3&gt;
 
 &lt;p&gt;Now, we don&amp;rsquo;t &lt;em&gt;have&lt;/em&gt; to compute our property value from other object properties. Let&amp;rsquo;s look at a familiar example:&lt;/p&gt;
 
@@ -157,7 +156,7 @@ stopwatch.currentTime.subscribe { ... } // Using Kotlin syntax for trailing lamb
 stopwatch.start().subscribe { ... }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;are-recalculated-on-each-access:e09a1ffbb09430de544056fda2fc6671&#34;&gt;&amp;hellip;are recalculated on each access&lt;/h3&gt;
+&lt;h3 id=&#34;are-recalculated-on-each-access&#34;&gt;&amp;hellip;are recalculated on each access&lt;/h3&gt;
 
 &lt;p&gt;Notably, the read-only computed property approach does &lt;em&gt;not&lt;/em&gt; have one of the same issues as the &lt;code&gt;public final&lt;/code&gt; field approach in Java. Earlier we noted that if an &lt;code&gt;Observable&lt;/code&gt; field depends on some kind of external state, the &lt;code&gt;public final&lt;/code&gt; approach is untenable because the field would need reassignment in order to generate a modified &lt;code&gt;Observable&lt;/code&gt;. Since a computed property uses its getter to generate a new value each time it is accessed, it is &amp;ldquo;reassigned&amp;rdquo; each time it is called.&lt;/p&gt;
 
@@ -173,7 +172,7 @@ stopwatch.start().subscribe { ... }
         get() = Observable.interval(1, precision)
 
     // Version B
-	fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
+    fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
 }
 
 // Usage:
@@ -192,7 +191,7 @@ stopwatch.start().subscribe { ... }     // Version B
 
 &lt;p&gt;As you can see, both versions end up producing the same value. Furthermore, &lt;strong&gt;A&lt;/strong&gt; is &lt;em&gt;not&lt;/em&gt; subject to arbitrary replacement by some other &lt;code&gt;Observable&lt;/code&gt; &amp;ndash; it is marked as read-only (&lt;code&gt;val&lt;/code&gt;) and cannot be reassigned.&lt;/p&gt;
 
-&lt;h3 id=&#34;are-in-fact-just-functions:e09a1ffbb09430de544056fda2fc6671&#34;&gt;&amp;hellip;are in fact just functions?&lt;/h3&gt;
+&lt;h3 id=&#34;are-in-fact-just-functions&#34;&gt;&amp;hellip;are in fact just functions?&lt;/h3&gt;
 
 &lt;p&gt;Intuitively, it makes sense that a read-only computed property is just some syntactic sugar on top of methods. When you look at the property definition, the &lt;code&gt;get() = ...&lt;/code&gt; is literally defining a custom getter method to be used for property access. What does its declaration indicate?&lt;/p&gt;
 
@@ -203,13 +202,13 @@ stopwatch.start().subscribe { ... }     // Version B
 
 &lt;p&gt;&lt;em&gt;Are all properties just functions inside?&lt;/em&gt; The conspiracy deepens.&lt;/p&gt;
 
-&lt;h3 id=&#34;are-indeed-functions-under-the-hood:e09a1ffbb09430de544056fda2fc6671&#34;&gt;&amp;hellip;are indeed functions under the hood&lt;/h3&gt;
+&lt;h3 id=&#34;are-indeed-functions-under-the-hood&#34;&gt;&amp;hellip;are indeed functions under the hood&lt;/h3&gt;
 
 &lt;p&gt;Let&amp;rsquo;s check this out. It&amp;rsquo;s possible that there&amp;rsquo;s some subtle difference here that might contribute to our &amp;ldquo;property vs method&amp;rdquo; debate. Maybe there is some overhead in using computed properties&amp;hellip; or will it be the other way around? This is the question that inspired this post, and &lt;em&gt;we will find the answer&lt;/em&gt;!&lt;/p&gt;
 
 &lt;p&gt;In all seriousness, it&amp;rsquo;s pretty easy to find out. I propose a simple test: look at the code generated from each of the property and function implementations and see how both differ.&lt;/p&gt;
 
-&lt;h4 id=&#34;example-kotlin-class:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Example Kotlin class:&lt;/h4&gt;
+&lt;h4 id=&#34;example-kotlin-class&#34;&gt;Example Kotlin class:&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;import rx.Observable
 import java.util.concurrent.TimeUnit
@@ -224,7 +223,7 @@ class Stopwatch() {
         get() = Observable.interval(1, precision)
 
     // Version B
-	fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
+    fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -269,7 +268,7 @@ class Stopwatch() {
 
 &lt;p&gt;Here is the generated bytecode for our Observables in the class above using Android Studio 2.2-Preview 4 and Kotlin v1.0.2-1:&lt;/p&gt;
 
-&lt;h4 id=&#34;stopwatch-kt-bytecode-for-currenttime-and-start:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Stopwatch.kt bytecode for &lt;code&gt;currentTime&lt;/code&gt; and &lt;code&gt;start()&lt;/code&gt;&lt;/h4&gt;
+&lt;h4 id=&#34;stopwatch-kt-bytecode-for-currenttime-and-start&#34;&gt;Stopwatch.kt bytecode for &lt;code&gt;currentTime&lt;/code&gt; and &lt;code&gt;start()&lt;/code&gt;&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;  // access flags 0x11
   // signature ()Lrx/Observable&amp;lt;Ljava/lang/Long;&amp;gt;;
@@ -351,7 +350,7 @@ class Stopwatch() {
 
 
 
-&lt;h4 id=&#34;stopwatch-decompiled-java:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Stopwatch.decompiled.java&lt;/h4&gt;
+&lt;h4 id=&#34;stopwatch-decompiled-java&#34;&gt;Stopwatch.decompiled.java&lt;/h4&gt;
 
 &lt;pre&gt;&lt;code&gt;import java.util.concurrent.TimeUnit;
 import kotlin.Metadata;
@@ -400,11 +399,11 @@ public final class Stopwatch {
 
 &lt;p&gt;&lt;em&gt;Read-only computed properties are just functions under the hood.&lt;/em&gt;&lt;/p&gt;
 
-&lt;h2 id=&#34;so-which-way-do-i-use:e09a1ffbb09430de544056fda2fc6671&#34;&gt;So&amp;hellip; which way do I use?&lt;/h2&gt;
+&lt;h2 id=&#34;so-which-way-do-i-use&#34;&gt;So&amp;hellip; which way do I use?&lt;/h2&gt;
 
 &lt;p&gt;Let&amp;rsquo;s do a quick comparison.&lt;/p&gt;
 
-&lt;h3 id=&#34;java:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Java&lt;/h3&gt;
+&lt;h3 id=&#34;java&#34;&gt;Java&lt;/h3&gt;
 
 &lt;p&gt;In pure Java, you are almost certainly better off using the method implementation of &lt;code&gt;Observable&lt;/code&gt; generation. There is a reason that you fairly exclusively see this practice in examples, and it all comes down to safe usage patterns through encapsulation.&lt;/p&gt;
 
@@ -424,7 +423,7 @@ public final class Stopwatch {
 &lt;li&gt;Can have arguments.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;h3 id=&#34;kotlin:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Kotlin&lt;/h3&gt;
+&lt;h3 id=&#34;kotlin&#34;&gt;Kotlin&lt;/h3&gt;
 
 &lt;p&gt;Kotlin&amp;rsquo;s property syntax allows a very different style of programming than when only using Java. As we&amp;rsquo;ve found, using a computed property gives us the power of a getter method with the access pattern of an object field.&lt;/p&gt;
 
@@ -440,21 +439,21 @@ public final class Stopwatch {
 
 &lt;p&gt;&lt;strong&gt;However&amp;hellip;&lt;/strong&gt;&lt;/p&gt;
 
-&lt;h4 id=&#34;observables-aren-t-simple-data-types:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Observables aren&amp;rsquo;t simple data types&lt;/h4&gt;
+&lt;h4 id=&#34;observables-aren-t-simple-data-types&#34;&gt;Observables aren&amp;rsquo;t simple data types&lt;/h4&gt;
 
 &lt;p&gt;Most &lt;code&gt;Observable&lt;/code&gt; objects are complex and expensive to create. If your computed property instantiates a new Observable every time it&amp;rsquo;s accessed, using a method better signals that we are building a new object that shouldn&amp;rsquo;t be used carelessly.&lt;/p&gt;
 
-&lt;h4 id=&#34;some-observables-have-side-effects:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Some Observables have side effects&lt;/h4&gt;
+&lt;h4 id=&#34;some-observables-have-side-effects&#34;&gt;Some Observables have side effects&lt;/h4&gt;
 
 &lt;p&gt;If the &lt;code&gt;Observable&lt;/code&gt; you expose as a property implements &lt;a href=&#34;http://reactivex.io/documentation/operators/do.html&#34;&gt;&lt;code&gt;doOnNext()&lt;/code&gt;&lt;/a&gt;, you have now introduced unknown side effects in what is supposed to be a simple data access.&lt;/p&gt;
 
 &lt;p&gt;Or, if you have assigned a &lt;a href=&#34;http://reactivex.io/documentation/scheduler.html&#34;&gt;&lt;code&gt;Scheduler&lt;/code&gt;&lt;/a&gt; to the &lt;code&gt;Observable&lt;/code&gt;, you may have just created a new thread, unbeknownst to the caller! When using a method, there is an implicit understanding that the code body might just do more than accessing a value.&lt;/p&gt;
 
-&lt;h4 id=&#34;observables-are-inherently-asynchronous:e09a1ffbb09430de544056fda2fc6671&#34;&gt;Observables are inherently asynchronous&lt;/h4&gt;
+&lt;h4 id=&#34;observables-are-inherently-asynchronous&#34;&gt;Observables are inherently asynchronous&lt;/h4&gt;
 
 &lt;p&gt;Asynchronous interactions are notoriously difficult to reason about. The &lt;code&gt;Observable&lt;/code&gt; class is meant to ease some of the cognitive load on the programmer, but it still remains that they represent some kind of potential asynchronous value. This leads back to the first point that &lt;em&gt;Observables aren&amp;rsquo;t simple&lt;/em&gt; and that &lt;em&gt;methods better reflect their complexity&lt;/em&gt;. In fact, many common &lt;code&gt;Observable&lt;/code&gt;s represent long running operations, and actions an object takes are better represented as methods.&lt;/p&gt;
 
-&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; A good resource I found on this subject is the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/ms229054(v=vs.100&#34;&gt;MSDN guide on &amp;ldquo;Choosing Between Properties and Methods&amp;rdquo;&lt;/a&gt;.aspx).&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; A good resource I found on this subject is the &lt;a href=&#34;https://msdn.microsoft.com/en-us/library/ms229054(v=vs.100).aspx&#34;&gt;MSDN guide on &amp;ldquo;Choosing Between Properties and Methods&amp;rdquo;&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;&lt;strong&gt;TL;DR: Kotlin computed properties are just methods, but that doesn&amp;rsquo;t mean you should be using them to expose your object&amp;rsquo;s &lt;code&gt;Observable&lt;/code&gt; API.&lt;/strong&gt;&lt;/p&gt;
 

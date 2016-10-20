@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Android on It&#39;s Ronald</title>
-    <link>http://itsronald.com/categories/android/</link>
-    <description>Recent content in Android on It&#39;s Ronald</description>
+    <title>It&#39;s Ronald</title>
+    <link>http://itsronald.com/categories/android/index.xml</link>
+    <description>Recent content on It&#39;s Ronald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Sun, 16 Oct 2016 15:38:42 -0700</lastBuildDate>
     <atom:link href="http://itsronald.com/categories/android/index.xml" rel="self" type="application/rss+xml" />
     
     <item>
@@ -66,11 +65,11 @@
 
 &lt;p&gt;Today&amp;rsquo;s Answer: Because we want to know how the wheel works, of course.&lt;/p&gt;
 
-&lt;h2 id=&#34;breaking-down-the-animation:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Breaking down the animation&lt;/h2&gt;
+&lt;h2 id=&#34;breaking-down-the-animation&#34;&gt;Breaking down the animation&lt;/h2&gt;
 
 &lt;p&gt;The first thing I had to do was figure out how the animation works. The natural first attempt relied on what I could observe with my own eyes, but eventually I found some other tools that helped me comprehend the animation in greater detail.&lt;/p&gt;
 
-&lt;h3 id=&#34;tool-1-eyeballs:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Tool #1: Eyeballs&lt;/h3&gt;
+&lt;h3 id=&#34;tool-1-eyeballs&#34;&gt;Tool #1: Eyeballs&lt;/h3&gt;
 
 &lt;p&gt;Let&amp;rsquo;s take a look at what we have here. Here&amp;rsquo;s the first official example I found from the &lt;em&gt;Google Opinion Rewards&lt;/em&gt; app (as of the time of the library&amp;rsquo;s creation, this was actually the only Google Android app on my phone that was using the indicator, despite its appearance elsewhere; others are using a version that does not animate).&lt;/p&gt;
 
@@ -111,7 +110,7 @@
 
 
 
-&lt;p&gt;Perhaps you&amp;rsquo;ll agree with me that from our high-level human standpoint, it appears pretty simple. You can already catch a lot more detail than I originally glean from blowing up the image, but here&amp;rsquo;s what I figured out from staring at that the tiny version on my phone for embarassingly long:&lt;/p&gt;
+&lt;p&gt;Perhaps you&amp;rsquo;ll agree with me that from our high-level human standpoint, it appears pretty simple. You can already catch a lot more detail than I originally gleaned from blowing up the image, but here&amp;rsquo;s what I figured out from staring at that the tiny version on my phone for embarassingly long:&lt;/p&gt;
 
 &lt;ol&gt;
 &lt;li&gt;The dot for the current page makes a path to the dot for the new page.&lt;/li&gt;
@@ -121,7 +120,7 @@
 
 &lt;p&gt;Is that all we need to do to replicate this effect? How can we break this down in more detail?&lt;/p&gt;
 
-&lt;h3 id=&#34;tool-2-gif-frame-splitting:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Tool #2: .GIF frame splitting&lt;/h3&gt;
+&lt;h3 id=&#34;tool-2-gif-frame-splitting&#34;&gt;Tool #2: .GIF frame splitting&lt;/h3&gt;
 
 &lt;p&gt;My first attempt at breaking this down involved sticking an image I found on GitHub through a GIF splitter and looking at each frame in the GIF. I discovered that DavidPacioianu on GitHub extracted the indicator from Nick Butcher&amp;rsquo;s sample app (the one I mentioned at the beginning) and &lt;a href=&#34;https://github.com/DavidPacioianu/InkPageIndicator&#34;&gt;set it up as a separate library&lt;/a&gt;. In the repo README, he helpfully included &lt;a href=&#34;https://camo.githubusercontent.com/f85b29e899c98abef7ee93a27eb8abd92c707635/687474703a2f2f692e696d6775722e636f6d2f6652674458574b2e676966&#34;&gt;a GIF of the isolated animation&lt;/a&gt;.&lt;/p&gt;
 
@@ -176,7 +175,7 @@
 
 &lt;p&gt;Wow! It turns out there was a lot more going on than I had initially thought. After deciding that &lt;em&gt;no, I wouldn&amp;rsquo;t let the existence of this alternative library deter my learning experience&lt;/em&gt;, I now had enough information to get started.&lt;/p&gt;
 
-&lt;h3 id=&#34;tool-3-animator-scale-developer-setting:bb8325dde20c6cba93eb4b4bcafee07a&#34;&gt;Tool #3: &amp;ldquo;Animator scale&amp;rdquo; Developer Setting&lt;/h3&gt;
+&lt;h3 id=&#34;tool-3-animator-scale-developer-setting&#34;&gt;Tool #3: &amp;ldquo;Animator scale&amp;rdquo; Developer Setting&lt;/h3&gt;
 
 &lt;p&gt;While using the GIF splitter helped me get started, I found out while building the library that there&amp;rsquo;s an even better way to go about this. Specifically, the largest benefit of the GIF breakdown approach is also a huge downside: the breakdown is made up of static images, so it&amp;rsquo;s very difficult to find out how long each animation takes. (It&amp;rsquo;s probably possible to calculate if you know the frame rate of the source image, but that&amp;rsquo;s a bit of a pain.)&lt;/p&gt;
 
@@ -223,7 +222,7 @@
 
 &lt;p&gt;Using this tool, we can now &lt;strong&gt;really&lt;/strong&gt; pick apart the animation we&amp;rsquo;re seeing. At an Animator scale of &lt;em&gt;10x&lt;/em&gt;, i.e., animations take ten times longer, we can see all the details in a working example of the official widget (source: &lt;em&gt;Google Opinion Rewards&lt;/em&gt; app). I&amp;rsquo;ve used Android Nougat&amp;rsquo;s multi-window feature to show this side by side with the version I made. Each animation is shown separately because Nougat doesn&amp;rsquo;t like simultaneous swipes on both apps:&lt;/p&gt;
 
-&lt;p&gt;
+
 
 
     
@@ -258,7 +257,7 @@
         &lt;/span&gt;&lt;/p&gt;
     
 
-&lt;/p&gt;
+
 
 &lt;p&gt;Cool, right? This breakdown ended up being really helpful when I was trying to match animation timing for the library (it&amp;rsquo;s pretty close, and it will get even better as the library develops!), which we will get into in a future post.&lt;/p&gt;
 
@@ -274,11 +273,11 @@
       <guid>http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</guid>
       <description>
 
-&lt;h1 id=&#34;update-2016-10-05:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Update 2016-10-05&lt;/h1&gt;
+&lt;h1 id=&#34;update-2016-10-05&#34;&gt;Update 2016-10-05&lt;/h1&gt;
 
 &lt;p&gt;This article has been updated to reflect some changes to tooling that fixes some of the problems mentioned below.&lt;/p&gt;
 
-&lt;h2 id=&#34;living-life-on-the-edge:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Living Life on the &amp;ldquo;Edge&amp;rdquo;&lt;/h2&gt;
+&lt;h2 id=&#34;living-life-on-the-edge&#34;&gt;Living Life on the &amp;ldquo;Edge&amp;rdquo;&lt;/h2&gt;
 
 &lt;p&gt;I&amp;rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&amp;rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have:&lt;/p&gt;
 
@@ -293,7 +292,7 @@
 
 &lt;p&gt;&lt;strong&gt;Update 2016-10-05:&lt;/strong&gt; I have released the app that inspired this article. You can &lt;a href=&#34;https://github.com/ronaldsmartin/20twenty20&#34;&gt;check it out on GitHub&lt;/a&gt; as a reference when setting up your own project.&lt;/p&gt;
 
-&lt;h3 id=&#34;kapt-the-kotlin-annotations-processor:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;&lt;code&gt;kapt&lt;/code&gt;, the Kotlin annotations processor&lt;/h3&gt;
+&lt;h3 id=&#34;kapt-the-kotlin-annotations-processor&#34;&gt;&lt;code&gt;kapt&lt;/code&gt;, the Kotlin annotations processor&lt;/h3&gt;
 
 &lt;p&gt;Most of the tutorials on (Java) Dagger integrations rely on Hugo Visser&amp;rsquo;s &lt;a href=&#34;https://bitbucket.org/hvisser/android-apt&#34;&gt;Android Studio Annotations Processor&lt;/a&gt;. This is used with Dagger as follows:&lt;/p&gt;
 
@@ -352,7 +351,7 @@ dependencies {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h3 id=&#34;multiple-jsr-250-dependencies:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Multiple JSR 250 Dependencies&lt;/h3&gt;
+&lt;h3 id=&#34;multiple-jsr-250-dependencies&#34;&gt;Multiple JSR 250 Dependencies&lt;/h3&gt;
 
 &lt;p&gt;That &lt;code&gt;provided &#39;javax.annotation:jsr250-api:1.0&#39;&lt;/code&gt; line might have stuck out to you.&lt;/p&gt;
 
@@ -407,7 +406,7 @@ dependencies {
 
 &lt;p&gt;For what it&amp;rsquo;s worth, I gave all of them a whirl with Dagger and didn&amp;rsquo;t run into any issues. This is a good enough comparison for my purposes short of peeking inside the JARs and comparing them. Since #3 is the smallest and seems to contain the bare minimum necessary for Dagger, I&amp;rsquo;ve taken to using that package.&lt;/p&gt;
 
-&lt;h3 id=&#34;kotlin-android-extensions:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;kotlin-android-extensions&lt;/h3&gt;
+&lt;h3 id=&#34;kotlin-android-extensions&#34;&gt;kotlin-android-extensions&lt;/h3&gt;
 
 &lt;p&gt;JetBrains&amp;rsquo; &lt;a href=&#34;https://kotlinlang.org/docs/tutorials/android-plugin.html&#34;&gt;Kotlin Android Extensions&lt;/a&gt; plugin provides some great features on top of the standard tooling. For those who haven&amp;rsquo;t used it, it can create &amp;ldquo;synthetic properties&amp;rdquo; properties from your XML layout files so that you don&amp;rsquo;t need to make &lt;code&gt;findViewById()&lt;/code&gt; calls and cast them to assign your instance variables. These calls are the bane of Android developers everywhere, many of whom use &lt;a href=&#34;http://jakewharton.github.io/butterknife/&#34;&gt;ButterKnife&lt;/a&gt; to fight back:&lt;/p&gt;
 
@@ -461,7 +460,7 @@ class MyActivity: Activity() {
 }
 &lt;/code&gt;&lt;/pre&gt;
 
-&lt;h4 id=&#34;dagger-2-2-compatibility:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Dagger 2.2 Compatibility&lt;/h4&gt;
+&lt;h4 id=&#34;dagger-2-2-compatibility&#34;&gt;Dagger 2.2 Compatibility&lt;/h4&gt;
 
 &lt;p&gt;&lt;strong&gt;Update 2016-10-05:&lt;/strong&gt; This seemed to be a problem with the Kotlin plugin rather than with Dagger itself. Code minify works fine with Kotlin v1.0.3 and the current version 1.0.4.&lt;/p&gt;
 
@@ -490,7 +489,7 @@ class MyActivity: Activity() {
 
 &lt;p&gt;Voila. No more errors. Hope that gets fixed soon, though.&lt;/p&gt;
 
-&lt;h4 id=&#34;misleading-solutions:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Misleading solutions&lt;/h4&gt;
+&lt;h4 id=&#34;misleading-solutions&#34;&gt;Misleading solutions&lt;/h4&gt;
 
 &lt;p&gt;While trying to fix the problem above, Googling pointed me at fairly recent Stack Overflow answers &lt;a href=&#34;http://stackoverflow.com/a/36526153/4499783&#34;&gt;like this one&lt;/a&gt; that suggested the following:&lt;/p&gt;
 
@@ -507,7 +506,7 @@ class MyActivity: Activity() {
 
 &lt;p&gt;&lt;strong&gt;Update 2016-10-05:&lt;/strong&gt; In Kotlin plugin v1.0.3 and up, the automatic project setup works without modification.&lt;/p&gt;
 
-&lt;h3 id=&#34;inject-requires-the-exact-class-you-re-injecting-into:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;&lt;code&gt;inject()&lt;/code&gt; requires the &lt;em&gt;exact&lt;/em&gt; class you&amp;rsquo;re injecting into&lt;/h3&gt;
+&lt;h3 id=&#34;inject-requires-the-exact-class-you-re-injecting-into&#34;&gt;&lt;code&gt;inject()&lt;/code&gt; requires the &lt;em&gt;exact&lt;/em&gt; class you&amp;rsquo;re injecting into&lt;/h3&gt;
 
 &lt;p&gt;Lastly, my &amp;ldquo;d&amp;rsquo;oh!&amp;rdquo; moment.&lt;/p&gt;
 
@@ -586,7 +585,7 @@ interface TimerComponent {
 
 &lt;p&gt;Total noob move, I&amp;rsquo;m sure, but hey, now I know.&lt;/p&gt;
 
-&lt;h2 id=&#34;helpful-resources:8b618abf5a7523d1736f50f60d1b5347&#34;&gt;Helpful Resources&lt;/h2&gt;
+&lt;h2 id=&#34;helpful-resources&#34;&gt;Helpful Resources&lt;/h2&gt;
 
 &lt;p&gt;I probably wouldn&amp;rsquo;t have figured out how to make everything work without the help of the following resources &amp;ndash; props to the makers:&lt;/p&gt;
 

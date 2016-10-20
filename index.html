@@ -10,7 +10,7 @@
 
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <meta name="generator" content="Hugo 0.15" />
+        <meta name="generator" content="Hugo 0.17" />
         
     
         
@@ -42,7 +42,7 @@
 <meta property="og:url" content="http://itsronald.com/" />
 
 
-
+<meta property="og:updated_time" content="2016-10-16T15:38:42-07:00"/>
 
 
 
@@ -109,28 +109,28 @@ ga('send', 'pageview');
         <ul>
             
                 <li>
-                    <a href="/blog/">
+                    <a href="/blog">
                         
                             <i class="fa fa-newspaper-o">&nbsp;</i>Blog
                     </a>
                 </li>
             
                 <li>
-                    <a href="/categories/">
+                    <a href="/categories">
                         
                             <i class="fa fa-map-signs">&nbsp;</i>Categories
                     </a>
                 </li>
             
                 <li>
-                    <a href="/about/">
+                    <a href="/about">
                         
                             <i class="fa fa-info-circle">&nbsp;</i>About
                     </a>
                 </li>
             
                 <li>
-                    <a href="/projects/">
+                    <a href="/projects">
                         
                             <i class="fa fa-code">&nbsp;</i>Projects
                     </a>
@@ -175,7 +175,7 @@ ga('send', 'pageview');
             <ul class="links">
                 
                     <li>
-                        <a href="/blog/">
+                        <a href="/blog">
                             <h3>
                                 
                                     <i class="fa fa-newspaper-o">&nbsp;</i>
@@ -186,7 +186,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/categories/">
+                        <a href="/categories">
                             <h3>
                                 
                                     <i class="fa fa-map-signs">&nbsp;</i>
@@ -197,7 +197,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/about/">
+                        <a href="/about">
                             <h3>
                                 
                                     <i class="fa fa-info-circle">&nbsp;</i>
@@ -208,7 +208,7 @@ ga('send', 'pageview');
                     </li>
                 
                     <li>
-                        <a href="/projects/">
+                        <a href="/projects">
                             <h3>
                                 
                                     <i class="fa fa-code">&nbsp;</i>
@@ -401,11 +401,11 @@ ga('send', 'pageview');
 
 <p>Today&rsquo;s Answer: Because we want to know how the wheel works, of course.</p>
 
-<h2 id="breaking-down-the-animation:bb8325dde20c6cba93eb4b4bcafee07a">Breaking down the animation</h2>
+<h2 id="breaking-down-the-animation">Breaking down the animation</h2>
 
 <p>The first thing I had to do was figure out how the animation works. The natural first attempt relied on what I could observe with my own eyes, but eventually I found some other tools that helped me comprehend the animation in greater detail.</p>
 
-<h3 id="tool-1-eyeballs:bb8325dde20c6cba93eb4b4bcafee07a">Tool #1: Eyeballs</h3>
+<h3 id="tool-1-eyeballs">Tool #1: Eyeballs</h3>
 
 <p>Let&rsquo;s take a look at what we have here. Here&rsquo;s the first official example I found from the <em>Google Opinion Rewards</em> app (as of the time of the library&rsquo;s creation, this was actually the only Google Android app on my phone that was using the indicator, despite its appearance elsewhere; others are using a version that does not animate).</p>
 
@@ -446,7 +446,7 @@ ga('send', 'pageview');
 
 
 
-<p>Perhaps you&rsquo;ll agree with me that from our high-level human standpoint, it appears pretty simple. You can already catch a lot more detail than I originally glean from blowing up the image, but here&rsquo;s what I figured out from staring at that the tiny version on my phone for embarassingly long:</p>
+<p>Perhaps you&rsquo;ll agree with me that from our high-level human standpoint, it appears pretty simple. You can already catch a lot more detail than I originally gleaned from blowing up the image, but here&rsquo;s what I figured out from staring at that the tiny version on my phone for embarassingly long:</p>
 
 <ol>
 <li>The dot for the current page makes a path to the dot for the new page.</li>
@@ -456,7 +456,7 @@ ga('send', 'pageview');
 
 <p>Is that all we need to do to replicate this effect? How can we break this down in more detail?</p>
 
-<h3 id="tool-2-gif-frame-splitting:bb8325dde20c6cba93eb4b4bcafee07a">Tool #2: .GIF frame splitting</h3>
+<h3 id="tool-2-gif-frame-splitting">Tool #2: .GIF frame splitting</h3>
 
 <p>My first attempt at breaking this down involved sticking an image I found on GitHub through a GIF splitter and looking at each frame in the GIF. I discovered that DavidPacioianu on GitHub extracted the indicator from Nick Butcher&rsquo;s sample app (the one I mentioned at the beginning) and <a href="https://github.com/DavidPacioianu/InkPageIndicator">set it up as a separate library</a>. In the repo README, he helpfully included <a href="https://camo.githubusercontent.com/f85b29e899c98abef7ee93a27eb8abd92c707635/687474703a2f2f692e696d6775722e636f6d2f6652674458574b2e676966">a GIF of the isolated animation</a>.</p>
 
@@ -511,7 +511,7 @@ ga('send', 'pageview');
 
 <p>Wow! It turns out there was a lot more going on than I had initially thought. After deciding that <em>no, I wouldn&rsquo;t let the existence of this alternative library deter my learning experience</em>, I now had enough information to get started.</p>
 
-<h3 id="tool-3-animator-scale-developer-setting:bb8325dde20c6cba93eb4b4bcafee07a">Tool #3: &ldquo;Animator scale&rdquo; Developer Setting</h3>
+<h3 id="tool-3-animator-scale-developer-setting">Tool #3: &ldquo;Animator scale&rdquo; Developer Setting</h3>
 
 <p>While using the GIF splitter helped me get started, I found out while building the library that there&rsquo;s an even better way to go about this. Specifically, the largest benefit of the GIF breakdown approach is also a huge downside: the breakdown is made up of static images, so it&rsquo;s very difficult to find out how long each animation takes. (It&rsquo;s probably possible to calculate if you know the frame rate of the source image, but that&rsquo;s a bit of a pain.)</p>
 
@@ -558,7 +558,7 @@ ga('send', 'pageview');
 
 <p>Using this tool, we can now <strong>really</strong> pick apart the animation we&rsquo;re seeing. At an Animator scale of <em>10x</em>, i.e., animations take ten times longer, we can see all the details in a working example of the official widget (source: <em>Google Opinion Rewards</em> app). I&rsquo;ve used Android Nougat&rsquo;s multi-window feature to show this side by side with the version I made. Each animation is shown separately because Nougat doesn&rsquo;t like simultaneous swipes on both apps:</p>
 
-<p>
+
 
 
     
@@ -593,7 +593,7 @@ ga('send', 'pageview');
         </span></p>
     
 
-</p>
+
 
 <p>Cool, right? This breakdown ended up being really helpful when I was trying to match animation timing for the library (it&rsquo;s pretty close, and it will get even better as the library develops!), which we will get into in a future post.</p>
 
@@ -629,9 +629,9 @@ ga('send', 'pageview');
 
     
     
-        <li><a href='/categories/android'>android</a></li>
+        <li><a href='/categoriesandroid'>android</a></li>
     
-        <li><a href='/categories/programming'>programming</a></li>
+        <li><a href='/categoriesprogramming'>programming</a></li>
     
 </ul>
 
@@ -956,8 +956,7 @@ ga('send', 'pageview');
         
         <section class="blurb">
             <h2>About</h2>
-            <p>Hi! This is where I post occasional thoughts. It&#39;s a work in progress.
-	</p>
+            <p>Hi! This is where I post occasional thoughts. It&#39;s a work in progress.</p>
 
             <ul class="actions">
                 <li><a href="/about/" class="button">Learn More</a></li>
