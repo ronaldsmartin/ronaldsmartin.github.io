@@ -36,7 +36,7 @@ Let's take a look at what we have here. Here's the first official example I foun
 
 {{< img-post path="date" file="ink-indicator-example.gif" alt="Material ViewPagerIndicator zoomed" type="center" >}}
 
-Perhaps you'll agree with me that from our high-level human standpoint, it appears pretty simple. You can already catch a lot more detail than I originally glean from blowing up the image, but here's what I figured out from staring at that the tiny version on my phone for embarassingly long:
+Perhaps you'll agree with me that from our high-level human standpoint, it appears pretty simple. You can already catch a lot more detail than I originally gleaned from blowing up the image, but here's what I figured out from staring at that the tiny version on my phone for embarassingly long:
 
 1. The dot for the current page makes a path to the dot for the new page.
 2. The white current page dot slides along the path to its new location.
