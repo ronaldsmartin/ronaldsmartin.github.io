@@ -20,7 +20,7 @@ An Android app built with Dagger 2 and RxJava (written fully in Kotlin!). Addres
 
 I tinker with this on and off, and it already works rather well. In the future, I'd like to build in automatic scheduler to turn it on daily or something. (So I can be *really* lazy about my healthy habits...?)
 
-[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=com.itsronald.twenty2020&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="250" alt="Get it on Google Play">](https://play.google.com/store/apps/details?id=com.itsronald.twenty2020&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
 
 ###  "And now, Your Highness, we will discuss the location of your hidden Rebel base."
 [My roomie Dean](https://deanwilhelmi.wordpress.com/) and I threw together a Android app (Kotlin-based) to augment our galactic battles in the [Star Wars: Rebellion](https://www.fantasyflightgames.com/en/products/star-wars-rebellion/) board game. So far, it implements a basic visual state toggle (pretty much a color-coded grid) so that the Imperial players can keep track of their intelligence on each system. I started this off as a RecyclerView-based grid just to get the project off the ground, but once we can get some quality images of the game board we're going to learn how to make arbitrarily-shaped clickable regions to turn this into a touchable mini-map.
@@ -45,7 +45,8 @@ As an app to help my friends and the local Philadelphia community, APO-DZ has se
 * About: https://ronaldsmartin.github.io/APO-DZ-Android/
 * Repo on GitHub: https://github.com/ronaldsmartin/APO-DZ-Android
 
-[![Get it on Google Play](https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png)](https://play.google.com/store/apps/details?id=org.upennapo.app&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+[<img src="https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png" width="250" alt="Get it on Google Play">](https://play.google.com/store/apps/details?id=org.upennapo.app&utm_source=global_co&utm_medium=prtnr&utm_content=Mar2515&utm_campaign=PartBadge&pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1)
+
 
 ####  iPhone app
 * Repo on GitHub: https://github.com/ronaldsmartin/APO-DZ-iOS
