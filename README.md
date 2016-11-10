@@ -20,11 +20,9 @@ This currently uses X1011's [git-directory-deploy](https://github.com/X1011/git-
 
 **On the `hugo-site` branch:**
 
-    $ hugo             # Generate the site to ./public/
-    $ ./deploy.sh      # Deploys the generated site to the master branch
-    $ rm -rf public    # Remove the generated site content.
+    $ ./deploy.sh
   
-Eventually I'll compress this to one command.
+The script has been modified to build the site to the default `public/` directory, publish the generated files, and then remove `public/` to clean up.
 
 ## Credits
 
