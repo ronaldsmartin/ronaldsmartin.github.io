@@ -12,6 +12,12 @@ title = "Projects"
 
 ## Current
 
+### [Material ViewPagerIndicator](https://github.com/ronaldsmartin/Material-ViewPagerIndicator)
+
+* _On Github:_ https://github.com/ronaldsmartin/Material-ViewPagerIndicator
+
+An Android library that implements pretty Material Design animations for swipeable pages. I'm trying to write a few posts on what I've learned from building it: here's [Part I](/blog/2016/10/my-first-library).
+
 ### [20 twenty 20](/20twenty20)
 
 * _On Github:_ https://github.com/ronaldsmartin/20twenty20 
