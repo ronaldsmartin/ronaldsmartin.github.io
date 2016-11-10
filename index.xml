@@ -1121,7 +1121,7 @@ interface TimerComponent {
     </item>
     
     <item>
-      <title>projects</title>
+      <title>Projects</title>
       <link>http://itsronald.com/projects/</link>
       <pubDate>Wed, 25 May 2016 12:58:32 -0700</pubDate>
       
@@ -1129,6 +1129,14 @@ interface TimerComponent {
       <description>
 
 &lt;h2 id=&#34;current&#34;&gt;Current&lt;/h2&gt;
+
+&lt;h3 id=&#34;material-viewpagerindicator-https-github-com-ronaldsmartin-material-viewpagerindicator&#34;&gt;&lt;a href=&#34;https://github.com/ronaldsmartin/Material-ViewPagerIndicator&#34;&gt;Material ViewPagerIndicator&lt;/a&gt;&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;On Github:&lt;/em&gt; &lt;a href=&#34;https://github.com/ronaldsmartin/Material-ViewPagerIndicator&#34;&gt;https://github.com/ronaldsmartin/Material-ViewPagerIndicator&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;An Android library that implements pretty Material Design animations for swipeable pages. I&amp;rsquo;m trying to write a few posts on what I&amp;rsquo;ve learned from building it: here&amp;rsquo;s &lt;a href=&#34;http://itsronald.com/blog/2016/10/my-first-library&#34;&gt;Part I&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h3 id=&#34;20-twenty-20-20twenty20&#34;&gt;&lt;a href=&#34;http://itsronald.com/20twenty20&#34;&gt;20 twenty 20&lt;/a&gt;&lt;/h3&gt;
 
@@ -1140,7 +1148,7 @@ interface TimerComponent {
 
 &lt;p&gt;I tinker with this on and off, and it already works rather well. In the future, I&amp;rsquo;d like to build in automatic scheduler to turn it on daily or something. (So I can be &lt;em&gt;really&lt;/em&gt; lazy about my healthy habits&amp;hellip;?)&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://play.google.com/store/apps/details?id=com.itsronald.twenty2020&amp;amp;utm_source=global_co&amp;amp;utm_medium=prtnr&amp;amp;utm_content=Mar2515&amp;amp;utm_campaign=PartBadge&amp;amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1&#34;&gt;&lt;img src=&#34;https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png&#34; alt=&#34;Get it on Google Play&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://play.google.com/store/apps/details?id=com.itsronald.twenty2020&amp;amp;utm_source=global_co&amp;amp;utm_medium=prtnr&amp;amp;utm_content=Mar2515&amp;amp;utm_campaign=PartBadge&amp;amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1&#34;&gt;&lt;img src=&#34;https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png&#34; width=&#34;250&#34; alt=&#34;Get it on Google Play&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h3 id=&#34;and-now-your-highness-we-will-discuss-the-location-of-your-hidden-rebel-base&#34;&gt;&amp;ldquo;And now, Your Highness, we will discuss the location of your hidden Rebel base.&amp;rdquo;&lt;/h3&gt;
 
@@ -1173,7 +1181,7 @@ interface TimerComponent {
 &lt;li&gt;Repo on GitHub: &lt;a href=&#34;https://github.com/ronaldsmartin/APO-DZ-Android&#34;&gt;https://github.com/ronaldsmartin/APO-DZ-Android&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;&lt;a href=&#34;https://play.google.com/store/apps/details?id=org.upennapo.app&amp;amp;utm_source=global_co&amp;amp;utm_medium=prtnr&amp;amp;utm_content=Mar2515&amp;amp;utm_campaign=PartBadge&amp;amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1&#34;&gt;&lt;img src=&#34;https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png&#34; alt=&#34;Get it on Google Play&#34; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://play.google.com/store/apps/details?id=org.upennapo.app&amp;amp;utm_source=global_co&amp;amp;utm_medium=prtnr&amp;amp;utm_content=Mar2515&amp;amp;utm_campaign=PartBadge&amp;amp;pcampaignid=MKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1&#34;&gt;&lt;img src=&#34;https://play.google.com/intl/en_us/badges/images/generic/en_badge_web_generic.png&#34; width=&#34;250&#34; alt=&#34;Get it on Google Play&#34;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h4 id=&#34;iphone-app&#34;&gt;iPhone app&lt;/h4&gt;
 
