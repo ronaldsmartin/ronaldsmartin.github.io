@@ -6,7 +6,7 @@ featured = ""
 featuredalt = ""
 featuredpath = ""
 linktitle = ""
-title = "projects"
+title = "Projects"
 
 +++
 
