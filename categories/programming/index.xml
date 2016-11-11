@@ -327,7 +327,7 @@ stopwatch.currentTime.subscribe(...);
 
 &lt;pre&gt;&lt;code&gt;public class Stopwatch {
     public Observable&amp;lt;Long&amp;gt; start() {
-    	return Observable.interval(1, TimeUnit.SECONDS);
+        return Observable.interval(1, TimeUnit.SECONDS);
     }
 }
 
@@ -429,7 +429,7 @@ stopwatch.start().subscribe { ... }
         get() = Observable.interval(1, precision)
 
     // Version B
-	fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
+    fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
 }
 
 // Usage:
@@ -480,7 +480,7 @@ class Stopwatch() {
         get() = Observable.interval(1, precision)
 
     // Version B
-	fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
+    fun start(): Observable&amp;lt;Long&amp;gt; = Observable.interval(1, precision)
 }
 &lt;/code&gt;&lt;/pre&gt;
 
