@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://itsronald.com/</loc>
-    <lastmod>2016-10-16T15:38:42-07:00</lastmod>
+    <loc>http://itsronald.com/blog/2017/06/simple-ordinal-date-queries/</loc>
+    <lastmod>2017-06-11T13:30:00-07:00</lastmod>
   </url>
   
   <url>
@@ -34,6 +35,77 @@
   <url>
     <loc>http://itsronald.com/about/</loc>
     <lastmod>2015-05-25T00:00:00+00:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/categories/android/</loc>
+    <lastmod>2016-10-16T15:38:42-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/blog/</loc>
+    <lastmod>2017-06-11T13:30:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/categories/</loc>
+    <lastmod>2016-10-16T15:38:42-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/categories/dagger/</loc>
+    <lastmod>2016-06-14T22:48:04-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/categories/ios/</loc>
+    <lastmod>2017-06-11T13:30:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/</loc>
+    <lastmod>2017-06-11T13:30:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/categories/java/</loc>
+    <lastmod>2016-06-30T19:26:34-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/categories/kotlin/</loc>
+    <lastmod>2016-06-30T19:26:34-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/categories/programming/</loc>
+    <lastmod>2017-06-11T13:30:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/categories/rxjava/</loc>
+    <lastmod>2016-06-30T19:26:34-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/categories/swift/</loc>
+    <lastmod>2017-06-11T13:30:00-07:00</lastmod>
+    <priority>0</priority>
+  </url>
+  
+  <url>
+    <loc>http://itsronald.com/tags/</loc>
+    <priority>0</priority>
   </url>
   
 </urlset>
