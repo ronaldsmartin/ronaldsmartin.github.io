@@ -17,14 +17,7 @@ My non-technical interests include (but are certainly not limited to):
 ### Music
 Discovering and enjoying new music is one of my passions. My recent playlist has contained mostly electronic funk and R&B, but I really believe in music as art and strive to appreciate all genres.
 
-#### 2016 Faves
-
-* [NAO](https://www.youtube.com/watch?v=R7vHqhRXZpY)
-* [Guardians of the Galaxy: Awesome Mix Vol. 1](https://en.wikipedia.org/wiki/Guardians_of_the_Galaxy_(soundtrack))
-* [Yoko Kanno and The Seatbelts](https://youtu.be/_GywG4NFado)
-* [Miike Snow](https://www.youtube.com/channel/UCzsEmTSzPLxL0w0Ff6n8rEA)
-
-I'd really like to make my own music and will write about how that goes eventually. I just bought a tambourine and am pretty pumped about it.
+I'd really like to make my own music and will write about how that goes eventually. I just bought a tambourine and am pretty pumped about it, but usually strum on my ukulele and sing a lot.
 
 ### Casual Math
 Have you heard of the [Birthday Problem](https://en.wikipedia.org/wiki/Birthday_problem)? Well, it turns out that once you get 23 people in a room, you have about a 50% chance of two people inside sharing the same birthday!
