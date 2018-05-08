@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Android on It&#39;s Ronald</title>
-    <link>http://itsronald.com/categories/android/</link>
+    <link>https://itsronald.com/categories/android/</link>
     <description>Recent content in Android on It&#39;s Ronald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 16 Oct 2016 15:38:42 -0700</lastBuildDate>
     
-	<atom:link href="http://itsronald.com/categories/android/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://itsronald.com/categories/android/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>My First Android Library, Part I</title>
-      <link>http://itsronald.com/blog/2016/10/my-first-library/</link>
+      <link>https://itsronald.com/blog/2016/10/my-first-library/</link>
       <pubDate>Sun, 16 Oct 2016 15:38:42 -0700</pubDate>
       
-      <guid>http://itsronald.com/blog/2016/10/my-first-library/</guid>
+      <guid>https://itsronald.com/blog/2016/10/my-first-library/</guid>
       <description>I built a software library recently. It&amp;rsquo;s a page indicator for mobile apps; the kind you&amp;rsquo;ve probably seen before with dots that change color to show what page you&amp;rsquo;re on. The one I made replicates Google&amp;rsquo;s latest iteration of this pattern with Material Design inspiration. It&amp;rsquo;s really rather cool looking, I think:
 
 As you can see, each dot represents a page, where the white dot is the current page and the gray dots are the other pages.</description>
@@ -24,10 +24,10 @@ As you can see, each dot represents a page, where the white dot is the current p
     
     <item>
       <title>Lessons Learned: Kotlin &#43; Dagger2</title>
-      <link>http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</link>
+      <link>https://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</link>
       <pubDate>Tue, 14 Jun 2016 22:48:04 -0700</pubDate>
       
-      <guid>http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</guid>
+      <guid>https://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</guid>
       <description>Update 2016-10-05 This article has been updated to reflect some changes to tooling that fixes some of the problems mentioned below.
 Living Life on the &amp;ldquo;Edge&amp;rdquo; I&amp;rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&amp;rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have:
  MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains.</description>

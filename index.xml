@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>It&#39;s Ronald</title>
-    <link>http://itsronald.com/</link>
+    <link>https://itsronald.com/</link>
     <description>Recent content on It&#39;s Ronald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 11 Jun 2017 13:30:00 -0700</lastBuildDate>
     
-	<atom:link href="http://itsronald.com/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://itsronald.com/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Simple ordinal date queries in Swift</title>
-      <link>http://itsronald.com/blog/2017/06/simple-ordinal-date-queries/</link>
+      <link>https://itsronald.com/blog/2017/06/simple-ordinal-date-queries/</link>
       <pubDate>Sun, 11 Jun 2017 13:30:00 -0700</pubDate>
       
-      <guid>http://itsronald.com/blog/2017/06/simple-ordinal-date-queries/</guid>
+      <guid>https://itsronald.com/blog/2017/06/simple-ordinal-date-queries/</guid>
       <description>I had a very specific question a while ago:
  When is the next 5th Sunday of the month?
  That is, what is the next date which is not only a Sunday, but also the 5th occurrance of Sunday in its enclosing month?
@@ -25,10 +25,10 @@ This only occurs a handful of times in any given year (in the Gregorian calendar
     
     <item>
       <title>My First Android Library, Part I</title>
-      <link>http://itsronald.com/blog/2016/10/my-first-library/</link>
+      <link>https://itsronald.com/blog/2016/10/my-first-library/</link>
       <pubDate>Sun, 16 Oct 2016 15:38:42 -0700</pubDate>
       
-      <guid>http://itsronald.com/blog/2016/10/my-first-library/</guid>
+      <guid>https://itsronald.com/blog/2016/10/my-first-library/</guid>
       <description>I built a software library recently. It&amp;rsquo;s a page indicator for mobile apps; the kind you&amp;rsquo;ve probably seen before with dots that change color to show what page you&amp;rsquo;re on. The one I made replicates Google&amp;rsquo;s latest iteration of this pattern with Material Design inspiration. It&amp;rsquo;s really rather cool looking, I think:
 
 As you can see, each dot represents a page, where the white dot is the current page and the gray dots are the other pages.</description>
@@ -36,20 +36,20 @@ As you can see, each dot represents a page, where the white dot is the current p
     
     <item>
       <title>Kotlin&#39;s Computed Properties Are Just Methods</title>
-      <link>http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/</link>
+      <link>https://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/</link>
       <pubDate>Thu, 30 Jun 2016 19:26:34 -0700</pubDate>
       
-      <guid>http://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/</guid>
+      <guid>https://itsronald.com/blog/2016/06/kotlin-get-property-vs-method/</guid>
       <description>Note: this post assumes familiarity with Java language features and conventions. RxJava familiarity is useful, but not required.
 I was curious today about the relationship of Kotlin&amp;rsquo;s computed properties and methods. They do very similar things, so are they implemented similarly? (Spoiler: Yes. Yes they are.) Somehow, however, I also ended up drawing some conclusions on the semantics of reactive Observable generation. Kotlin&amp;rsquo;s computed properties can be a powerful tool for expressing your program&amp;rsquo;s intent with Observables, but you should think twice before using them for that purpose.</description>
     </item>
     
     <item>
       <title>Lessons Learned: Kotlin &#43; Dagger2</title>
-      <link>http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</link>
+      <link>https://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</link>
       <pubDate>Tue, 14 Jun 2016 22:48:04 -0700</pubDate>
       
-      <guid>http://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</guid>
+      <guid>https://itsronald.com/blog/2016/06/lessons-learned-kotlin-dagger2/</guid>
       <description>Update 2016-10-05 This article has been updated to reflect some changes to tooling that fixes some of the problems mentioned below.
 Living Life on the &amp;ldquo;Edge&amp;rdquo; I&amp;rsquo;m currently building an Android app to remind me to take healthy breaks from starting at computer screens. For extra funsies, it&amp;rsquo;s built on the cutting edge of current fashionable Android technologies. Of particular note today, we have:
  MVP architecture using Dagger 2 for dependency injection, and Kotlin, the JVM language by JetBrains.</description>
@@ -57,30 +57,30 @@ Living Life on the &amp;ldquo;Edge&amp;rdquo; I&amp;rsquo;m currently building a
     
     <item>
       <title>Is This Thing On?</title>
-      <link>http://itsronald.com/blog/2016/05/first-post/</link>
+      <link>https://itsronald.com/blog/2016/05/first-post/</link>
       <pubDate>Wed, 25 May 2016 14:24:05 -0700</pubDate>
       
-      <guid>http://itsronald.com/blog/2016/05/first-post/</guid>
+      <guid>https://itsronald.com/blog/2016/05/first-post/</guid>
       <description>Welcome to my Blog! This site is being built with Hugo, an awesome, Go-based static site generator.
 Since I work primarily on mobile platforms, what little I do know about web development has fallen off the wayside in the past couple of years. Hopefully, I can use this experience to catch up with the current state of affairs in webdev world. Using a static site generator perhaps isn&amp;rsquo;t quite the same as building a site from scratch, but let&amp;rsquo;s not reinvent the wheel, right?</description>
     </item>
     
     <item>
       <title>Projects</title>
-      <link>http://itsronald.com/projects/</link>
+      <link>https://itsronald.com/projects/</link>
       <pubDate>Wed, 25 May 2016 12:58:32 -0700</pubDate>
       
-      <guid>http://itsronald.com/projects/</guid>
+      <guid>https://itsronald.com/projects/</guid>
       <description>Current Material ViewPagerIndicator  On Github: https://github.com/ronaldsmartin/Material-ViewPagerIndicator  An Android library that implements pretty Material Design animations for swipeable pages. I&amp;rsquo;m trying to write a few posts on what I&amp;rsquo;ve learned from building it: here&amp;rsquo;s Part I.
 20 twenty 20  On Github: https://github.com/ronaldsmartin/20twenty20  An Android app built with Dagger 2 and RxJava (written fully in Kotlin!). Addresses the (unfortunately common) unhealthy habit of getting stuck sitting and staring in front of the computer too long by notifying you to do exercises and take eye breaks per the 20-20-20 Rule.</description>
     </item>
     
     <item>
       <title>About Me</title>
-      <link>http://itsronald.com/about/</link>
+      <link>https://itsronald.com/about/</link>
       <pubDate>Mon, 25 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>http://itsronald.com/about/</guid>
+      <guid>https://itsronald.com/about/</guid>
       <description>My name is Ronald, and I&amp;rsquo;m a native San Franciscan. 
 I&amp;rsquo;m a logician and computer scientist by education (St. Ignatius &amp;lsquo;10; UPenn &amp;lsquo;14), and I love learning new things! I&amp;rsquo;d like to use this website to post interesting things I&amp;rsquo;d learn. Currently, the posts are all about programming, but look out for some upcoming posts on other topics.
 I really enjoy building stuff, particularly mobile apps. I also occasionally build for the web.</description>

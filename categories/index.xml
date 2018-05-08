@@ -2,84 +2,84 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on It&#39;s Ronald</title>
-    <link>http://itsronald.com/categories/</link>
+    <link>https://itsronald.com/categories/</link>
     <description>Recent content in Categories on It&#39;s Ronald</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 16 Oct 2016 15:38:42 -0700</lastBuildDate>
     
-	<atom:link href="http://itsronald.com/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://itsronald.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Android</title>
-      <link>http://itsronald.com/categories/android/</link>
+      <link>https://itsronald.com/categories/android/</link>
       <pubDate>Sun, 16 Oct 2016 15:38:42 -0700</pubDate>
       
-      <guid>http://itsronald.com/categories/android/</guid>
+      <guid>https://itsronald.com/categories/android/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dagger</title>
-      <link>http://itsronald.com/categories/dagger/</link>
+      <link>https://itsronald.com/categories/dagger/</link>
       <pubDate>Tue, 14 Jun 2016 22:48:04 -0700</pubDate>
       
-      <guid>http://itsronald.com/categories/dagger/</guid>
+      <guid>https://itsronald.com/categories/dagger/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Ios</title>
-      <link>http://itsronald.com/categories/ios/</link>
+      <link>https://itsronald.com/categories/ios/</link>
       <pubDate>Sun, 11 Jun 2017 13:30:00 -0700</pubDate>
       
-      <guid>http://itsronald.com/categories/ios/</guid>
+      <guid>https://itsronald.com/categories/ios/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Java</title>
-      <link>http://itsronald.com/categories/java/</link>
+      <link>https://itsronald.com/categories/java/</link>
       <pubDate>Thu, 30 Jun 2016 19:26:34 -0700</pubDate>
       
-      <guid>http://itsronald.com/categories/java/</guid>
+      <guid>https://itsronald.com/categories/java/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Kotlin</title>
-      <link>http://itsronald.com/categories/kotlin/</link>
+      <link>https://itsronald.com/categories/kotlin/</link>
       <pubDate>Thu, 30 Jun 2016 19:26:34 -0700</pubDate>
       
-      <guid>http://itsronald.com/categories/kotlin/</guid>
+      <guid>https://itsronald.com/categories/kotlin/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Programming</title>
-      <link>http://itsronald.com/categories/programming/</link>
+      <link>https://itsronald.com/categories/programming/</link>
       <pubDate>Sun, 11 Jun 2017 13:30:00 -0700</pubDate>
       
-      <guid>http://itsronald.com/categories/programming/</guid>
+      <guid>https://itsronald.com/categories/programming/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Rxjava</title>
-      <link>http://itsronald.com/categories/rxjava/</link>
+      <link>https://itsronald.com/categories/rxjava/</link>
       <pubDate>Thu, 30 Jun 2016 19:26:34 -0700</pubDate>
       
-      <guid>http://itsronald.com/categories/rxjava/</guid>
+      <guid>https://itsronald.com/categories/rxjava/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Swift</title>
-      <link>http://itsronald.com/categories/swift/</link>
+      <link>https://itsronald.com/categories/swift/</link>
       <pubDate>Sun, 11 Jun 2017 13:30:00 -0700</pubDate>
       
-      <guid>http://itsronald.com/categories/swift/</guid>
+      <guid>https://itsronald.com/categories/swift/</guid>
       <description></description>
     </item>
     
