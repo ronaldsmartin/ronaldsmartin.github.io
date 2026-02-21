@@ -1,0 +1,29 @@
+---
+import PageWithSidebar from '../../layouts/PageWithSidebar.astro';
+import PostContentList from '../../components/PostContentList.astro';
+import Pagination from '../../components/Pagination.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../../data/site';
+
+const posts = (await getCollection('blog')).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+);
+
+const pageSize = siteConfig.paginate;
+const totalPages = Math.ceil(posts.length / pageSize);
+const pagePosts = posts.slice(0, pageSize);
+
+const rendered = await Promise.all(
+  pagePosts.map(async (post) => {
+    const { Content } = await post.render();
+    return { post, Content };
+  })
+);
+---
+
+<PageWithSidebar title="Blog">
+  {rendered.map(({ post, Content }) => (
+    <PostContentList post={post} Content={Content} />
+  ))}
+  <Pagination currentPage={1} totalPages={totalPages} basePath="/blog/" />
+</PageWithSidebar>

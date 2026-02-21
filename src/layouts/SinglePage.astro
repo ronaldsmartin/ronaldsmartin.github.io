@@ -1,0 +1,20 @@
+---
+import PageWithSidebar from './PageWithSidebar.astro';
+
+const { frontmatter } = Astro.props;
+const title = frontmatter?.title;
+const author = frontmatter?.author;
+---
+
+<PageWithSidebar title={title} author={author}>
+  <article class="post">
+    <header>
+      <div class="title">
+        <h1>{title}</h1>
+      </div>
+    </header>
+    <div id="content">
+      <slot />
+    </div>
+  </article>
+</PageWithSidebar>

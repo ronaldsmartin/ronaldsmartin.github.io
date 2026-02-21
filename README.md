@@ -1,34 +1,33 @@
 # itsronald.com
 
-Source for my blog. Now built with [Hugo](https://gohugo.io/).
-
-This branch contains the source used to generate static site hosted on the master branch.
+Source for my personal blog, built with [Astro](https://astro.build/).
 
 ### Run locally
 
-    $ brew install hugo
-    $ git clone https://github.com/ronaldsmartin/ronaldsmartin.github.io.git
-    $ cd ronaldsmartin.github.io
-    $ git checkout hugo-site
-    $ hugo server
-  
-The site will then run on `localhost:1313`, rebuilding automatically on source changes.
+```bash
+corepack enable
+yarn install
+yarn dev
+```
 
-### Build and deploy
+The site will run on `localhost:4321`, rebuilding automatically on source changes.
 
-This currently uses X1011's [git-directory-deploy](https://github.com/X1011/git-directory-deploy) script.
+### Build
 
-**On the `hugo-site` branch:**
+```bash
+yarn build     # Production build to dist/
+yarn preview   # Preview the production build locally
+```
 
-    $ ./deploy.sh
-  
-The script has been modified to build the site to the default `public/` directory, publish the generated files, and then remove `public/` to clean up.
+### Deploy
+
+Deployment to GitHub Pages is handled by GitHub Actions on push to `main`.
+
+## History
+
+This site was originally built with [Hugo](https://gohugo.io/) in 2016 using the [hugo-future-imperfect](https://github.com/jpescador/hugo-future-imperfect) theme. The original Hugo source is preserved on the [`hugo-site`](https://github.com/ronaldsmartin/ronaldsmartin.github.io/tree/hugo-site) branch for historical reference.
 
 ## Credits
 
-* [Hugo static site generator](https://github.com/spf13/hugo) by spf13
-* [hugo-future-imperfect theme](https://github.com/jpescador/hugo-future-imperfect) by jpescador
-
-## License
-
-Licensed under [GPL v2.0](https://github.com/ronaldsmartin/ronaldsmartin.github.io/blob/hugo-site/static/LICENSE).
+- [Astro](https://astro.build/) static site generator
+- Visual theme ported from [hugo-future-imperfect](https://github.com/jpescador/hugo-future-imperfect) by jpescador, based on [Future Imperfect](https://html5up.net/future-imperfect) by HTML5 UP

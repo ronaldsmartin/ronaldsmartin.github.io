@@ -1,0 +1,48 @@
+---
+import Favicon from '../components/Favicon.astro';
+import { siteConfig } from '../data/site';
+
+interface Props {
+  title?: string;
+  description?: string;
+  author?: string;
+}
+
+const { title, description, author } = Astro.props;
+
+const pageTitle = title
+  ? `${title} - ${siteConfig.title}`
+  : siteConfig.title;
+const pageDescription = description || siteConfig.description;
+---
+
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <title>{pageTitle}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="generator" content={Astro.generator} />
+    <Favicon />
+    {author && <meta name="author" content={author} />}
+    <meta name="description" content={pageDescription} />
+
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={pageDescription} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={Astro.url.href} />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={pageDescription} />
+
+    <link rel="stylesheet" href="/css/main.min.css" />
+  </head>
+  <body>
+    <div id="wrapper">
+      <slot />
+    </div>
+    <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
+    <script src="/js/main.min.js" is:inline></script>
+    <script is:inline>hljs.initHighlightingOnLoad();</script>
+  </body>
+</html>

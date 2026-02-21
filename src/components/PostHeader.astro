@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  permalink: string;
+  description?: string;
+  date: Date;
+  author?: string;
+  readingTime?: number;
+  isH1?: boolean;
+}
+
+const { title, permalink, description, date, author, readingTime, isH1 = false } = Astro.props;
+
+const datetime = date.toISOString().split('T')[0];
+const displayDate = date.toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<header>
+  <div class="title">
+    {isH1 ? (
+      <h1><a href={permalink}>{title}</a></h1>
+    ) : (
+      <h2><a href={permalink}>{title}</a></h2>
+    )}
+    {description && <p>{description}</p>}
+  </div>
+  <div class="meta">
+    <time class="published" datetime={datetime}>{displayDate}</time>
+    {author && <span class="author">{author}</span>}
+    {readingTime !== undefined && <p>{readingTime} minute read</p>}
+  </div>
+</header>

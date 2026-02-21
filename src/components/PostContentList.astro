@@ -1,0 +1,67 @@
+---
+import PostHeader from './PostHeader.astro';
+import FeaturedImage from './FeaturedImage.astro';
+import PostCategories from './PostCategories.astro';
+import { getReadingTime } from '../utils/readingTime';
+import { getPostUrl } from '../utils/postUrl';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  Content: astroHTML.JSX.Element;
+}
+
+const { post, Content } = Astro.props;
+const { title, description, date, author, categories, featured, featuredpath, featuredalt } = post.data;
+const permalink = getPostUrl(post.slug);
+const readingTime = getReadingTime(post.body ?? '');
+---
+
+<article class="post">
+  <PostHeader
+    title={title}
+    permalink={permalink}
+    description={description}
+    date={date}
+    author={author}
+    readingTime={readingTime}
+  />
+
+  {featured && featuredpath && (
+    <FeaturedImage
+      featured={featured}
+      featuredpath={featuredpath}
+      featuredalt={featuredalt}
+      date={date}
+      permalink={permalink}
+    />
+  )}
+
+  <div class="post-summary">
+    <Content />
+  </div>
+
+  <footer>
+    <ul class="actions">
+      <li><a href={permalink} class="button big">Continue Reading</a></li>
+    </ul>
+    <PostCategories categories={categories} />
+  </footer>
+</article>
+
+<style>
+  .post-summary {
+    max-height: 18em;
+    overflow: hidden;
+    position: relative;
+  }
+  .post-summary::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 6em;
+    background: linear-gradient(transparent, white);
+  }
+</style>

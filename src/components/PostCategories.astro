@@ -1,0 +1,19 @@
+---
+interface Props {
+  categories: string[];
+}
+
+const { categories } = Astro.props;
+---
+
+<ul class="stats">
+  {categories.length > 0 && (
+    <li>
+      <i class="fa fa-map-signs">&nbsp;</i>
+      {categories.length > 1 ? 'Categories' : 'Category'}
+    </li>
+  )}
+  {categories.map(cat => (
+    <li><a href={`/categories/${cat.toLowerCase()}/`}>{cat}</a></li>
+  ))}
+</ul>

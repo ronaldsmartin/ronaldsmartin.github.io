@@ -1,0 +1,34 @@
+---
+import PageWithSidebar from './PageWithSidebar.astro';
+import PostContentSingle from '../components/PostContentSingle.astro';
+import PrevNextNav from '../components/PrevNextNav.astro';
+import ShareMenu from '../components/ShareMenu.astro';
+import { getPostUrl } from '../utils/postUrl';
+import type { CollectionEntry } from 'astro:content';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+  Content: astroHTML.JSX.Element;
+  prevPost: CollectionEntry<'blog'> | null;
+  nextPost: CollectionEntry<'blog'> | null;
+}
+
+const { post, Content, prevPost, nextPost } = Astro.props;
+const permalink = getPostUrl(post.slug);
+---
+
+<PageWithSidebar
+  title={post.data.title}
+  description={post.data.description}
+  author={post.data.author}
+  showShareNav={true}
+>
+  <ShareMenu
+    slot="before-main"
+    permalink={permalink}
+    title={post.data.title}
+    author={post.data.author}
+  />
+  <PostContentSingle post={post} Content={Content} />
+  <PrevNextNav prevPost={prevPost} nextPost={nextPost} />
+</PageWithSidebar>

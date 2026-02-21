@@ -1,0 +1,21 @@
+---
+import { getFeaturedImageUrl } from '../utils/featuredImage';
+
+interface Props {
+  featured: string;
+  featuredpath: string;
+  featuredalt: string;
+  date: Date;
+  permalink: string;
+}
+
+const { featured, featuredpath, featuredalt, date, permalink } = Astro.props;
+
+const imageUrl = getFeaturedImageUrl(featured, featuredpath, date);
+---
+
+{imageUrl && (
+  <a href={permalink} class="image featured">
+    <img src={imageUrl} alt={featuredalt} />
+  </a>
+)}

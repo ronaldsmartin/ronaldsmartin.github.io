@@ -1,0 +1,43 @@
+---
+import PageWithSidebar from '../../layouts/PageWithSidebar.astro';
+import PostContentList from '../../components/PostContentList.astro';
+import Pagination from '../../components/Pagination.astro';
+import { getCollection } from 'astro:content';
+import { siteConfig } from '../../data/site';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  );
+
+  const pageSize = siteConfig.paginate;
+  const totalPages = Math.ceil(posts.length / pageSize);
+
+  // Pages 2+ (page 1 is handled by blog/index.astro)
+  return Array.from({ length: totalPages - 1 }, (_, i) => ({
+    params: { page: String(i + 2) },
+    props: {
+      pagePosts: posts.slice((i + 1) * pageSize, (i + 2) * pageSize),
+      currentPage: i + 2,
+      totalPages,
+    },
+  }));
+};
+
+const { pagePosts, currentPage, totalPages } = Astro.props;
+
+const rendered = await Promise.all(
+  pagePosts.map(async (post) => {
+    const { Content } = await post.render();
+    return { post, Content };
+  })
+);
+---
+
+<PageWithSidebar title={`Blog - Page ${currentPage}`}>
+  {rendered.map(({ post, Content }) => (
+    <PostContentList post={post} Content={Content} />
+  ))}
+  <Pagination currentPage={currentPage} totalPages={totalPages} basePath="/blog/" />
+</PageWithSidebar>

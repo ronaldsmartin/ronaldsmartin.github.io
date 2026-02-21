@@ -1,0 +1,32 @@
+---
+import PostLayout from '../../../../layouts/PostLayout.astro';
+import { getCollection } from 'astro:content';
+import type { GetStaticPaths } from 'astro';
+
+export const getStaticPaths: GetStaticPaths = async () => {
+  const posts = (await getCollection('blog')).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  );
+
+  return posts.map((post, index) => {
+    // slug format: "2016/06/my-post" → year="2016", month="06", slug="my-post"
+    const parts = post.slug.split('/');
+    const [year, month, ...rest] = parts;
+    const slugPart = rest.join('/');
+
+    // Chronological navigation: newer = prev (above in sorted list), older = next
+    const prevPost = index > 0 ? posts[index - 1] : null;
+    const nextPost = index < posts.length - 1 ? posts[index + 1] : null;
+
+    return {
+      params: { year, month, slug: slugPart },
+      props: { post, prevPost, nextPost },
+    };
+  });
+};
+
+const { post, prevPost, nextPost } = Astro.props;
+const { Content } = await post.render();
+---
+
+<PostLayout post={post} Content={Content} prevPost={prevPost} nextPost={nextPost} />

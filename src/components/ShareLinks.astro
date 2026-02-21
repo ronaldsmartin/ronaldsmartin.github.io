@@ -1,0 +1,54 @@
+---
+import { siteConfig } from '../data/site';
+
+interface Props {
+  permalink: string;
+  title: string;
+  author?: string;
+}
+
+const { permalink, title, author } = Astro.props;
+const twitterHandle = 'itsronaldmartin';
+const absoluteUrl = encodeURIComponent(`${siteConfig.baseUrl}${permalink}`);
+const encodedTitle = encodeURIComponent(title);
+---
+
+<!-- Twitter -->
+<li>
+  <a href={`//twitter.com/share?url=${absoluteUrl}&text=${encodedTitle}&via=${twitterHandle}`} target="_blank" class="share-btn twitter">
+    <i class="fa fa-twitter"></i>
+    <p>Twitter</p>
+  </a>
+</li>
+
+<!-- Facebook -->
+<li>
+  <a href={`//www.facebook.com/sharer/sharer.php?u=${absoluteUrl}`} target="_blank" class="share-btn facebook">
+    <i class="fa fa-facebook"></i>
+    <p>Facebook</p>
+  </a>
+</li>
+
+<!-- Reddit -->
+<li>
+  <a href={`//reddit.com/submit?url=${absoluteUrl}&title=${encodedTitle}`} target="_blank" class="share-btn reddit">
+    <i class="fa fa-reddit-alien"></i>
+    <p>Reddit</p>
+  </a>
+</li>
+
+<!-- LinkedIn -->
+<li>
+  <a href={`//www.linkedin.com/shareArticle?url=${absoluteUrl}&title=${encodedTitle}`} target="_blank" class="share-btn linkedin">
+    <i class="fa fa-linkedin"></i>
+    <p>LinkedIn</p>
+  </a>
+</li>
+
+<!-- Email -->
+<li>
+  <a href={`mailto:?subject=${encodeURIComponent(`Check out this post by ${author}`)}&body=${absoluteUrl}`} target="_blank" class="share-btn email">
+    <i class="fa fa-envelope"></i>
+    <p>Email</p>
+  </a>
+</li>

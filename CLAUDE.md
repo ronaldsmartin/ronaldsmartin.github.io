@@ -4,55 +4,75 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-Personal blog and website for itsronald.com, built with Hugo static site generator. Created in May 2016, last content update May 2018. The tooling is from the Hugo ~0.15–0.17 era and predates many modern Hugo features (Hugo Pipes, Hugo Modules, `resources`, etc.).
+Personal blog and website for itsronald.com, built with Astro (static site generator). Originally created in May 2016 on Hugo; migrated to Astro in February 2026. The visual theme is ported from hugo-future-imperfect, using the theme's pre-minified CSS/JS blobs.
 
 ## Build & Development Commands
 
 ```bash
-# Local development server (localhost:1313, auto-reloads on changes)
-hugo server
+# Install dependencies
+yarn install
 
-# Build site to public/ directory
-hugo -d public
+# Local development server (localhost:4321, auto-reloads on changes)
+yarn dev
 
-# Build and deploy to GitHub Pages (master branch)
-./deploy.sh
+# Production build to dist/
+yarn build
+
+# Preview production build locally
+yarn preview
 ```
 
-Hugo must be installed (`brew install hugo`). The site was built against Hugo 0.15–0.17; modern Hugo versions may require migration work (e.g. `preserveTaxonomyNames` was deprecated, `.Site.Params` access patterns changed, template function signatures evolved).
+Requires Node.js 20+ and Yarn 4 (Berry). Yarn is managed via corepack (`corepack enable`).
 
 ## Branch & Deployment Model
 
-- **`hugo-site`** — Source branch. All development happens here.
-- **`master`** — Deploy target. Contains only generated static files for GitHub Pages. Never edit directly.
-- **`deploy.sh`** — Customized version of X1011's git-directory-deploy. Runs `hugo -d public`, commits the output to `master`, pushes, then removes `public/`. Deploy commit messages are auto-prefixed with `publish:` and include the source commit hash.
-- **`static/CNAME`** — Maps the custom domain `itsronald.com`. This file is copied to the build root by Hugo, which is required for GitHub Pages custom domains.
-- **`static/LICENSE`** and **`static/README.md`** — Were checked out from the old `master` branch into `static/` so they'd persist in the deployed site root. These are artifacts of the original GitHub Pages setup, not standard Hugo practice.
+- **`main`** — Source branch. All development happens here. GitHub Actions builds and deploys to GitHub Pages.
+- **`hugo-site`** — Archived. Contains the original Hugo source from 2016–2018, preserved for historical reference.
+- **`master`** — Deprecated. Previously contained generated static files for GitHub Pages. Will be deleted after Astro migration is fully deployed.
+- **`public/CNAME`** — Maps the custom domain `itsronald.com`. Required for GitHub Pages custom domains.
 
-## Theme & Customizations
+## Project Structure
 
-**Theme:** hugo-future-imperfect (by jpescador), installed via `git subtree` (not submodule). The theme directory has never been modified after the initial import — all customizations use Hugo's override system or live in `static/`.
+```
+src/
+├── components/       # Astro components (ported from Hugo partials)
+├── content/
+│   └── blog/         # Blog posts (Astro content collection, YAML frontmatter)
+│   └── config.ts     # Zod schema for blog frontmatter
+├── data/
+│   └── site.ts       # Typed site config (replaces Hugo's config.toml)
+├── layouts/          # Page layouts (BaseLayout, PageWithSidebar, PostLayout, SinglePage)
+├── pages/            # File-based routing
+└── utils/            # Helpers (readingTime, excerpt, postUrl, featuredImage)
+public/               # Static assets (CSS, JS, fonts, images, favicons)
+```
 
-**Custom overrides and non-standard patterns:**
+## Theme & Styling
 
-- **`layouts/partials/favicon.html`** — Completely rewrites the theme's favicon partial. The theme version uses `apple-touch-icon-precomposed` in a `/favicon/` subdirectory with IE conditional comments. The custom version uses modern favicon markup (apple-touch-icon, manifest.json, safari-pinned-tab, theme-color meta) with files at the site root. Adds `faviconThemeColor` config param not present in the original theme.
-- **`static/css/main.min.css`** and **`static/js/main.min.js`** — Copied from the theme's `exampleSite/` directory (identical content). These are the theme's bundled assets (Font Awesome 4.5, jQuery, highlight.js, Source Sans Pro/Raleway fonts) placed in `static/` and loaded via `customCSS`/`customJS` config params. There is no build pipeline or source files for these — they are pre-minified blobs.
-- **Raw HTML in Markdown** — `content/projects.md` uses inline `<img>` tags (for width-constrained Google Play badges) rather than standard Markdown image syntax or shortcodes.
-- **Hugo 0.17 workaround** — A TOML multiline string with a control character in `config.toml` was replaced with a single-line string due to a parsing bug in Hugo 0.17 (commit `001c9df`).
+The visual theme is ported from hugo-future-imperfect (by jpescador). The theme's CSS and JS are pre-minified blobs with no source files:
+
+- **`public/css/main.min.css`** — Bundled CSS (Font Awesome 4.5, Source Sans Pro/Raleway fonts, highlight.js theme, skel.js layout, all component styles)
+- **`public/js/main.min.js`** — Bundled JS (jQuery, skel.js, highlight.js, back-to-top, etc.)
+- **`public/fonts/`** — Font files referenced by the CSS
+
+**Critical DOM structure**: The theme's JS (skel.js/jQuery) manipulates the DOM by element ID. These IDs must be preserved: `#wrapper`, `#main`, `#sidebar`, `#header`, `#intro`, `#menu`, `#share-menu`, `#back-to-top`.
+
+Astro's markdown syntax highlighting is disabled (`markdown.syntaxHighlight: false`) because the theme's bundled highlight.js handles it via `hljs.initHighlightingOnLoad()`.
 
 ## Content Conventions
 
-Blog post frontmatter (TOML `+++` delimiters):
+Blog post frontmatter (YAML `---` delimiters):
 - `author`, `date`, `title`, `description`, `type` (always "post")
 - `categories` — array of tags
 - `featured` — filename of featured image
 - `featuredpath` — set to `"date"` so images resolve from `/img/YYYY/MM/`
 - `featuredalt` — alt text for featured image
 
-Blog posts live under `content/blog/YYYY/MM/post-slug.md`. Featured images go in the matching `static/img/YYYY/MM/` directory.
+Blog posts live under `src/content/blog/YYYY/MM/post-slug.md`. Featured images go in the matching `public/img/YYYY/MM/` directory.
 
-## Theme Shortcodes
+## Adding a New Blog Post
 
-- `{{< img-post path="date" file="name.jpg" alt="Alt" type="left|center|right" >}}` — single image
-- `{{< img-fit ... >}}` — multi-image gallery
-- `{{< url-link "text" "url" "target" >}}` — hyperlink with target attribute
+1. Create `src/content/blog/YYYY/MM/post-slug.md` with YAML frontmatter
+2. Place featured image (if any) in `public/img/YYYY/MM/`
+3. Use standard Markdown and inline HTML — no shortcodes
+4. The post URL will be `/blog/YYYY/MM/post-slug/`

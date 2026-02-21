@@ -1,0 +1,22 @@
+---
+import ShareLinks from './ShareLinks.astro';
+
+interface Props {
+  permalink: string;
+  title: string;
+  author?: string;
+}
+
+const { permalink, title, author } = Astro.props;
+---
+
+<section id="share-menu">
+  <section id="social-share-nav">
+    <ul class="links">
+      <header>
+        <h3>Share this post <i class="fa fa-smile-o"></i></h3>
+      </header>
+      <ShareLinks permalink={permalink} title={title} author={author} />
+    </ul>
+  </section>
+</section>

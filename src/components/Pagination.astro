@@ -1,0 +1,28 @@
+---
+interface Props {
+  currentPage: number;
+  totalPages: number;
+  basePath: string;
+}
+
+const { currentPage, totalPages, basePath } = Astro.props;
+
+const hasPrev = currentPage > 1;
+const hasNext = currentPage < totalPages;
+const prevUrl = currentPage === 2 ? basePath : `${basePath}${currentPage - 1}/`;
+const nextUrl = `${basePath}${currentPage + 1}/`;
+---
+
+<ul class="actions pagination">
+  {hasPrev ? (
+    <li><a href={prevUrl} class="button big previous">Previous Page</a></li>
+  ) : (
+    <li><a href="#" class="disabled button big previous">Previous Page</a></li>
+  )}
+
+  {hasNext ? (
+    <li><a href={nextUrl} class="button big next">Next Page</a></li>
+  ) : (
+    <li><a href="#" class="disabled button big next">Next Page</a></li>
+  )}
+</ul>
