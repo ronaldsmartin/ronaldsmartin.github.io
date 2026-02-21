@@ -1,9 +1,9 @@
 ---
 import PostLayout from '../../../../layouts/PostLayout.astro';
 import { getCollection } from 'astro:content';
-import type { GetStaticPaths } from 'astro';
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = (async () => {
   const posts = (await getCollection('blog')).sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
   );
@@ -23,9 +23,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
       props: { post, prevPost, nextPost },
     };
   });
-};
+}) satisfies GetStaticPaths;
 
-const { post, prevPost, nextPost } = Astro.props;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { post, prevPost, nextPost } = Astro.props as Props;
 const { Content } = await post.render();
 ---
 

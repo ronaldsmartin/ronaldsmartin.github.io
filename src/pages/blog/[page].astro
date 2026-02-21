@@ -4,9 +4,9 @@ import PostContentList from '../../components/PostContentList.astro';
 import Pagination from '../../components/Pagination.astro';
 import { getCollection } from 'astro:content';
 import { siteConfig } from '../../data/site';
-import type { GetStaticPaths } from 'astro';
+import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths = (async () => {
   const posts = (await getCollection('blog')).sort(
     (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
   );
@@ -23,9 +23,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
       totalPages,
     },
   }));
-};
+}) satisfies GetStaticPaths;
 
-const { pagePosts, currentPage, totalPages } = Astro.props;
+type Props = InferGetStaticPropsType<typeof getStaticPaths>;
+const { pagePosts, currentPage, totalPages } = Astro.props as Props;
 
 const rendered = await Promise.all(
   pagePosts.map(async (post) => {

@@ -27,6 +27,7 @@ jobs:
           node-version: 22
           cache: yarn
       - run: yarn install --immutable
+      - run: yarn astro check
       - run: yarn build
       - uses: actions/upload-pages-artifact@v3
         if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
