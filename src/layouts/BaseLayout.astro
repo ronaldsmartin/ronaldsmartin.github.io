@@ -1,6 +1,6 @@
 ---
-import Favicon from '../components/Favicon.astro';
-import { siteConfig } from '../data/site';
+import Favicon from "../components/Favicon.astro";
+import { siteConfig } from "../data/site";
 
 interface Props {
   title?: string;
@@ -10,13 +10,11 @@ interface Props {
 
 const { title, description, author } = Astro.props;
 
-const pageTitle = title
-  ? `${title} - ${siteConfig.title}`
-  : siteConfig.title;
+const pageTitle = title ? `${title} - ${siteConfig.title}` : siteConfig.title;
 const pageDescription = description || siteConfig.description;
 ---
 
-<!DOCTYPE HTML>
+<!doctype html>
 <html>
   <head>
     <title>{pageTitle}</title>
@@ -43,6 +41,8 @@ const pageDescription = description || siteConfig.description;
     </div>
     <a id="back-to-top" href="#" class="fa fa-arrow-up fa-border fa-2x"></a>
     <script src="/js/main.min.js" is:inline></script>
-    <script is:inline>hljs.initHighlightingOnLoad();</script>
+    <script is:inline>
+      hljs.initHighlightingOnLoad();
+    </script>
   </body>
 </html>

@@ -1,8 +1,8 @@
 ---
-import PageWithSidebar from '../../layouts/PageWithSidebar.astro';
-import { getCollection } from 'astro:content';
+import PageWithSidebar from "../../layouts/PageWithSidebar.astro";
+import { getCollection } from "astro:content";
 
-const posts = await getCollection('blog');
+const posts = await getCollection("blog");
 
 // Build category → count map
 const categoryMap = new Map<string, number>();
@@ -27,11 +27,15 @@ const categories = [...categoryMap.entries()].sort((a, b) => {
       </div>
     </header>
     <ul class="actions">
-      {categories.map(([name, count]) => (
-        <li>
-          <a href={`/categories/${name.toLowerCase()}/`}>{name} ({count})</a>
-        </li>
-      ))}
+      {
+        categories.map(([name, count]) => (
+          <li>
+            <a href={`/categories/${name.toLowerCase()}/`}>
+              {name} ({count})
+            </a>
+          </li>
+        ))
+      }
     </ul>
   </article>
 </PageWithSidebar>

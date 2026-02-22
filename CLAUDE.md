@@ -62,6 +62,7 @@ Astro's markdown syntax highlighting is disabled (`markdown.syntaxHighlight: fal
 ## Content Conventions
 
 Blog post frontmatter (YAML `---` delimiters):
+
 - `author`, `date`, `title`, `description`, `type` (always "post")
 - `categories` — array of tags
 - `featured` — filename of featured image

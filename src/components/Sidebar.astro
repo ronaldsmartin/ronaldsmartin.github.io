@@ -1,8 +1,8 @@
 ---
-import { getCollection } from 'astro:content';
-import { siteConfig } from '../data/site';
-import { getPostUrl } from '../utils/postUrl';
-import SocialIcons from './SocialIcons.astro';
+import { getCollection } from "astro:content";
+import { siteConfig } from "../data/site";
+import { getPostUrl } from "../utils/postUrl";
+import SocialIcons from "./SocialIcons.astro";
 
 interface Props {
   showCategories?: boolean;
@@ -10,8 +10,9 @@ interface Props {
 
 const { showCategories = true } = Astro.props;
 
-const allPosts = (await getCollection('blog'))
-  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf());
+const allPosts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
+);
 const recentPosts = allPosts.slice(0, siteConfig.postAmount.sidebar);
 
 // Compute category counts
@@ -21,18 +22,17 @@ for (const post of allPosts) {
     categoryMap.set(cat, (categoryMap.get(cat) || 0) + 1);
   }
 }
-const categories = [...categoryMap.entries()]
-  .sort((a, b) => b[1] - a[1]);
+const categories = [...categoryMap.entries()].sort((a, b) => b[1] - a[1]);
 
 const pic = siteConfig.intro.pic;
 
 function formatDate(date: Date): { datetime: string; display: string } {
   return {
-    datetime: date.toISOString().split('T')[0],
-    display: date.toLocaleDateString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
+    datetime: date.toISOString().split("T")[0],
+    display: date.toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     }),
   };
 }
@@ -40,18 +40,25 @@ function formatDate(date: Date): { datetime: string; display: string } {
 
 <!-- Sidebar -->
 <section id="sidebar">
-
   <!-- Intro -->
   <section id="intro">
-    {pic.src && (
-      pic.circle ? (
-        <img src={pic.src} class="intro-circle" width={pic.width} alt={pic.alt} />
-      ) : pic.imperfect ? (
-        <a href="/" class="logo"><img src={pic.src} alt={pic.alt} /></a>
-      ) : (
-        <img src={pic.src} width={pic.width} alt={pic.alt} />
-      )
-    )}
+    {
+      pic.src &&
+        (pic.circle ? (
+          <img
+            src={pic.src}
+            class="intro-circle"
+            width={pic.width}
+            alt={pic.alt}
+          />
+        ) : pic.imperfect ? (
+          <a href="/" class="logo">
+            <img src={pic.src} alt={pic.alt} />
+          </a>
+        ) : (
+          <img src={pic.src} width={pic.width} alt={pic.alt} />
+        ))
+    }
     <header>
       <h2>{siteConfig.intro.header}</h2>
       <p set:html={siteConfig.intro.paragraph} />
@@ -67,60 +74,81 @@ function formatDate(date: Date): { datetime: string; display: string } {
       <header>
         <h3>Recent Posts</h3>
       </header>
-      {recentPosts.map(post => {
-        const { datetime, display } = formatDate(post.data.date);
-        return (
+      {
+        recentPosts.map((post) => {
+          const { datetime, display } = formatDate(post.data.date);
+          return (
+            <li>
+              <article>
+                <header>
+                  <h3>
+                    <a href={getPostUrl(post.slug)}>{post.data.title}</a>
+                  </h3>
+                  <time class="published" datetime={datetime}>
+                    {display}
+                  </time>
+                </header>
+              </article>
+            </li>
+          );
+        })
+      }
+      {
+        allPosts.length >= siteConfig.postAmount.sidebar && (
           <li>
-            <article>
-              <header>
-                <h3><a href={getPostUrl(post.slug)}>{post.data.title}</a></h3>
-                <time class="published" datetime={datetime}>{display}</time>
-              </header>
-            </article>
+            <ul class="actions">
+              <li>
+                <a href={siteConfig.viewMorePostLink} class="button">
+                  View more posts
+                </a>
+              </li>
+            </ul>
           </li>
-        );
-      })}
-      {allPosts.length >= siteConfig.postAmount.sidebar && (
-        <li>
-          <ul class="actions">
-            <li><a href={siteConfig.viewMorePostLink} class="button">View more posts</a></li>
-          </ul>
-        </li>
-      )}
+        )
+      }
     </ul>
   </section>
 
-  {showCategories && (
-    <!-- Categories List -->
-    <section id="categories">
-      <ul class="posts">
-        <header>
-          <h3><a href="/categories/">Categories</a></h3>
-        </header>
-        {categories.map(([name, count]) => (
-          <li>
-            <article>
-              <header>
-                <a href={`/categories/${name.toLowerCase()}/`}>{name}</a>
-                <span style="float:right;">{count}</span>
-              </header>
-            </article>
-          </li>
-        ))}
-      </ul>
-    </section>
-  )}
+  {
+    showCategories && (
+      <section id="categories">
+        <ul class="posts">
+          <header>
+            <h3>
+              <a href="/categories/">Categories</a>
+            </h3>
+          </header>
+          {categories.map(([name, count]) => (
+            <li>
+              <article>
+                <header>
+                  <a href={`/categories/${name.toLowerCase()}/`}>{name}</a>
+                  <span style="float:right;">{count}</span>
+                </header>
+              </article>
+            </li>
+          ))}
+        </ul>
+      </section>
+    )
+  }
 
   <!-- About -->
-  {siteConfig.intro.about && (
-    <section class="blurb">
-      <h2>About</h2>
-      <p>{siteConfig.intro.about}</p>
-      <ul class="actions">
-        <li><a href="/about/" class="button">Learn More</a></li>
-      </ul>
-    </section>
-  )}
+  {
+    siteConfig.intro.about && (
+      <section class="blurb">
+        <h2>About</h2>
+        <p>{siteConfig.intro.about}</p>
+        <ul class="actions">
+          <li>
+            <a href="/about/" class="button">
+              Learn More
+            </a>
+          </li>
+        </ul>
+      </section>
+    )
+  }
 
   <!-- Footer -->
   <section id="footer">
@@ -128,10 +156,12 @@ function formatDate(date: Date): { datetime: string; display: string } {
       <SocialIcons />
     </ul>
     <p class="copyright">
-      &copy; {siteConfig.title}. Design: <a href="http://html5up.net" target="_blank">HTML5 UP</a>.
-      Ported by <a href="//github.com/jpescador" target="_blank">Julio Pescador</a>.
-      Powered by <a href="//astro.build" target="_blank">Astro</a>
+      &copy; {siteConfig.title}. Design: <a
+        href="http://html5up.net"
+        target="_blank">HTML5 UP</a
+      >. Ported by <a href="//github.com/jpescador" target="_blank"
+        >Julio Pescador</a
+      >. Powered by <a href="//astro.build" target="_blank">Astro</a>
     </p>
   </section>
-
 </section>

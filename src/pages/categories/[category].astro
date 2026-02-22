@@ -1,12 +1,12 @@
 ---
-import PageWithSidebar from '../../layouts/PageWithSidebar.astro';
-import PostContentList from '../../components/PostContentList.astro';
-import { getCollection } from 'astro:content';
-import type { GetStaticPaths, InferGetStaticPropsType } from 'astro';
+import PageWithSidebar from "../../layouts/PageWithSidebar.astro";
+import PostContentList from "../../components/PostContentList.astro";
+import { getCollection } from "astro:content";
+import type { GetStaticPaths, InferGetStaticPropsType } from "astro";
 
 export const getStaticPaths = (async () => {
-  const posts = (await getCollection('blog')).sort(
-    (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+  const posts = (await getCollection("blog")).sort(
+    (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
   );
 
   // Collect all unique categories
@@ -22,7 +22,7 @@ export const getStaticPaths = (async () => {
     props: {
       category: cat,
       posts: posts.filter((p) =>
-        p.data.categories.some((c) => c.toLowerCase() === cat.toLowerCase())
+        p.data.categories.some((c) => c.toLowerCase() === cat.toLowerCase()),
       ),
     },
   }));
@@ -35,7 +35,7 @@ const rendered = await Promise.all(
   posts.map(async (post) => {
     const { Content } = await post.render();
     return { post, Content };
-  })
+  }),
 );
 ---
 
@@ -45,7 +45,9 @@ const rendered = await Promise.all(
       <h2>{category}</h2>
     </div>
   </header>
-  {rendered.map(({ post, Content }) => (
-    <PostContentList post={post} Content={Content} />
-  ))}
+  {
+    rendered.map(({ post, Content }) => (
+      <PostContentList post={post} Content={Content} />
+    ))
+  }
 </PageWithSidebar>

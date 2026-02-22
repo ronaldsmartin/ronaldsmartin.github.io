@@ -1,5 +1,5 @@
 ---
-import { getFeaturedImageUrl } from '../utils/featuredImage';
+import { getFeaturedImageUrl } from "../utils/featuredImage";
 
 interface Props {
   featured: string;
@@ -14,8 +14,10 @@ const { featured, featuredpath, featuredalt, date, permalink } = Astro.props;
 const imageUrl = getFeaturedImageUrl(featured, featuredpath, date);
 ---
 
-{imageUrl && (
-  <a href={permalink} class="image featured">
-    <img src={imageUrl} alt={featuredalt} />
-  </a>
-)}
+{
+  imageUrl && (
+    <a href={permalink} class="image featured">
+      <img src={imageUrl} alt={featuredalt} />
+    </a>
+  )
+}

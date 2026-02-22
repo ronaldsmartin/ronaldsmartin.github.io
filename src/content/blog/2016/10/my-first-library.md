@@ -45,7 +45,7 @@ Perhaps you'll agree with me that from our high-level human standpoint, it appea
 2. The white current page dot slides along the path to its new location.
 3. The path that was created shrinks back under the white current page dot.
 
-Is that all we need to do to replicate this effect? How can we break this down in more detail? 
+Is that all we need to do to replicate this effect? How can we break this down in more detail?
 
 ### Tool #2: .GIF frame splitting
 

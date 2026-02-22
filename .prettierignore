@@ -1,0 +1,6 @@
+dist/
+public/
+.astro/
+.yarn/
+*.min.js
+*.min.css

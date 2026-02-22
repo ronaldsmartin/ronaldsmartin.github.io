@@ -1,12 +1,12 @@
 ---
-import PageWithSidebar from '../layouts/PageWithSidebar.astro';
-import PostContentSingle from '../components/PostContentSingle.astro';
-import ShareMenu from '../components/ShareMenu.astro';
-import { getCollection } from 'astro:content';
-import { getPostUrl } from '../utils/postUrl';
+import PageWithSidebar from "../layouts/PageWithSidebar.astro";
+import PostContentSingle from "../components/PostContentSingle.astro";
+import ShareMenu from "../components/ShareMenu.astro";
+import { getCollection } from "astro:content";
+import { getPostUrl } from "../utils/postUrl";
 
-const posts = (await getCollection('blog')).sort(
-  (a, b) => b.data.date.valueOf() - a.data.date.valueOf()
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.date.valueOf() - a.data.date.valueOf(),
 );
 const latestPost = posts[0];
 const { Content } = await latestPost.render();
