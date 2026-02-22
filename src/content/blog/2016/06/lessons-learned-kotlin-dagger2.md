@@ -31,61 +31,57 @@ At the time of writing, I'm currently using Dagger v2.2 with Kotlin v1.0.2. I ha
 ### `kapt`, the Kotlin annotations processor
 
 Most of the tutorials on (Java) Dagger integrations rely on Hugo Visser's [Android Studio Annotations Processor](https://bitbucket.org/hvisser/android-apt). This is used with Dagger as follows:
-	
-	apply plugin: 'com.neenbedankt.android-apt'
-	 
-	buildscript {
-	    repositories {
-	        jcenter()
-	    }
-	    dependencies {
-	        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
-	    }
-	}
-	 
-	android {
-	    ...
-	}
-	 
-	dependencies {
-	    apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+apply plugin: 'com.neenbedankt.android-apt'
+buildscript {
+repositories {
+jcenter()
+}
+dependencies {
+classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4'
+}
+}
+android {
+...
+}
+dependencies {
+apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
 	    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
-	    provided 'javax.annotation:jsr250-api:1.0' 
-	    
-	    ...
-	}
+provided 'javax.annotation:jsr250-api:1.0'
+
+...
+}
 
 However, when using these annotations in Kotlin files we should be using the built-in Kotlin annotation processor instead (source: [Stack Overflow](javax.annotation:javax.annotation-api)):
 
-	// apply plugin: 'com.neenbedankt.android-apt' - no longer necessary
-	 
-	buildscript {
-	    repositories {
-	        jcenter()
-	    }
-	    dependencies {
-	        // classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4' - no longer necessary
-	    }
-	}
-	 
-	android {
-	    ...
-	}
+    // apply plugin: 'com.neenbedankt.android-apt' - no longer necessary
 
-	kapt {
-		generateStubs = true
-	}
-	 
-	dependencies {
-	    // apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion" - use kapt instead
-	    kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
-	    compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
-	    provided 'javax.annotation:jsr250-api:1.0' 
-	    
-	    ...
-	}
+    buildscript {
+        repositories {
+            jcenter()
+        }
+        dependencies {
+            // classpath 'com.neenbedankt.gradle.plugins:android-apt:1.4' - no longer necessary
+        }
+    }
 
-### Multiple JSR 250 Dependencies 
+    android {
+        ...
+    }
+
+    kapt {
+    	generateStubs = true
+    }
+
+    dependencies {
+        // apt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion" - use kapt instead
+        kapt "com.google.dagger:dagger-compiler:$rootProject.ext.daggerVersion"
+        compile "com.google.dagger:dagger:$rootProject.ext.daggerVersion"
+        provided 'javax.annotation:jsr250-api:1.0'
+
+        ...
+    }
+
+### Multiple JSR 250 Dependencies
 
 That `provided 'javax.annotation:jsr250-api:1.0'` line might have stuck out to you.
 
@@ -98,27 +94,32 @@ Developers haven't seemed to have agreed on a source for the [JSR-250 Java annot
 So, what gives? A rudimentary Google search suggests that all of these were implemented as part of Sun/Oracle's [GlassFish project](https://en.wikipedia.org/wiki/GlassFish). I didn't find what I was looking for in jCenter, so I found what I believe are the original uploads on good maven central. This is what I found:
 
 1. [`javax.annotation:javax.annotation-api:1.2`](http://search.maven.org/#artifactdetails%7Cjavax.annotation%7Cjavax.annotation-api%7C1.2%7Cjar)
-  * **Description:** "Common Annotations for the JavaTM Platform API"
-  * **URL (from metadata):** https://jcp.org/en/jsr/detail?id=250
-  * **Last updated:** 2013
-  * **Main `.jar` filesize:** 42311 bytes
-  * **Includes developer in metadata:** Rajiv Mordani, the JSR-250 lead at Sun (and now at Oracle).
+
+- **Description:** "Common Annotations for the JavaTM Platform API"
+- **URL (from metadata):** https://jcp.org/en/jsr/detail?id=250
+- **Last updated:** 2013
+- **Main `.jar` filesize:** 42311 bytes
+- **Includes developer in metadata:** Rajiv Mordani, the JSR-250 lead at Sun (and now at Oracle).
+
 2. [`org.glassfish:javax.annotation:10.0-b28`](http://search.maven.org/#artifactdetails%7Corg.glassfish%7Cjavax.annotation%7C10.0-b28%7Cjar)
-  * **Description:** "Common Annotations for the JavaTM Platform API version ${spec.version} Repackaged as OSGi bundle in GlassFish"
-  * **URL (from metadata):** None
-  * **Last updated:** 2011
-  * **Main `.jar` filesize:** 20542 bytes
-  * **Includes developer in metadata:** No
-  * **Notes:**
-     - Manifest includes in header: "Copyright 1997-2008 Sun Microsystems, Inc."
-     - Lists #3 below as an optional dependency!
-     - OSGi ([official site](https://www.osgi.org/developer/architecture/); [Wikipedia](https://en.wikipedia.org/wiki/OSGi)) is a standard for packaging Java components.
+
+- **Description:** "Common Annotations for the JavaTM Platform API version ${spec.version} Repackaged as OSGi bundle in GlassFish"
+- **URL (from metadata):** None
+- **Last updated:** 2011
+- **Main `.jar` filesize:** 20542 bytes
+- **Includes developer in metadata:** No
+- **Notes:**
+  - Manifest includes in header: "Copyright 1997-2008 Sun Microsystems, Inc."
+  - Lists #3 below as an optional dependency!
+  - OSGi ([official site](https://www.osgi.org/developer/architecture/); [Wikipedia](https://en.wikipedia.org/wiki/OSGi)) is a standard for packaging Java components.
+
 3. [`javax.annotation:jsr250-api:1.0`](http://search.maven.org/#artifactdetails%7Cjavax.annotation%7Cjsr250-api%7C1.0%7Cjar)
-  * **Description:** "JSR-250 Reference Implementation by Glassfish"
-  * **URL (from metadata):** https://jcp.org/aboutJava/communityprocess/final/jsr250/index.html
-  * **Last updated:** 2007
-  * **Main `.jar` filesize:** 5848 bytes
-  * **Includes developer in metadata:** No
+
+- **Description:** "JSR-250 Reference Implementation by Glassfish"
+- **URL (from metadata):** https://jcp.org/aboutJava/communityprocess/final/jsr250/index.html
+- **Last updated:** 2007
+- **Main `.jar` filesize:** 5848 bytes
+- **Includes developer in metadata:** No
 
 According to the [community page](https://jcp.org/en/jsr/detail?id=250) (which is the same URL provided by #1), the original release was in 2006, with maintenance releases in 2009 and 2013 (n.b.: [another maintenance release](https://jcp.org/aboutJava/communityprocess/maintenance/jsr250/JSR-250-MR3-changes.html) is scheduled for next month, Jul 2016!). So it looks like #1, `javax.annotation:javax.annotation-api:1.2` implements the latest version of this spec, whereas #3 implemented the first stable version almost ten years ago.
 
@@ -163,7 +164,7 @@ JetBrains' [Kotlin Android Extensions](https://kotlinlang.org/docs/tutorials/and
 
 **With kotlin-android-extensions:**
 
-	import kotlinx.android.synthetic.main.activity_main.* // Import all views in R.layout.activity_main
+    import kotlinx.android.synthetic.main.activity_main.* // Import all views in R.layout.activity_main
 
     class MyActivity: Activity() {
     	override fun onCreate(savedInstanceState: Bundle) {
@@ -177,9 +178,9 @@ JetBrains' [Kotlin Android Extensions](https://kotlinlang.org/docs/tutorials/and
 
 #### Dagger 2.2 Compatibility
 
-**Update 2016-10-05:** This seemed to be a problem with the Kotlin plugin rather than with Dagger itself. Code minify works fine with Kotlin v1.0.3 and the current version 1.0.4. 
+**Update 2016-10-05:** This seemed to be a problem with the Kotlin plugin rather than with Dagger itself. Code minify works fine with Kotlin v1.0.3 and the current version 1.0.4.
 
-Nice, right? _However_, I couldn't for the life of me make my view classes work with *both* Dagger and Kotlin. I started out with an Activity that used Dagger for injecting its presenter. Then, I tried factoring out those pesky `findViewById()` calls and using the synthetic properties directly, only to run into various build errors. Either the compiler couldn't import the synthetic layout "`Unresolved reference kotlinx`," or component classes generated by Dagger "`references unknown class X`," where X is the component interface that Dagger used to generate it. Okay.
+Nice, right? _However_, I couldn't for the life of me make my view classes work with _both_ Dagger and Kotlin. I started out with an Activity that used Dagger for injecting its presenter. Then, I tried factoring out those pesky `findViewById()` calls and using the synthetic properties directly, only to run into various build errors. Either the compiler couldn't import the synthetic layout "`Unresolved reference kotlinx`," or component classes generated by Dagger "`references unknown class X`," where X is the component interface that Dagger used to generate it. Okay.
 
 This was oft accompanied by the sad error message:
 
@@ -216,7 +217,7 @@ However, I think it's worth noting that these tips did _not_ fix the conflicts I
 
 **Update 2016-10-05:** In Kotlin plugin v1.0.3 and up, the automatic project setup works without modification.
 
-### `inject()` requires the *exact* class you're injecting into
+### `inject()` requires the _exact_ class you're injecting into
 
 Lastly, my "d'oh!" moment.
 
@@ -233,7 +234,7 @@ One of my Activities implemented an interface for interaction with its presenter
 
 `TimerPresenter.kt`:
 
-	class TimerPresenter
+    class TimerPresenter
     	@Inject constructor(override var view: TimerContract.TimerView)
     	: TimerContract.UserActionsListener {
     	...
@@ -243,15 +244,15 @@ I wanted to inject the presenter in `TimerActivity` using Dagger, so I implement
 
 `TimerComponent.kt`:
 
-	import dagger.Component
+    import dagger.Component
 
-	@Component(
-	        modules = arrayOf(TimerModule::class)
-	)
-	interface TimerComponent {
+    @Component(
+            modules = arrayOf(TimerModule::class)
+    )
+    interface TimerComponent {
 
-	    fun inject(timerView: TimerContract.TimerView)
-	}
+        fun inject(timerView: TimerContract.TimerView)
+    }
 
 `TimerActivity.kt`:
 
@@ -277,27 +278,26 @@ Despite `inject()` type checking for a `TimerActivity` that conforms to the `Tim
 
 `TimerComponent.kt`:
 
-	import dagger.Component
+    import dagger.Component
 
-	@Component(
-	        modules = arrayOf(TimerModule::class)
-	)
-	interface TimerComponent {
+    @Component(
+            modules = arrayOf(TimerModule::class)
+    )
+    interface TimerComponent {
 
-	//  fun inject(timerView: TimerContract.TimerView) Nope!
-	    fun inject(timerActivity: TimerActivity)	// Yup!
-	}
+    //  fun inject(timerView: TimerContract.TimerView) Nope!
+        fun inject(timerActivity: TimerActivity)	// Yup!
+    }
 
 Total noob move, I'm sure, but hey, now I know.
-
 
 ## Helpful Resources
 
 I probably wouldn't have figured out how to make everything work without the help of the following resources -- props to the makers:
 
-* damianpetla's [kotlin-dagger-example](https://github.com/damianpetla/kotlin-dagger-example)
-* Google's example [MVP+Dagger architected ToDo App](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger)
-* soflete's [Android with Dagger](http://soflete.github.io/2016/04/01/Android-MVP-with-Dagger/) example
+- damianpetla's [kotlin-dagger-example](https://github.com/damianpetla/kotlin-dagger-example)
+- Google's example [MVP+Dagger architected ToDo App](https://github.com/googlesamples/android-architecture/tree/todo-mvp-dagger)
+- soflete's [Android with Dagger](http://soflete.github.io/2016/04/01/Android-MVP-with-Dagger/) example
 
 **Update 2016-10-05:** I now have my own working Kotlin/Dagger app [on GitHub](https://github.com/ronaldsmartin/20twenty20).
 

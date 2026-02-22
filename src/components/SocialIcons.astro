@@ -1,17 +1,30 @@
 ---
-import { siteConfig } from '../data/site';
+import { siteConfig } from "../data/site";
 ---
 
-{siteConfig.socialLinks.map(link => (
-  <li>
-    <a href={link.url} target="_blank" title={link.title} class={`fa ${link.icon}`}></a>
-  </li>
-))}
-{siteConfig.email && (
-  <li>
-    <a href={`mailto:${siteConfig.email}`} title="Email" class="fa fa-envelope"></a>
-  </li>
-)}
+{
+  siteConfig.socialLinks.map((link) => (
+    <li>
+      <a
+        href={link.url}
+        target="_blank"
+        title={link.title}
+        class={`fa ${link.icon}`}
+      />
+    </li>
+  ))
+}
+{
+  siteConfig.email && (
+    <li>
+      <a
+        href={`mailto:${siteConfig.email}`}
+        title="Email"
+        class="fa fa-envelope"
+      />
+    </li>
+  )
+}
 <li>
   <a href="/rss.xml" title="RSS" class="fa fa-rss"></a>
 </li>

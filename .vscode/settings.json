@@ -1,0 +1,11 @@
+{
+  "search.exclude": {
+    "**/.yarn": true
+  },
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnSave": true,
+  "[astro]": {
+    "editor.defaultFormatter": "astro-build.astro-vscode"
+  },
+  "eslint.validate": ["javascript", "typescript", "astro"]
+}

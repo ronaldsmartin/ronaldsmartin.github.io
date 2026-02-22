@@ -1,20 +1,29 @@
 ---
-import PostHeader from './PostHeader.astro';
-import FeaturedImage from './FeaturedImage.astro';
-import PostCategories from './PostCategories.astro';
-import { getReadingTime } from '../utils/readingTime';
-import { getPostUrl } from '../utils/postUrl';
-import type { CollectionEntry } from 'astro:content';
+import PostHeader from "./PostHeader.astro";
+import FeaturedImage from "./FeaturedImage.astro";
+import PostCategories from "./PostCategories.astro";
+import { getReadingTime } from "../utils/readingTime";
+import { getPostUrl } from "../utils/postUrl";
+import type { CollectionEntry } from "astro:content";
 
 interface Props {
-  post: CollectionEntry<'blog'>;
+  post: CollectionEntry<"blog">;
   Content: astroHTML.JSX.Element;
 }
 
 const { post, Content } = Astro.props;
-const { title, description, date, author, categories, featured, featuredpath, featuredalt } = post.data;
+const {
+  title,
+  description,
+  date,
+  author,
+  categories,
+  featured,
+  featuredpath,
+  featuredalt,
+} = post.data;
 const permalink = getPostUrl(post.slug);
-const readingTime = getReadingTime(post.body ?? '');
+const readingTime = getReadingTime(post.body ?? "");
 ---
 
 <article class="post">
@@ -27,15 +36,17 @@ const readingTime = getReadingTime(post.body ?? '');
     readingTime={readingTime}
   />
 
-  {featured && featuredpath && (
-    <FeaturedImage
-      featured={featured}
-      featuredpath={featuredpath}
-      featuredalt={featuredalt}
-      date={date}
-      permalink={permalink}
-    />
-  )}
+  {
+    featured && featuredpath && (
+      <FeaturedImage
+        featured={featured}
+        featuredpath={featuredpath}
+        featuredalt={featuredalt}
+        date={date}
+        permalink={permalink}
+      />
+    )
+  }
 
   <div class="post-summary">
     <Content />
@@ -56,7 +67,7 @@ const readingTime = getReadingTime(post.body ?? '');
     position: relative;
   }
   .post-summary::after {
-    content: '';
+    content: "";
     position: absolute;
     bottom: 0;
     left: 0;

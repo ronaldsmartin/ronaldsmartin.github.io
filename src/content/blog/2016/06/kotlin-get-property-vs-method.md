@@ -19,17 +19,19 @@ I was curious today about the relationship of Kotlin's computed properties and m
 
 The examples of [RxJava](https://github.com/ReactiveX/RxJava/wiki) usage I've seen online generally use factory methods to produce [`Observable`s](http://reactivex.io/documentation/observable.html) consumed by their subscribers. For example, using [Retrofit](http://square.github.io/retrofit/), we'd define an API call that returns an `Observable`, and then later we could call this as a method on our generated service.
 
-
 ### Observables in Retrofit example
 
-*Define a Retrofit API:*
+_Define a Retrofit API:_
+
 ```java
 public interface GitHubService {
   @GET("users/{user}/repos")
   Observable<List<Repo>> listRepos(@Path("user") String user);
 }
 ```
-*Use it while chaining `Observable`s:*
+
+_Use it while chaining `Observable`s:_
+
 ```java
 Retrofit retrofit = new Retrofit.Builder()
     .baseUrl("https://api.github.com/")
@@ -43,12 +45,12 @@ service.listRepos("octocat")
     .subscribe(repos -> ...)
 ```
 
-This is not only very easy to understand, but pretty much the only way to do this because our `listRepos()` method needs an argument. What if, however, we had some other method that takes no params? Could we then access an `Observable` as a member on some other object instead of via one of its methods? 
+This is not only very easy to understand, but pretty much the only way to do this because our `listRepos()` method needs an argument. What if, however, we had some other method that takes no params? Could we then access an `Observable` as a member on some other object instead of via one of its methods?
 
 It is in fact very possible to do something like this:
 
-
 #### A: Observable Member Implementation
+
 ```
 public class Stopwatch {
     public final Observable<Long> currentTime = Observable.interval(1, TimeUnit.SECONDS);
@@ -63,6 +65,7 @@ stopwatch.currentTime.subscribe(...);
 whereas a more traditional implementation would look like this:
 
 #### B: Observable Method Implementation
+
 ```
 public class Stopwatch {
     public Observable<Long> start() {
@@ -79,12 +82,11 @@ There are a few things about the previous that I think are worth pointing out:
 
 1. What if, in either implementation, we had marked the `Observable` as `static`? I'll leave that for you to think about, but honestly I think that there aren't any startling differences between static/non-static `Observable`s and static/non-static objects of other types.
 2. It's interesting to note the semantic change between using a field and using a method. I tried to highlight this by naming them differently: `currentTime` (a noun) versus `start()`, a verb. Both `Observable`s are doing the same thing, but in the first case, we imply that `currentTime` is an observable property of a `Stopwatch`, while in the second it is an operation that can be observed.<br/>
-_(Giving them the same name felt unnatural to me. I was taught that variable names should be nouns and method names should be verbs, and in fact [in this old Sun Java code convention guide](http://www.oracle.com/technetwork/java/codeconventions-135099.html) it is suggested thus for methods. Interestingly, however, they omit going so far as to suggest similarly giving variables noun names as well. Maybe we can think about this another time.)_
+   _(Giving them the same name felt unnatural to me. I was taught that variable names should be nouns and method names should be verbs, and in fact [in this old Sun Java code convention guide](http://www.oracle.com/technetwork/java/codeconventions-135099.html) it is suggested thus for methods. Interestingly, however, they omit going so far as to suggest similarly giving variables noun names as well. Maybe we can think about this another time.)_
 3. In the member implementation (**A**), the single instance variable `currentTime` is marked `final`. I did this in order to provide functional equivalence to the second implementation (**B**), but are there cases in which an observable member ought to be mutable?<br/>
-If the `Stopwatch` class had some other state `precision` that controlled the interval's `TimeUnit` (instead of the hardcoded `TimeUnit.SECONDS`), the member `currentTime` would need to be reassigned to reflect the new value, and thus could not be marked `final`.<br/>
-If the `currentTime` was no longer `final`, it would be susceptible to arbitrary reassignment. How can we protect against this? In Java, we would mark it `private`, and then provide getter access via a getter method, and then... wait. That just results in a modified version of **B**!
-Thus, if you know your `Observable` might need to change, you're probably better off just using a method.
-
+   If the `Stopwatch` class had some other state `precision` that controlled the interval's `TimeUnit` (instead of the hardcoded `TimeUnit.SECONDS`), the member `currentTime` would need to be reassigned to reflect the new value, and thus could not be marked `final`.<br/>
+   If the `currentTime` was no longer `final`, it would be susceptible to arbitrary reassignment. How can we protect against this? In Java, we would mark it `private`, and then provide getter access via a getter method, and then... wait. That just results in a modified version of **B**!
+   Thus, if you know your `Observable` might need to change, you're probably better off just using a method.
 
 ## Kotlin computed properties are functions
 
@@ -98,7 +100,7 @@ Kotlin has a number of features that expand what is possible in Java. For the qu
 class Person(
     var firstName: String,   // Standard property with synthesized get-set accessors
     var lastName: String) {  // Another standard property
-    
+
     /**
      * Our computed property! Instead of storing a value, it computes one by calling the
      * getter we implement.
@@ -121,7 +123,7 @@ person.lastName = "Bing"
 person.fullName  // "Monica Bing"
 ```
 
-Hopefully that makes sense. For another illustrative example, check out the section on computed properties in the [Swift Programming Language Guide]((https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID259)) and its subsequent section on read-only computed properties here. For more on Kotlin properties, [check out the appropriate Kotlin page](https://kotlinlang.org/docs/reference/properties.html).
+Hopefully that makes sense. For another illustrative example, check out the section on computed properties in the [Swift Programming Language Guide](<(https://developer.apple.com/library/ios/documentation/Swift/Conceptual/Swift_Programming_Language/Properties.html#//apple_ref/doc/uid/TP40014097-CH14-ID259)>) and its subsequent section on read-only computed properties here. For more on Kotlin properties, [check out the appropriate Kotlin page](https://kotlinlang.org/docs/reference/properties.html).
 
 ### ...can be used like factory functions
 
@@ -129,7 +131,7 @@ Now, we don't _have_ to compute our property value from other object properties.
 
 ```
 class Stopwatch() {
-    val currentTime: Observable<Long> 
+    val currentTime: Observable<Long>
         get() = Observable.interval(1, TimeUnit.SECONDS)
 }
 ```
@@ -138,7 +140,7 @@ Yes, it's our `Stopwatch` example **A** from before. Obviously, we can also impl
 
 ```
 class Stopwatch() {
-    // In Kotlin, a function that returns an expression does not need to be 
+    // In Kotlin, a function that returns an expression does not need to be
     // enclosed in braces or explicit use of the `return` keyword.
     fun start(): Observable<Long> = Observable.interval(1, TimeUnit.SECONDS)
 }
@@ -158,18 +160,18 @@ stopwatch.start().subscribe { ... }
 
 ### ...are recalculated on each access
 
-Notably, the read-only computed property approach does *not* have one of the same issues as the `public final` field approach in Java. Earlier we noted that if an `Observable` field depends on some kind of external state, the `public final` approach is untenable because the field would need reassignment in order to generate a modified `Observable`. Since a computed property uses its getter to generate a new value each time it is accessed, it is "reassigned" each time it is called.
+Notably, the read-only computed property approach does _not_ have one of the same issues as the `public final` field approach in Java. Earlier we noted that if an `Observable` field depends on some kind of external state, the `public final` approach is untenable because the field would need reassignment in order to generate a modified `Observable`. Since a computed property uses its getter to generate a new value each time it is accessed, it is "reassigned" each time it is called.
 
 Let's look at an example:
 
 ```
 class Stopwatch() {
-    
+
     /** Some modifiable state that the Observables depend on */
     var precision = TimeUnit.SECONDS
 
     // Version A
-    val currentTime: Observable<Long> 
+    val currentTime: Observable<Long>
         get() = Observable.interval(1, precision)
 
     // Version B
@@ -190,14 +192,14 @@ stopwatch.currentTime.subscribe { ... } // Version A
 stopwatch.start().subscribe { ... }     // Version B
 ```
 
-As you can see, both versions end up producing the same value. Furthermore, **A** is *not* subject to arbitrary replacement by some other `Observable` -- it is marked as read-only (`val`) and cannot be reassigned. 
+As you can see, both versions end up producing the same value. Furthermore, **A** is _not_ subject to arbitrary replacement by some other `Observable` -- it is marked as read-only (`val`) and cannot be reassigned.
 
 ### ...are in fact just functions?
 
 Intuitively, it makes sense that a read-only computed property is just some syntactic sugar on top of methods. When you look at the property definition, the `get() = ...` is literally defining a custom getter method to be used for property access. What does its declaration indicate?
 
 ```
-val currentTime: Observable<Long> 
+val currentTime: Observable<Long>
 ```
 
 We can read that as "if you access me on/give me an object instance, I will give you an `Observable<Long>`." In mathematical terminology, a relation that maps an input to an output is called a **function**.
@@ -211,17 +213,18 @@ Let's check this out. It's possible that there's some subtle difference here tha
 In all seriousness, it's pretty easy to find out. I propose a simple test: look at the code generated from each of the property and function implementations and see how both differ.
 
 #### Example Kotlin class:
+
 ```
 import rx.Observable
 import java.util.concurrent.TimeUnit
 
 class Stopwatch() {
-    
+
     /** Some modifiable state that the Observables depend on */
     var precision = TimeUnit.SECONDS
 
     // Version A
-    val currentTime: Observable<Long> 
+    val currentTime: Observable<Long>
         get() = Observable.interval(1, precision)
 
     // Version B
@@ -238,6 +241,7 @@ The Kotlin plugin to IntelliJ provides a nifty feature that lets you look at the
 Here is the generated bytecode for our Observables in the class above using Android Studio 2.2-Preview 4 and Kotlin v1.0.2-1:
 
 #### Stopwatch.kt bytecode for `currentTime` and `start()`
+
 ```
   // access flags 0x11
   // signature ()Lrx/Observable<Ljava/lang/Long;>;
@@ -286,8 +290,8 @@ That's a bit hard to parse, though the bytecode doesn't look terribly different.
   <img src="/img/2016/06/kotlin-decompile-button.png" alt="Kotlin Bytecode Viewer" />
 </span></p>
 
-
 #### Stopwatch.decompiled.java
+
 ```
 import java.util.concurrent.TimeUnit;
 import kotlin.Metadata;
@@ -332,10 +336,9 @@ public final class Stopwatch {
 }
 ```
 
-Surprise, surprise. `currentTime` and `start()`, and their generated counterparts `getCurrentTime()` and `start()`, have **exactly** equal implementations. They are the same except for their names! While we used a bit of a trivial example, I also went ahead and tried this with some much more complex `Observable`s and ended up with the same result. 
+Surprise, surprise. `currentTime` and `start()`, and their generated counterparts `getCurrentTime()` and `start()`, have **exactly** equal implementations. They are the same except for their names! While we used a bit of a trivial example, I also went ahead and tried this with some much more complex `Observable`s and ended up with the same result.
 
 _Read-only computed properties are just functions under the hood._
-
 
 ## So... which way do I use?
 
@@ -385,7 +388,7 @@ Or, if you have assigned a [`Scheduler`](http://reactivex.io/documentation/sched
 
 Asynchronous interactions are notoriously difficult to reason about. The `Observable` class is meant to ease some of the cognitive load on the programmer, but it still remains that they represent some kind of potential asynchronous value. This leads back to the first point that _Observables aren't simple_ and that _methods better reflect their complexity_. In fact, many common `Observable`s represent long running operations, and actions an object takes are better represented as methods.
 
-**Note:** A good resource I found on this subject is the [MSDN guide on "Choosing Between Properties and Methods"](https://msdn.microsoft.com/en-us/library/ms229054(v=vs.100).aspx).
+**Note:** A good resource I found on this subject is the [MSDN guide on "Choosing Between Properties and Methods"](<https://msdn.microsoft.com/en-us/library/ms229054(v=vs.100).aspx>).
 
 **TL;DR: Kotlin computed properties are just methods, but that doesn't mean you should be using them to expose your object's `Observable` API.**
 

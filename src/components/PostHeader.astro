@@ -9,23 +9,37 @@ interface Props {
   isH1?: boolean;
 }
 
-const { title, permalink, description, date, author, readingTime, isH1 = false } = Astro.props;
+const {
+  title,
+  permalink,
+  description,
+  date,
+  author,
+  readingTime,
+  isH1 = false,
+} = Astro.props;
 
-const datetime = date.toISOString().split('T')[0];
-const displayDate = date.toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
+const datetime = date.toISOString().split("T")[0];
+const displayDate = date.toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 ---
 
 <header>
   <div class="title">
-    {isH1 ? (
-      <h1><a href={permalink}>{title}</a></h1>
-    ) : (
-      <h2><a href={permalink}>{title}</a></h2>
-    )}
+    {
+      isH1 ? (
+        <h1>
+          <a href={permalink}>{title}</a>
+        </h1>
+      ) : (
+        <h2>
+          <a href={permalink}>{title}</a>
+        </h2>
+      )
+    }
     {description && <p>{description}</p>}
   </div>
   <div class="meta">

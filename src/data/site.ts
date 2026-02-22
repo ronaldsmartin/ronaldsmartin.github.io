@@ -12,17 +12,58 @@ export interface MenuItem {
   weight: number;
 }
 
-function buildSocialLinks(social: Record<string, string | undefined>): SocialLink[] {
-  const urlPatterns: Record<string, { url: (u: string) => string; title: string; icon: string }> = {
-    github:         { url: u => `//github.com/${u}`,               title: 'GitHub',         icon: 'fa-github' },
-    bitbucket:      { url: u => `//bitbucket.com/${u}`,            title: 'Bitbucket',      icon: 'fa-bitbucket' },
-    instagram:      { url: u => `//instagram.com/${u}`,            title: 'Instagram',      icon: 'fa-instagram' },
-    youtube:        { url: u => `//youtube.com/${u}`,              title: 'YouTube',        icon: 'fa-youtube' },
-    medium:         { url: u => `//medium.com/@${u}`,              title: 'Medium',         icon: 'fa-medium' },
-    linkedin:       { url: u => `//linkedin.com/in/${u}`,          title: 'LinkedIn',       icon: 'fa-linkedin' },
-    stackoverflow:  { url: u => `//stackoverflow.com/users/${u}`,  title: 'Stack Overflow', icon: 'fa-stack-overflow' },
-    facebook:       { url: u => `//facebook.com/${u}`,             title: 'Facebook',       icon: 'fa-facebook' },
-    twitter:        { url: u => `//twitter.com/${u}`,              title: 'Twitter',        icon: 'fa-twitter' },
+function buildSocialLinks(
+  social: Record<string, string | undefined>,
+): SocialLink[] {
+  const urlPatterns: Record<
+    string,
+    { url: (u: string) => string; title: string; icon: string }
+  > = {
+    github: {
+      url: (u) => `//github.com/${u}`,
+      title: "GitHub",
+      icon: "fa-github",
+    },
+    bitbucket: {
+      url: (u) => `//bitbucket.com/${u}`,
+      title: "Bitbucket",
+      icon: "fa-bitbucket",
+    },
+    instagram: {
+      url: (u) => `//instagram.com/${u}`,
+      title: "Instagram",
+      icon: "fa-instagram",
+    },
+    youtube: {
+      url: (u) => `//youtube.com/${u}`,
+      title: "YouTube",
+      icon: "fa-youtube",
+    },
+    medium: {
+      url: (u) => `//medium.com/@${u}`,
+      title: "Medium",
+      icon: "fa-medium",
+    },
+    linkedin: {
+      url: (u) => `//linkedin.com/in/${u}`,
+      title: "LinkedIn",
+      icon: "fa-linkedin",
+    },
+    stackoverflow: {
+      url: (u) => `//stackoverflow.com/users/${u}`,
+      title: "Stack Overflow",
+      icon: "fa-stack-overflow",
+    },
+    facebook: {
+      url: (u) => `//facebook.com/${u}`,
+      title: "Facebook",
+      icon: "fa-facebook",
+    },
+    twitter: {
+      url: (u) => `//twitter.com/${u}`,
+      title: "Twitter",
+      icon: "fa-twitter",
+    },
   };
 
   const links: SocialLink[] = [];
@@ -70,10 +111,15 @@ export const siteConfig = {
   postAmount: { sidebar: 2 },
 
   menu: [
-    { name: "Blog",       url: "/blog",       icon: "fa fa-newspaper-o", weight: 1 },
-    { name: "Categories", url: "/categories",  icon: "fa fa-map-signs",   weight: 2 },
-    { name: "About",      url: "/about",       icon: "fa fa-info-circle", weight: 3 },
-    { name: "Projects",   url: "/projects",    icon: "fa fa-code",        weight: 4 },
+    { name: "Blog", url: "/blog", icon: "fa fa-newspaper-o", weight: 1 },
+    {
+      name: "Categories",
+      url: "/categories",
+      icon: "fa fa-map-signs",
+      weight: 2,
+    },
+    { name: "About", url: "/about", icon: "fa fa-info-circle", weight: 3 },
+    { name: "Projects", url: "/projects", icon: "fa fa-code", weight: 4 },
   ] satisfies MenuItem[],
 
   socialLinks: buildSocialLinks({

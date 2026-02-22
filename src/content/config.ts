@@ -1,17 +1,17 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection, z } from "astro:content";
 
 const blogCollection = defineCollection({
-  type: 'content',
+  type: "content",
   schema: z.object({
     title: z.string(),
-    author: z.string().default('Ronald Martin'),
+    author: z.string().default("Ronald Martin"),
     date: z.coerce.date(),
-    description: z.string().default(''),
+    description: z.string().default(""),
     categories: z.array(z.string()).default([]),
-    featured: z.string().default(''),
-    featuredalt: z.string().default(''),
-    featuredpath: z.string().default(''),
-    type: z.string().default('post'),
+    featured: z.string().default(""),
+    featuredalt: z.string().default(""),
+    featuredpath: z.string().default(""),
+    type: z.string().default("post"),
   }),
 });
 

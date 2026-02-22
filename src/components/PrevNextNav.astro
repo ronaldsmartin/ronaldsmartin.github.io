@@ -1,33 +1,45 @@
 ---
-import type { CollectionEntry } from 'astro:content';
-import { getPostUrl } from '../utils/postUrl';
+import type { CollectionEntry } from "astro:content";
+import { getPostUrl } from "../utils/postUrl";
 
 interface Props {
-  prevPost: CollectionEntry<'blog'> | null;
-  nextPost: CollectionEntry<'blog'> | null;
+  prevPost: CollectionEntry<"blog"> | null;
+  nextPost: CollectionEntry<"blog"> | null;
 }
 
 const { prevPost, nextPost } = Astro.props;
 ---
 
 <ul class="actions pagination">
-  {prevPost ? (
-    <li>
-      <a href={getPostUrl(prevPost.slug)} class="button big previous">
-        {prevPost.data.title}
-      </a>
-    </li>
-  ) : (
-    <li><a href="#" class="disabled button big previous">Previous Post</a></li>
-  )}
+  {
+    prevPost ? (
+      <li>
+        <a href={getPostUrl(prevPost.slug)} class="button big previous">
+          {prevPost.data.title}
+        </a>
+      </li>
+    ) : (
+      <li>
+        <a href="#" class="disabled button big previous">
+          Previous Post
+        </a>
+      </li>
+    )
+  }
 
-  {nextPost ? (
-    <li>
-      <a href={getPostUrl(nextPost.slug)} class="button big next">
-        {nextPost.data.title}
-      </a>
-    </li>
-  ) : (
-    <li><a href="#" class="disabled button big next">Next Post</a></li>
-  )}
+  {
+    nextPost ? (
+      <li>
+        <a href={getPostUrl(nextPost.slug)} class="button big next">
+          {nextPost.data.title}
+        </a>
+      </li>
+    ) : (
+      <li>
+        <a href="#" class="disabled button big next">
+          Next Post
+        </a>
+      </li>
+    )
+  }
 </ul>
